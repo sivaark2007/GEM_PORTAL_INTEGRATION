@@ -1,0 +1,6 @@
+{
+  "name": "GeM AI Bid Compliance Platform",
+  "description": "AI-Powered Integrated Bid Compliance Verification prototype for Government e-Marketplace procurement and bidder evaluation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
