@@ -24,6 +24,29 @@ import {
   ChevronUp
 } from 'lucide-react';
 
+const documentGroups = [
+  {
+    title: 'Identity & Tax',
+    documents: ['PAN Card / PAN Details', 'GST Registration Certificate / GSTIN', 'Income Tax Return (ITR)']
+  },
+  {
+    title: 'Business Registration',
+    documents: ['Udyam Registration Certificate', 'MCA Company/LLP Registration Details', 'Startup India / DPIIT Recognition Certificate', 'NSIC Registration Certificate']
+  },
+  {
+    title: 'Statutory Compliance',
+    documents: ['EPFO Registration Details', 'ESIC Registration Details', 'GST Compliance / Return Details', 'Income Tax Compliance Details']
+  },
+  {
+    title: 'Product / Procurement Compliance',
+    documents: ['BIS Certificate / Licence', 'Make in India / Local Content Declaration', 'OEM Authorization Certificate']
+  },
+  {
+    title: 'Digital Document Verification',
+    documents: ['DigiLocker-issued Documents']
+  }
+];
+
 export const BidderDashboard: React.FC = () => {
   const { 
     selectedCompany, 
@@ -45,7 +68,7 @@ export const BidderDashboard: React.FC = () => {
   const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);
   const [selectedDocToView, setSelectedDocToView] = useState<DocumentInfo | null>(null);
   const [expandedSubmissions, setExpandedSubmissions] = useState<Record<string, boolean>>({});
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const requirementInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
   const [isDragging, setIsDragging] = useState(false);
 
   if (!selectedCompany) {
@@ -74,7 +97,7 @@ export const BidderDashboard: React.FC = () => {
     reader.readAsDataURL(file);
   });
 
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement: string) => {
     const files = Array.from(e.target.files || []);
     // Reset file input value immediately so user can select the same file again
     if (e.target) e.target.value = '';
@@ -293,45 +316,55 @@ export const BidderDashboard: React.FC = () => {
 
         {/* TAB 1: VIEW AVAILABLE TENDERS */}
         {activeTab === 'available' && (
-          <div className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="space-y-3">
+            <div className="flex items-center justify-between px-1 pb-1 text-xs text-slate-500">
+              <span>Showing 1 - {tenders.length} of {tenders.length} tenders</span>
+              <span className="hidden sm:inline">Sort by: <strong className="text-slate-700">Bid End Date: Oldest First</strong></span>
+            </div>
+            <div className="space-y-5">
               {tenders.map((tender) => {
                 const alreadySubmitted = submissions.some(
                   s => s.tenderId === tender.id && s.companyId === selectedCompany.id
                 );
 
                 return (
-                  <div key={tender.id} className="bg-white rounded-xl border border-slate-200 p-5 flex flex-col justify-between shadow-2xs hover:shadow-xs transition-shadow">
-                    <div>
-                      <div className="flex items-center justify-between text-xs text-slate-500 mb-2">
-                        <span className="font-mono text-slate-600">{tender.tenderNumber}</span>
-                        <span className="font-semibold text-emerald-700">{tender.status}</span>
+                  <div key={tender.id} className="bg-white border border-slate-200 border-t-4 border-t-amber-400 shadow-2xs hover:shadow-sm transition-shadow">
+                    <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between gap-3">
+                      <div className="text-sm font-semibold text-slate-800">
+                        BID NO: <span className="text-sky-700 font-bold">{tender.tenderNumber}</span>
                       </div>
-                      <h3 className="font-bold text-slate-900 text-sm mb-2">{tender.title}</h3>
-                      <div className="text-xs text-slate-600 space-y-1 mb-4">
-                        <div><span className="text-slate-400">Authority:</span> {tender.organization}</div>
-                        <div><span className="text-slate-400">Budget:</span> <strong className="text-slate-800">{tender.estimatedValue}</strong></div>
-                        <div><span className="text-slate-400">Closing:</span> {tender.closingDate}</div>
-                      </div>
+                      <span className="text-xs text-sky-700 font-semibold">{tender.status}</span>
                     </div>
-
-                    <div className="pt-3 border-t border-slate-100">
-                      {alreadySubmitted ? (
-                        <div className="w-full py-2 px-3 bg-slate-100 text-slate-700 text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                          <span>Bid Submitted</span>
-                        </div>
-                      ) : (
-                        <button
-                          onClick={() => {
-                            setSelectedTenderToApply(tender);
-                            setActiveTab('apply');
-                          }}
-                          className="w-full py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5"
-                        >
-                          <span>Apply for Tender</span>
-                        </button>
-                      )}
+                    <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.35fr_0.9fr] gap-4 px-4 py-4 text-xs">
+                      <div>
+                        <div className="font-bold text-slate-800 mb-1">Items:</div>
+                        <div className="text-slate-700 leading-relaxed">{tender.title}</div>
+                        <div className="text-slate-500 mt-2">Category: <span className="text-slate-700">{tender.category}</span></div>
+                      </div>
+                      <div>
+                        <div className="font-bold text-slate-800 mb-1">Department Name And Address:</div>
+                        <div className="text-slate-700">{tender.ministry}</div>
+                        <div className="text-slate-700 mt-1">{tender.organization}</div>
+                      </div>
+                      <div className="md:text-right">
+                        <div><span className="font-bold text-slate-800">Bid End Date:</span> <span className="text-amber-600">{tender.closingDate}</span></div>
+                        <div className="mt-2"><span className="font-bold text-slate-800">Estimated Value:</span> <span className="text-slate-700">{tender.estimatedValue}</span></div>
+                        {alreadySubmitted ? (
+                          <div className="inline-flex items-center gap-1 mt-3 text-emerald-700 font-semibold">
+                            <CheckCircle2 className="w-3.5 h-3.5" /> Bid Submitted
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              setSelectedTenderToApply(tender);
+                              setActiveTab('apply');
+                            }}
+                            className="mt-3 inline-flex items-center gap-1.5 text-sky-700 hover:text-sky-900 font-semibold underline underline-offset-2"
+                          >
+                            <ArrowLeft className="w-3.5 h-3.5 rotate-180" /> View / Apply
+                          </button>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );
@@ -363,21 +396,11 @@ export const BidderDashboard: React.FC = () => {
 
             {/* Document Upload Section */}
             <div className="space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-sm font-bold text-slate-900">Upload Required Bid Documents</h3>
-                  <p className="text-xs text-slate-500">
-                    Please attach technical specifications, CA turnover balance sheets, and Make-in-India declarations.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="px-3 py-1.5 bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-2xs"
-                >
-                  <FolderUp className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Browse Device Files</span>
-                </button>
+              <div>
+                <h3 className="text-sm font-bold text-slate-900">Upload Required Bid Documents</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  Upload one PDF for each applicable document requirement.
+                </p>
               </div>
 
               {/* Hidden real file input */}
@@ -494,8 +517,8 @@ export const BidderDashboard: React.FC = () => {
                         </button>
                       </div>
                     </div>
-                  ))
-                )}
+                  </section>
+                ))}
               </div>
             </div>
 
