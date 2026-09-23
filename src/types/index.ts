@@ -30,6 +30,13 @@ export interface TenderRequirement {
   mandatory: boolean;
 }
 
+export interface GemBiddingDocument {
+  name: string;
+  fileSize: string;
+  fileContentUrl?: string;
+  uploadedAt: string;
+}
+
 export interface Tender {
   id: string;
   tenderNumber: string;
@@ -39,9 +46,14 @@ export interface Tender {
   estimatedValue: string;
   category: string;
   closingDate: string;
+  startDate?: string;
+  endDate?: string;
+  items?: string;
+  quantity?: number;
   status: 'Active' | 'Evaluation' | 'Closed';
   appliedBiddersCount: number;
   requirements: TenderRequirement[];
+  gemBiddingDocument?: GemBiddingDocument;
 }
 
 export interface BidSubmission {
@@ -55,6 +67,7 @@ export interface BidSubmission {
     type: string;
     fileSize: string;
     verified: boolean;
+    fileContentUrl?: string;
   }[];
   complianceScore?: number;
   aiVerificationStage?: 'Pending' | 'OCR' | 'Govt_API' | 'Embeddings' | 'LLM_Analysis' | 'Completed';

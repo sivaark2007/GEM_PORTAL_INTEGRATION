@@ -148,11 +148,15 @@ export const INITIAL_TENDERS: Tender[] = [
     id: 'GEM/2026/B/894102',
     tenderNumber: 'GEM/2026/B/894102',
     title: 'Procurement of Enterprise Cloud Computing Servers & High-Performance Storage',
+    items: 'Enterprise Cloud Computing Servers & High-Performance Storage Arrays',
+    quantity: 45,
     organization: 'National Informatics Centre (NIC)',
     ministry: 'Ministry of Electronics & Information Technology',
     estimatedValue: '₹ 8,45,00,000',
     category: 'Hardware & IT Infrastructure',
-    closingDate: '2026-10-15',
+    startDate: '28-08-2026 2:11 PM',
+    endDate: '24-09-2026 9:00 AM',
+    closingDate: '2026-09-24',
     status: 'Evaluation',
     appliedBiddersCount: 6,
     requirements: [
@@ -160,17 +164,26 @@ export const INITIAL_TENDERS: Tender[] = [
       { id: 'req-2', title: 'Average Annual Turnover > ₹15 Crores (FY 23-26)', category: 'financial', description: 'Audited CA balance sheets for last 3 financial years with UDIN', mandatory: true },
       { id: 'req-3', title: 'OEM Authorization Form (MAF)', category: 'technical', description: 'Direct manufacturer authorization for tender warranty and SLA support', mandatory: true },
       { id: 'req-4', title: 'Valid GSTIN & Tax Clearance Certificate', category: 'statutory', description: 'GSTR-3B filings up to latest quarter without defaults', mandatory: true }
-    ]
+    ],
+    gemBiddingDocument: {
+      name: 'GeM-Bidding-9318928.pdf',
+      fileSize: '118.6 KB',
+      uploadedAt: '28-08-2026 10:00 AM'
+    }
   },
   {
     id: 'GEM/2026/B/895311',
     tenderNumber: 'GEM/2026/B/895311',
     title: 'Deployment of AI-Powered Edge CCTV Surveillance & Analytics for Railway Stations',
+    items: 'AI-Powered Edge CCTV Cameras & Video Analytics Software',
+    quantity: 320,
     organization: 'Northern Railway Zone',
     ministry: 'Ministry of Railways',
     estimatedValue: '₹ 14,20,00,000',
     category: 'Electronic Systems & AI',
-    closingDate: '2026-10-28',
+    startDate: '31-08-2026 3:45 PM',
+    endDate: '24-09-2026 9:00 AM',
+    closingDate: '2026-09-24',
     status: 'Active',
     appliedBiddersCount: 4,
     requirements: [
@@ -183,11 +196,15 @@ export const INITIAL_TENDERS: Tender[] = [
     id: 'GEM/2026/B/897740',
     tenderNumber: 'GEM/2026/B/897740',
     title: 'Annual Maintenance & Modernization of Data Center Network Switches and Firewalls',
+    items: 'Network Switches, Firewalls & Maintenance Services',
+    quantity: 18,
     organization: 'Department of Telecommunications',
     ministry: 'Ministry of Communications',
     estimatedValue: '₹ 3,90,00,000',
     category: 'Networking & Maintenance',
-    closingDate: '2026-11-05',
+    startDate: '27-08-2026 11:34 AM',
+    endDate: '24-09-2026 9:00 AM',
+    closingDate: '2026-09-24',
     status: 'Active',
     appliedBiddersCount: 3,
     requirements: [
@@ -286,5 +303,107 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
       { name: 'Expired_Tax_Clearance.pdf', type: 'PDF', fileSize: '750 KB', verified: false }
     ],
     flags: ['Mandatory MII certificate missing', 'GST return filing delayed beyond allowable cure window']
+  },
+  // Railway tender submissions
+  {
+    id: 'sub-201',
+    tenderId: 'GEM/2026/B/895311',
+    companyId: 'comp-4', // TechVision India
+    submittedAt: '2026-09-14 10:00 IST',
+    status: 'Verified',
+    complianceScore: 89,
+    aiVerificationStage: 'Completed',
+    documents: [
+      { name: 'ISO_27001_Certificate.pdf', type: 'PDF', fileSize: '1.5 MB', verified: true },
+      { name: 'Past_Deployment_Certificates.pdf', type: 'PDF', fileSize: '3.2 MB', verified: true },
+      { name: 'Udyam_Registration.pdf', type: 'PDF', fileSize: '420 KB', verified: true }
+    ],
+    flags: []
+  },
+  {
+    id: 'sub-202',
+    tenderId: 'GEM/2026/B/895311',
+    companyId: 'comp-9', // Orbit Infotech
+    submittedAt: '2026-09-15 14:30 IST',
+    status: 'Under Review',
+    complianceScore: 71,
+    aiVerificationStage: 'LLM_Analysis',
+    documents: [
+      { name: 'CCTV_Technical_Proposal.pdf', type: 'PDF', fileSize: '2.8 MB', verified: true },
+      { name: 'Experience_Certificate_Railways.pdf', type: 'PDF', fileSize: '1.9 MB', verified: false }
+    ],
+    flags: ['Experience certificate needs notarization']
+  },
+  {
+    id: 'sub-203',
+    tenderId: 'GEM/2026/B/895311',
+    companyId: 'comp-10', // BlueSky Technologies
+    submittedAt: '2026-09-16 09:45 IST',
+    status: 'Verified',
+    complianceScore: 93,
+    aiVerificationStage: 'Completed',
+    documents: [
+      { name: 'BlueSky_AI_Analytics_Spec.pdf', type: 'PDF', fileSize: '4.1 MB', verified: true },
+      { name: 'ISO_Certification_2024.pdf', type: 'PDF', fileSize: '1.1 MB', verified: true },
+      { name: 'Govt_Completion_Certificates.pdf', type: 'PDF', fileSize: '2.5 MB', verified: true }
+    ],
+    flags: []
+  },
+  {
+    id: 'sub-204',
+    tenderId: 'GEM/2026/B/895311',
+    companyId: 'comp-3', // Nova Systems India
+    submittedAt: '2026-09-17 16:00 IST',
+    status: 'Under Review',
+    complianceScore: 76,
+    aiVerificationStage: 'Embeddings',
+    documents: [
+      { name: 'Nova_CCTV_Bid_Proposal.pdf', type: 'PDF', fileSize: '3.5 MB', verified: true },
+      { name: 'Udyam_Certificate.pdf', type: 'PDF', fileSize: '380 KB', verified: true }
+    ],
+    flags: ['ISO 27001 certificate expiry date needs verification']
+  },
+  // Networking tender submissions
+  {
+    id: 'sub-301',
+    tenderId: 'GEM/2026/B/897740',
+    companyId: 'comp-6', // NextGen Systems
+    submittedAt: '2026-09-10 11:00 IST',
+    status: 'Verified',
+    complianceScore: 88,
+    aiVerificationStage: 'Completed',
+    documents: [
+      { name: 'Cisco_Gold_Partner_Certificate.pdf', type: 'PDF', fileSize: '1.3 MB', verified: true },
+      { name: 'SLA_Commitment_Affidavit.pdf', type: 'PDF', fileSize: '890 KB', verified: true },
+      { name: 'Technical_Maintenance_Plan.pdf', type: 'PDF', fileSize: '2.2 MB', verified: true }
+    ],
+    flags: []
+  },
+  {
+    id: 'sub-302',
+    tenderId: 'GEM/2026/B/897740',
+    companyId: 'comp-7', // Vertex Technologies
+    submittedAt: '2026-09-11 15:20 IST',
+    status: 'Under Review',
+    complianceScore: 74,
+    aiVerificationStage: 'Govt_API',
+    documents: [
+      { name: 'Juniper_Partner_Certificate.pdf', type: 'PDF', fileSize: '1.1 MB', verified: true },
+      { name: 'Network_Maintenance_Proposal.pdf', type: 'PDF', fileSize: '3.1 MB', verified: false }
+    ],
+    flags: ['Juniper partner tier needs verification with OEM portal']
+  },
+  {
+    id: 'sub-303',
+    tenderId: 'GEM/2026/B/897740',
+    companyId: 'comp-5', // Alpha Computers
+    submittedAt: '2026-09-12 10:30 IST',
+    status: 'Disqualified',
+    complianceScore: 38,
+    aiVerificationStage: 'Completed',
+    documents: [
+      { name: 'Alpha_Networking_Proposal.pdf', type: 'PDF', fileSize: '1.7 MB', verified: false }
+    ],
+    flags: ['No OEM partner certification submitted', 'SLA commitment affidavit missing']
   }
 ];

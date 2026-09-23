@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { AppRole, AppView, Company, Tender, BidSubmission } from '../types';
+import { AppRole, AppView, Company, Tender, BidSubmission, GemBiddingDocument } from '../types';
 import { INITIAL_COMPANIES, INITIAL_TENDERS, INITIAL_SUBMISSIONS } from '../data/dummyData';
 
 interface AppContextType {
@@ -15,9 +15,10 @@ interface AppContextType {
   createCompany: (companyData: Omit<Company, 'id'>) => Company;
   navigateTo: (view: AppView) => void;
   setSelectedTenderId: (tenderId: string) => void;
-  submitBid: (tenderId: string, companyId: string, docNames: string[]) => void;
+  submitBid: (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => void;
   runVerificationForSubmission: (submissionId: string) => void;
   addTender: (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>) => Tender;
+  uploadGemBiddingDocument: (tenderId: string, doc: GemBiddingDocument) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -171,7 +172,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  const submitBid = (tenderId: string, companyId: string, docNames: string[]) => {
+  const submitBid = (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => {
     const newSub: BidSubmission = {
       id: `sub-${Date.now()}`,
       tenderId,
@@ -180,15 +181,20 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       status: 'Under Review',
       complianceScore: 85,
       aiVerificationStage: 'Pending',
-      documents: docNames.map(name => ({
-        name,
-        type: 'PDF',
-        fileSize: `${(Math.random() * 2 + 1).toFixed(1)} MB`,
-        verified: false
+      documents: documents.map(document => ({
+        name: document.name,
+        type: document.type || 'PDF',
+        fileSize: document.size || '1.8 MB',
+        verified: false,
+        fileContentUrl: document.fileContentUrl
       })),
       flags: []
     };
     setSubmissions(prev => [newSub, ...prev]);
+    // Update applied bidders count
+    setTenders(prev => prev.map(t =>
+      t.id === tenderId ? { ...t, appliedBiddersCount: t.appliedBiddersCount + 1 } : t
+    ));
   };
 
   const addTender = (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>): Tender => {
@@ -200,6 +206,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setTenders(prev => [newTender, ...prev]);
     setSelectedTenderId(newTender.id);
     return newTender;
+  };
+
+  const uploadGemBiddingDocument = (tenderId: string, doc: GemBiddingDocument) => {
+    setTenders(prev => prev.map(t =>
+      t.id === tenderId ? { ...t, gemBiddingDocument: doc } : t
+    ));
   };
 
   const runVerificationForSubmission = (submissionId: string) => {
@@ -234,7 +246,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         setSelectedTenderId,
         submitBid,
         runVerificationForSubmission,
-        addTender
+        addTender,
+        uploadGemBiddingDocument
       }}
     >
       {children}
