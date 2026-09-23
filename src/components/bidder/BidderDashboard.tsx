@@ -58,11 +58,15 @@ export const BidderDashboard: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
+<<<<<<< HEAD
   const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>([
     { name: 'Technical_Specification_Compliance.pdf', size: '2.4 MB', type: 'PDF' },
     { name: 'Make_in_India_Declaration_FY26.pdf', size: '1.1 MB', type: 'PDF' },
     { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
   ]);
+=======
+  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; requirement?: string }[]>([]);
+>>>>>>> origin/main
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);
@@ -114,16 +118,25 @@ export const BidderDashboard: React.FC = () => {
     } else {
       setUploadErrorMessage(null);
     }
+<<<<<<< HEAD
     if (validFiles.length === 0) return;
 
     // 1. Immediately read data URLs and add docs to list so UI updates instantly
     const initialDocs = await Promise.all(validFiles.map(async f => ({
+=======
+    if (pdfFiles.length === 0) {
+      if (requirementInputRefs.current[requirement]) requirementInputRefs.current[requirement]!.value = '';
+      return;
+    }
+    const newDocs = await Promise.all(pdfFiles.map(async f => ({
+>>>>>>> origin/main
       name: f.name,
       size: f.size > 1024 * 1024 
         ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
         : `${(f.size / 1024).toFixed(0)} KB`,
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
       fileContentUrl: await readFileAsDataUrl(f),
+<<<<<<< HEAD
       parsedData: undefined
     })));
 
@@ -178,6 +191,9 @@ export const BidderDashboard: React.FC = () => {
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
       fileContentUrl: await readFileAsDataUrl(f),
       parsedData: undefined
+=======
+      requirement
+>>>>>>> origin/main
     })));
 
     setUploadedDocs(prev => [...prev, ...initialDocs]);
@@ -186,6 +202,7 @@ export const BidderDashboard: React.FC = () => {
         ? `${validFiles[0].name} attached successfully.`
         : `${validFiles.length} documents attached successfully.`
     );
+<<<<<<< HEAD
     setTimeout(() => setUploadSuccessMessage(null), 3000);
 
     // 2. Parse in background asynchronously without blocking UI
@@ -201,6 +218,10 @@ export const BidderDashboard: React.FC = () => {
         console.warn('Background parsing notice for', f.name, err);
       }
     });
+=======
+    setTimeout(() => setUploadSuccessMessage(null), 2500);
+    if (requirementInputRefs.current[requirement]) requirementInputRefs.current[requirement]!.value = '';
+>>>>>>> origin/main
   };
 
   const handleRemoveDoc = (idx: number) => {
@@ -403,6 +424,7 @@ export const BidderDashboard: React.FC = () => {
                 </p>
               </div>
 
+<<<<<<< HEAD
               {/* Hidden real file input */}
               <input
                 ref={fileInputRef}
@@ -413,6 +435,8 @@ export const BidderDashboard: React.FC = () => {
                 accept=".pdf,application/pdf,image/png,image/jpeg,image/jpg,image/webp,image/tiff,.docx"
               />
 
+=======
+>>>>>>> origin/main
               {uploadSuccessMessage && (
                 <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-900 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -426,6 +450,7 @@ export const BidderDashboard: React.FC = () => {
                 </div>
               )}
 
+<<<<<<< HEAD
               {/* Drag & Drop Upload Dropzone */}
               <div
                 onDragOver={(e) => {
@@ -516,6 +541,54 @@ export const BidderDashboard: React.FC = () => {
                           <Trash2 className="w-3.5 h-3.5" />
                         </button>
                       </div>
+=======
+              <div className="space-y-5">
+                {documentGroups.map(group => (
+                  <section key={group.title} className="border border-slate-200 rounded-xl overflow-hidden">
+                    <div className="px-4 py-3 bg-slate-100 border-b border-slate-200">
+                      <h4 className="text-sm font-bold text-slate-800">{group.title}</h4>
+>>>>>>> origin/main
+                    </div>
+                    <div className="divide-y divide-slate-100">
+                      {group.documents.map(requirement => {
+                        const uploadedDoc = uploadedDocs.find(doc => doc.requirement === requirement);
+                        const requirementId = requirement.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+                        return (
+                          <div key={requirement} className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <FileText className="w-4 h-4 text-slate-500 shrink-0" />
+                              <div className="min-w-0">
+                                <span className="font-semibold text-slate-900 text-xs block">{requirement}</span>
+                                {uploadedDoc ? (
+                                  <span className="text-[10px] text-emerald-700 block truncate">{uploadedDoc.name} · {uploadedDoc.size}</span>
+                                ) : (
+                                  <span className="text-[10px] text-slate-400 block">PDF required</span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0">
+                              {uploadedDoc && (
+                                <>
+                                  <button
+                                    type="button"
+                                    onClick={() => setSelectedDocToView({ name: uploadedDoc.name, fileSize: uploadedDoc.size, type: uploadedDoc.type, companyName: selectedCompany.name, fileContentUrl: uploadedDoc.fileContentUrl })}
+                                    className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1"
+                                  >
+                                    <Eye className="w-3.5 h-3.5" /> View
+                                  </button>
+                                  <button type="button" onClick={() => handleRemoveDoc(uploadedDocs.indexOf(uploadedDoc))} className="p-1 text-slate-400 hover:text-red-600 rounded" title="Remove document">
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </>
+                              )}
+                              <input ref={element => { requirementInputRefs.current[requirement] = element; }} id={requirementId} type="file" accept="application/pdf,.pdf" onChange={event => handleFileSelect(event, requirement)} className="hidden" />
+                              <button type="button" onClick={() => requirementInputRefs.current[requirement]?.click()} className="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-lg text-xs font-semibold flex items-center gap-1.5">
+                                <Upload className="w-3.5 h-3.5" /> Upload File
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </section>
                 ))}
