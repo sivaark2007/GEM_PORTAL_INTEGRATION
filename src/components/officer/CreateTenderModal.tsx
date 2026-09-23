@@ -22,7 +22,7 @@ import { Tender, TenderRequirement } from '../../types';
 interface CreateTenderModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (tender: Omit<Tender, 'id' | 'appliedBiddersCount'>, documentFiles: UploadedDoc[]) => void;
+  onSubmit: (tender: Omit<Tender, 'id' | 'appliedBiddersCount'>, documentFiles: UploadedDoc[], gemDoc?: UploadedDoc & { fileContentUrl?: string }) => void;
 }
 
 export interface UploadedDoc {
@@ -84,8 +84,10 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
 
   // Step 3: Documents
   const [uploadedDocs, setUploadedDocs] = useState<UploadedDoc[]>([]);
+  const [gemBiddingDoc, setGemBiddingDoc] = useState<(UploadedDoc & { fileContentUrl?: string }) | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const gemFileInputRef = useRef<HTMLInputElement>(null);
 
   // Validation
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -159,6 +161,22 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
     setUploadedDocs(prev => [...prev, ...newDocs]);
   };
 
+  const handleGemFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const sizeStr = file.size > 1024 * 1024
+      ? `${(file.size / (1024 * 1024)).toFixed(1)} MB`
+      : `${(file.size / 1024).toFixed(0)} KB`;
+    setGemBiddingDoc({
+      name: file.name,
+      size: sizeStr,
+      type: 'PDF',
+      fileContentUrl: url,
+    });
+    if (gemFileInputRef.current) gemFileInputRef.current.value = '';
+  };
+
   const removeDoc = (idx: number) => {
     setUploadedDocs(prev => prev.filter((_, i) => i !== idx));
   };
@@ -187,7 +205,7 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
       requirements: validReqs,
     };
 
-    onSubmit(tenderData, uploadedDocs);
+    onSubmit(tenderData, uploadedDocs, gemBiddingDoc || undefined);
     resetForm();
   };
 
@@ -202,6 +220,7 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
     setStatus('Active');
     setRequirements([emptyRequirement()]);
     setUploadedDocs([]);
+    setGemBiddingDoc(null);
     setErrors({});
   };
 
@@ -549,8 +568,63 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
               <div>
                 <h3 className="text-sm font-bold text-slate-900">Upload Tender Documents</h3>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  Attach NIT, BOQ, technical specifications, terms & conditions, and other tender documents
+                  Attach the GeM Bidding document (mandatory — one per tender) and any supporting files
                 </p>
+              </div>
+
+              {/* GeM Bidding Document — one per tender */}
+              <div className="border-2 border-dashed border-blue-300 rounded-xl p-5 bg-blue-50/40">
+                <div className="flex items-center justify-between mb-3">
+                  <div>
+                    <h4 className="text-xs font-bold text-blue-800 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      GeM Bidding Document
+                      <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 border border-blue-200">One Per Tender</span>
+                    </h4>
+                    <p className="text-[11px] text-slate-500 mt-0.5">
+                      e.g. GeM-Bidding-9318928.pdf — used for AI requirement cross-verification
+                    </p>
+                  </div>
+                </div>
+                <input
+                  ref={gemFileInputRef}
+                  type="file"
+                  accept=".pdf,.doc,.docx"
+                  className="hidden"
+                  onChange={handleGemFileSelect}
+                />
+                {gemBiddingDoc ? (
+                  <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200">
+                    <File className="w-4 h-4 text-blue-600 shrink-0" />
+                    <div className="flex-1 truncate">
+                      <div className="text-xs font-semibold text-slate-900 truncate">{gemBiddingDoc.name}</div>
+                      <div className="text-[10px] text-slate-400">{gemBiddingDoc.size}</div>
+                    </div>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                    <button
+                      onClick={() => gemFileInputRef.current?.click()}
+                      className="text-xs text-blue-600 hover:underline font-semibold"
+                    >
+                      Replace
+                    </button>
+                    <button onClick={() => setGemBiddingDoc(null)} className="text-slate-400 hover:text-red-500">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => gemFileInputRef.current?.click()}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white hover:bg-blue-50 border border-blue-200 rounded-lg text-xs font-semibold text-blue-700 transition-colors"
+                  >
+                    <Upload className="w-4 h-4" />
+                    Click to upload GeM Bidding Document
+                  </button>
+                )}
+              </div>
+
+              {/* Additional Supporting Documents Drop Zone */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-700 mb-2">Additional Supporting Documents (optional)</h4>
               </div>
 
               {/* Drop Zone */}
@@ -647,6 +721,8 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
                   <div className="font-semibold text-slate-800">
                     {requirements.filter(r => r.title.trim()).length} defined
                   </div>
+                  <div className="text-slate-500">GeM Doc:</div>
+                  <div className="font-semibold text-slate-800">{gemBiddingDoc ? gemBiddingDoc.name : '— Not uploaded'}</div>
                   <div className="text-slate-500">Documents:</div>
                   <div className="font-semibold text-slate-800">{uploadedDocs.length} uploaded</div>
                 </div>
