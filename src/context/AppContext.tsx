@@ -28,6 +28,18 @@ const LOCAL_STORAGE_KEY_ROLE = 'gem_ai_role_v1';
 const LOCAL_STORAGE_KEY_VIEW = 'gem_ai_view_v1';
 const LOCAL_STORAGE_KEY_SELECTED_COMP = 'gem_ai_selected_comp_v1';
 
+const viewToPath: Record<AppView, string> = {
+  'role-selection': '/',
+  'bidder-selection': '/bidder-selection',
+  'officer-dashboard': '/officer-dashboard',
+  'bidder-dashboard': '/bidder-dashboard'
+};
+
+const pathToView = (path: string): AppView => {
+  const entry = Object.entries(viewToPath).find(([, route]) => route === path);
+  return (entry?.[0] as AppView | undefined) || 'role-selection';
+};
+
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [companies, setCompanies] = useState<Company[]>(() => {
     try {
@@ -54,6 +66,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const [view, setView] = useState<AppView>(() => {
     try {
+      const routeView = pathToView(window.location.pathname);
+      if (window.location.pathname !== '/') return routeView;
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY_VIEW);
       if (saved && ['role-selection', 'bidder-selection', 'officer-dashboard', 'bidder-dashboard'].includes(saved)) {
         return saved as AppView;
@@ -77,6 +91,19 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [tenders, setTenders] = useState<Tender[]>(INITIAL_TENDERS);
   const [submissions, setSubmissions] = useState<BidSubmission[]>(INITIAL_SUBMISSIONS);
   const [selectedTenderId, setSelectedTenderId] = useState<string>(INITIAL_TENDERS[0].id);
+
+  useEffect(() => {
+    const handlePopState = () => setView(pathToView(window.location.pathname));
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const updateRoute = (newView: AppView) => {
+    const nextPath = viewToPath[newView];
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({ view: newView }, '', nextPath);
+    }
+  };
 
   // Sync to localStorage
   useEffect(() => {
@@ -103,10 +130,13 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setRole(newRole);
     if (newRole === 'officer') {
       setView('officer-dashboard');
+      updateRoute('officer-dashboard');
     } else if (newRole === 'bidder') {
       setView('bidder-selection');
+      updateRoute('bidder-selection');
     } else {
       setView('role-selection');
+      updateRoute('role-selection');
     }
   };
 
@@ -114,6 +144,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setSelectedCompany(company);
     setRole('bidder');
     setView('bidder-dashboard');
+    updateRoute('bidder-dashboard');
   };
 
   const createCompany = (companyData: Omit<Company, 'id'>): Company => {
@@ -131,6 +162,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const navigateTo = (newView: AppView) => {
     setView(newView);
+    updateRoute(newView);
     if (newView === 'role-selection') {
       setRole('none');
     } else if (newView === 'officer-dashboard') {
