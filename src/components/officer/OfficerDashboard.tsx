@@ -419,7 +419,8 @@ export const OfficerDashboard: React.FC = () => {
                             type: doc.type,
                             companyName: selectedSubCompany?.name || 'Bidder Enterprise',
                             verified: doc.verified,
-                            uploadedAt: selectedSubmission.submittedAt
+                            uploadedAt: selectedSubmission.submittedAt,
+                            fileContentUrl: doc.fileContentUrl
                           })}
                           className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1 transition-colors"
                         >

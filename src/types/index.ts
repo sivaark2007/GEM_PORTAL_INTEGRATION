@@ -55,6 +55,7 @@ export interface BidSubmission {
     type: string;
     fileSize: string;
     verified: boolean;
+    fileContentUrl?: string;
   }[];
   complianceScore?: number;
   aiVerificationStage?: 'Pending' | 'OCR' | 'Govt_API' | 'Embeddings' | 'LLM_Analysis' | 'Completed';

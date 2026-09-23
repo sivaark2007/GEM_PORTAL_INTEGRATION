@@ -34,13 +34,14 @@ export const BidderDashboard: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
-  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string }[]>([
+  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string }[]>([
     { name: 'Technical_Specification_Compliance.pdf', size: '2.4 MB', type: 'PDF' },
     { name: 'Make_in_India_Declaration_FY26.pdf', size: '1.1 MB', type: 'PDF' },
     { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
   ]);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
+  const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);
   const [selectedDocToView, setSelectedDocToView] = useState<DocumentInfo | null>(null);
   const [expandedSubmissions, setExpandedSubmissions] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -65,43 +66,71 @@ export const BidderDashboard: React.FC = () => {
   // Filter submissions made by this company
   const companySubmissions = submissions.filter(s => s.companyId === selectedCompany.id);
 
-  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const readFileAsDataUrl = (file: File) => new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (files.length === 0) return;
-    const newDocs = files.map(f => ({
+    const pdfFiles = files.filter(file => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
+    const rejectedCount = files.length - pdfFiles.length;
+    if (rejectedCount > 0) {
+      setUploadErrorMessage(`${rejectedCount} file${rejectedCount === 1 ? '' : 's'} skipped. Only PDF files are allowed.`);
+    } else {
+      setUploadErrorMessage(null);
+    }
+    if (pdfFiles.length === 0) {
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      return;
+    }
+    const newDocs = await Promise.all(pdfFiles.map(async f => ({
       name: f.name,
       size: f.size > 1024 * 1024 
         ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
         : `${(f.size / 1024).toFixed(0)} KB`,
-      type: f.name.split('.').pop()?.toUpperCase() || 'PDF'
-    }));
+      type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
+      fileContentUrl: await readFileAsDataUrl(f)
+    })));
     setUploadedDocs(prev => [...prev, ...newDocs]);
     setUploadSuccessMessage(
-      files.length === 1
-        ? `${files[0].name} uploaded successfully.`
-        : `${files.length} documents uploaded successfully.`
+      pdfFiles.length === 1
+        ? `${pdfFiles[0].name} uploaded successfully.`
+        : `${pdfFiles.length} documents uploaded successfully.`
     );
     setTimeout(() => setUploadSuccessMessage(null), 2500);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
-  const handleFileDrop = (e: React.DragEvent) => {
+  const handleFileDrop = async (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     const files = Array.from(e.dataTransfer.files || []);
     if (files.length === 0) return;
-    const newDocs = files.map(f => ({
+    const pdfFiles = files.filter(file => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
+    const rejectedCount = files.length - pdfFiles.length;
+    if (rejectedCount > 0) {
+      setUploadErrorMessage(`${rejectedCount} file${rejectedCount === 1 ? '' : 's'} skipped. Only PDF files are allowed.`);
+    } else {
+      setUploadErrorMessage(null);
+    }
+    if (pdfFiles.length === 0) return;
+    const newDocs = await Promise.all(pdfFiles.map(async f => ({
       name: f.name,
       size: f.size > 1024 * 1024 
         ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
         : `${(f.size / 1024).toFixed(0)} KB`,
-      type: f.name.split('.').pop()?.toUpperCase() || 'PDF'
-    }));
+      type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
+      fileContentUrl: await readFileAsDataUrl(f)
+    })));
     setUploadedDocs(prev => [...prev, ...newDocs]);
     setUploadSuccessMessage(
-      files.length === 1
-        ? `${files[0].name} uploaded successfully.`
-        : `${files.length} documents uploaded successfully.`
+      pdfFiles.length === 1
+        ? `${pdfFiles[0].name} uploaded successfully.`
+        : `${pdfFiles.length} documents uploaded successfully.`
     );
     setTimeout(() => setUploadSuccessMessage(null), 2500);
   };
@@ -119,7 +148,7 @@ export const BidderDashboard: React.FC = () => {
 
   const handleFinalSubmit = () => {
     if (!selectedTenderToApply) return;
-    submitBid(selectedTenderToApply.id, selectedCompany.id, uploadedDocs.map(d => d.name));
+    submitBid(selectedTenderToApply.id, selectedCompany.id, uploadedDocs);
     setSubmissionSuccess(true);
     setTimeout(() => {
       setSubmissionSuccess(false);
@@ -313,13 +342,19 @@ export const BidderDashboard: React.FC = () => {
                 multiple
                 onChange={handleFileSelect}
                 className="hidden"
-                accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip"
+                accept="application/pdf,.pdf"
               />
 
               {uploadSuccessMessage && (
                 <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-900 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                   <span>{uploadSuccessMessage}</span>
+                </div>
+              )}
+              {uploadErrorMessage && (
+                <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 text-amber-600 shrink-0" />
+                  <span>{uploadErrorMessage}</span>
                 </div>
               )}
 
@@ -343,7 +378,7 @@ export const BidderDashboard: React.FC = () => {
                   {isDragging ? 'Drop documents to attach...' : 'Drag & drop bid files here or click to browse'}
                 </p>
                 <p className="text-[11px] text-slate-400 mt-0.5">
-                  PDF, DOCX, XLSX, Scanned Certifications up to 25 MB
+                  PDF files only, up to 25 MB
                 </p>
               </div>
 
@@ -381,7 +416,8 @@ export const BidderDashboard: React.FC = () => {
                             name: doc.name,
                             fileSize: doc.size || '1.8 MB',
                             type: doc.type || 'PDF',
-                            companyName: selectedCompany.name
+                            companyName: selectedCompany.name,
+                            fileContentUrl: doc.fileContentUrl
                           })}
                           className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1 transition-colors"
                           title="View Document"
@@ -506,7 +542,8 @@ export const BidderDashboard: React.FC = () => {
                                       type: doc.type,
                                       companyName: selectedCompany.name,
                                       verified: doc.verified,
-                                      uploadedAt: sub.submittedAt
+                                      uploadedAt: sub.submittedAt,
+                                      fileContentUrl: doc.fileContentUrl
                                     })}
                                     className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-[11px] font-semibold flex items-center gap-1 shrink-0 ml-2 transition-colors"
                                   >
