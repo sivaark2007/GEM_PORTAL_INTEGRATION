@@ -69,6 +69,7 @@ export const BidderDashboard: React.FC = () => {
   const [selectedDocToView, setSelectedDocToView] = useState<DocumentInfo | null>(null);
   const [expandedSubmissions, setExpandedSubmissions] = useState<Record<string, boolean>>({});
   const requirementInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
   if (!selectedCompany) {
@@ -97,7 +98,7 @@ export const BidderDashboard: React.FC = () => {
     reader.readAsDataURL(file);
   });
 
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement: string) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement?: string) => {
     const files = Array.from(e.target.files || []);
     // Reset file input value immediately so user can select the same file again
     if (e.target) e.target.value = '';
@@ -517,7 +518,8 @@ export const BidderDashboard: React.FC = () => {
                         </button>
                       </div>
                     </div>
-                  ))}
+                  ))
+                )}
               </div>
             </div>
 
