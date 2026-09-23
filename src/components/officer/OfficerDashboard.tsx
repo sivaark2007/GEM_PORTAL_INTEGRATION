@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { CreateTenderModal } from './CreateTenderModal';
+import type { UploadedDoc } from './CreateTenderModal';
+import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
 import { 
   Building2, 
   FileText, 
@@ -19,7 +22,9 @@ import {
   Layers,
   ChevronRight,
   Search,
-  Filter
+  Filter,
+  Plus,
+  FilePlus2
 } from 'lucide-react';
 
 export const OfficerDashboard: React.FC = () => {
@@ -30,12 +35,15 @@ export const OfficerDashboard: React.FC = () => {
     submissions, 
     companies,
     navigateTo,
-    runVerificationForSubmission
+    runVerificationForSubmission,
+    addTender
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'tenders' | 'bidders' | 'ai-verification' | 'comparison'>('tenders');
   const [selectedSubmissionId, setSelectedSubmissionId] = useState<string>('sub-101');
   const [isVerifying, setIsVerifying] = useState(false);
+  const [showCreateTender, setShowCreateTender] = useState(false);
+  const [selectedDocToView, setSelectedDocToView] = useState<DocumentInfo | null>(null);
 
   const currentTender = tenders.find(t => t.id === selectedTenderId) || tenders[0];
   const tenderSubmissions = submissions.filter(s => s.tenderId === currentTender.id);
@@ -146,6 +154,18 @@ export const OfficerDashboard: React.FC = () => {
           <div className="space-y-6">
             <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-2xs">
               <h2 className="text-base font-bold text-slate-900 mb-3">Available Tenders Under Officer Jurisdiction</h2>
+              <div className="flex items-center justify-between mb-4">
+                <p className="text-xs text-slate-500">
+                  {tenders.length} tender{tenders.length !== 1 ? 's' : ''} in your jurisdiction
+                </p>
+                <button
+                  onClick={() => setShowCreateTender(true)}
+                  className="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-all flex items-center gap-1.5 hover:shadow-md"
+                >
+                  <FilePlus2 className="w-4 h-4" />
+                  Create New Tender
+                </button>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {tenders.map((tender) => {
                   const isSelected = tender.id === selectedTenderId;
@@ -378,7 +398,7 @@ export const OfficerDashboard: React.FC = () => {
                 </h4>
                 <div className="space-y-2">
                   {selectedSubmission.documents.map((doc, i) => (
-                    <div key={i} className="p-3 rounded-lg border border-slate-200 flex items-center justify-between text-xs bg-slate-50/60">
+                    <div key={i} className="p-3 rounded-lg border border-slate-200 flex items-center justify-between text-xs bg-slate-50/60 hover:bg-slate-100/60 transition-colors">
                       <div className="flex items-center gap-2.5 truncate">
                         <FileText className="w-4 h-4 text-slate-500 shrink-0" />
                         <div className="truncate">
@@ -386,10 +406,26 @@ export const OfficerDashboard: React.FC = () => {
                           <div className="text-[10px] text-slate-500">{doc.type} · {doc.fileSize}</div>
                         </div>
                       </div>
-                      <span className="font-bold text-emerald-700 text-[11px] flex items-center gap-1 shrink-0 ml-2">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>OCR Verified</span>
-                      </span>
+                      <div className="flex items-center gap-2 shrink-0 ml-2">
+                        <span className="font-bold text-emerald-700 text-[11px] flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5" />
+                          <span>OCR Verified</span>
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => setSelectedDocToView({
+                            name: doc.name,
+                            fileSize: doc.fileSize,
+                            type: doc.type,
+                            companyName: selectedSubCompany?.name || 'Bidder Enterprise',
+                            verified: doc.verified,
+                            uploadedAt: selectedSubmission.submittedAt
+                          })}
+                          className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1 transition-colors"
+                        >
+                          View
+                        </button>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -506,6 +542,24 @@ export const OfficerDashboard: React.FC = () => {
         )}
 
       </div>
+
+      {/* Create Tender Modal */}
+      <CreateTenderModal
+        isOpen={showCreateTender}
+        onClose={() => setShowCreateTender(false)}
+        onSubmit={(tenderData, _docs) => {
+          addTender(tenderData);
+          setShowCreateTender(false);
+          setActiveTab('tenders');
+        }}
+      />
+
+      {/* Document Viewer Modal */}
+      <DocumentViewerModal
+        isOpen={Boolean(selectedDocToView)}
+        document={selectedDocToView}
+        onClose={() => setSelectedDocToView(null)}
+      />
     </div>
   );
 };

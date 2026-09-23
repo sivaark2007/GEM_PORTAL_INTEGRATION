@@ -17,6 +17,7 @@ interface AppContextType {
   setSelectedTenderId: (tenderId: string) => void;
   submitBid: (tenderId: string, companyId: string, docNames: string[]) => void;
   runVerificationForSubmission: (submissionId: string) => void;
+  addTender: (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>) => Tender;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -72,7 +73,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return INITIAL_COMPANIES[0] || null;
   });
 
-  const [tenders] = useState<Tender[]>(INITIAL_TENDERS);
+  const [tenders, setTenders] = useState<Tender[]>(INITIAL_TENDERS);
   const [submissions, setSubmissions] = useState<BidSubmission[]>(INITIAL_SUBMISSIONS);
   const [selectedTenderId, setSelectedTenderId] = useState<string>(INITIAL_TENDERS[0].id);
 
@@ -158,6 +159,17 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     setSubmissions(prev => [newSub, ...prev]);
   };
 
+  const addTender = (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>): Tender => {
+    const newTender: Tender = {
+      ...tenderData,
+      id: tenderData.tenderNumber,
+      appliedBiddersCount: 0,
+    };
+    setTenders(prev => [newTender, ...prev]);
+    setSelectedTenderId(newTender.id);
+    return newTender;
+  };
+
   const runVerificationForSubmission = (submissionId: string) => {
     setSubmissions(prev => prev.map(sub => {
       if (sub.id === submissionId) {
@@ -189,7 +201,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         navigateTo,
         setSelectedTenderId,
         submitBid,
-        runVerificationForSubmission
+        runVerificationForSubmission,
+        addTender
       }}
     >
       {children}
