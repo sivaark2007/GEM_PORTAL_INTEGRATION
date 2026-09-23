@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Tender } from '../../types';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
@@ -517,8 +517,7 @@ export const BidderDashboard: React.FC = () => {
                         </button>
                       </div>
                     </div>
-                  </section>
-                ))}
+                  ))}
               </div>
             </div>
 

@@ -262,35 +262,3 @@ export const useApp = () => {
   }
   return context;
 };
-<AppContext.Provider
-  value={{
-    role,
-    view,
-    selectedCompany,
-    companies,
-    tenders,
-    submissions,
-    selectedTenderId,
-    selectRole,
-    selectCompany,
-    createCompany,
-    navigateTo,
-    setSelectedTenderId,
-    submitBid,
-    runVerificationForSubmission,
-    addTender,
-    uploadGemBiddingDocument
-  }}
->
-  {children}
-</AppContext.Provider>
-  );
-};
-
-export const useApp = () => {
-  const context = useContext(AppContext);
-  if (!context) {
-    throw new Error('useApp must be used within an AppProvider');
-  }
-  return context;
-};
