@@ -40,6 +40,7 @@ export const BidderDashboard: React.FC = () => {
     { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
   ]);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
+  const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
   const [selectedDocToView, setSelectedDocToView] = useState<DocumentInfo | null>(null);
   const [expandedSubmissions, setExpandedSubmissions] = useState<Record<string, boolean>>({});
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -75,6 +76,12 @@ export const BidderDashboard: React.FC = () => {
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF'
     }));
     setUploadedDocs(prev => [...prev, ...newDocs]);
+    setUploadSuccessMessage(
+      files.length === 1
+        ? `${files[0].name} uploaded successfully.`
+        : `${files.length} documents uploaded successfully.`
+    );
+    setTimeout(() => setUploadSuccessMessage(null), 2500);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -91,6 +98,12 @@ export const BidderDashboard: React.FC = () => {
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF'
     }));
     setUploadedDocs(prev => [...prev, ...newDocs]);
+    setUploadSuccessMessage(
+      files.length === 1
+        ? `${files[0].name} uploaded successfully.`
+        : `${files.length} documents uploaded successfully.`
+    );
+    setTimeout(() => setUploadSuccessMessage(null), 2500);
   };
 
   const handleRemoveDoc = (idx: number) => {
@@ -268,7 +281,7 @@ export const BidderDashboard: React.FC = () => {
               <div className="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-900 flex items-center gap-3">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
                 <div>
-                  <strong className="font-bold">Bid Successfully Submitted!</strong>
+                  <strong className="font-bold">Documents Submitted Successfully!</strong>
                   <p>Your documents have been routed to the GeM AI Compliance Evaluation queue.</p>
                 </div>
               </div>
@@ -302,6 +315,13 @@ export const BidderDashboard: React.FC = () => {
                 className="hidden"
                 accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.zip"
               />
+
+              {uploadSuccessMessage && (
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-900 flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>{uploadSuccessMessage}</span>
+                </div>
+              )}
 
               {/* Drag & Drop Upload Dropzone */}
               <div
