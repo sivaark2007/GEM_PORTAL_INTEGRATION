@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { ShieldCheck, Building2, UserCog, ArrowLeft, ArrowRight, RefreshCw } from 'lucide-react';
+import { ShieldCheck, Building2, UserCog, ArrowLeft, RefreshCw } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const { role, view, selectedCompany, navigateTo, selectRole } = useApp();
@@ -40,27 +40,6 @@ export const Header: React.FC = () => {
 
           {/* Contextual navigation & Quick Switcher */}
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-1 border-r border-slate-200 pr-3">
-              <button
-                type="button"
-                onClick={() => window.history.back()}
-                disabled={window.history.length <= 1}
-                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 disabled:text-slate-300 disabled:hover:bg-transparent rounded-md transition-colors"
-                title="Go back"
-                aria-label="Go back"
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => window.history.forward()}
-                className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-md transition-colors"
-                title="Go forward"
-                aria-label="Go forward"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
             {view !== 'role-selection' && (
               <div className="hidden md:flex items-center gap-2 text-xs text-slate-500 border-r border-slate-200 pr-3">
                 <span className="text-slate-400">Current Context:</span>
