@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { useApp } from '../../context/AppContext';
 import { CreateTenderModal } from './CreateTenderModal';
 import type { UploadedDoc } from './CreateTenderModal';
@@ -37,6 +37,13 @@ import {
   CreditCard,
   Briefcase,
   ChevronLeft,
+  BarChart2,
+  Trophy,
+  Play,
+  ClipboardList,
+  TrendingUp,
+  Award,
+  Loader2,
 } from 'lucide-react';
 import type { GemBiddingDocument } from '../../types';
 
@@ -164,6 +171,14 @@ function StatusBadge({ status }: { status: string }) {
 // ─── Main component ───────────────────────────────────────────────────────────
 type Level = 'bid-list' | 'bidders' | 'bidder-detail';
 
+interface BatchVerifyState {
+  isRunning: boolean;
+  currentIndex: number;
+  currentStage: string;
+  completedIds: string[];
+  isDone: boolean;
+}
+
 export const OfficerDashboard: React.FC = () => {
   const {
     tenders,
@@ -189,11 +204,65 @@ export const OfficerDashboard: React.FC = () => {
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 5;
 
+  // Batch verification state
+  const [batchState, setBatchState] = useState<BatchVerifyState>({
+    isRunning: false,
+    currentIndex: -1,
+    currentStage: '',
+    completedIds: [],
+    isDone: false,
+  });
+  const [showSummaryReport, setShowSummaryReport] = useState(false);
+  const batchAbortRef = useRef(false);
+
   // Derived data
   const currentTender = tenders.find(t => t.id === selectedTenderId) || tenders[0];
   const tenderSubmissions = submissions.filter(s => s.tenderId === currentTender?.id);
   const selectedSubmission = submissions.find(s => s.id === selectedSubmissionId) || null;
   const selectedCompany = companies.find(c => c.id === selectedSubmission?.companyId) || null;
+
+  // Batch verification handler
+  const handleBatchVerification = useCallback(async () => {
+    if (batchState.isRunning) return;
+    batchAbortRef.current = false;
+    const submissionIds = tenderSubmissions.map(s => s.id);
+    setBatchState({ isRunning: true, currentIndex: 0, currentStage: 'Initialising...', completedIds: [], isDone: false });
+    setShowSummaryReport(false);
+
+    const stages = [
+      { label: '🔍 Running OCR Scan...', ms: 600 },
+      { label: '🏛️ Checking Govt APIs...', ms: 700 },
+      { label: '🧠 Embedding Analysis...', ms: 500 },
+      { label: '✨ LLM Clause Review...', ms: 700 },
+      { label: '📊 Computing Score...', ms: 400 },
+    ];
+
+    const delay = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
+
+    for (let i = 0; i < submissionIds.length; i++) {
+      if (batchAbortRef.current) break;
+      const subId = submissionIds[i];
+      for (const stage of stages) {
+        if (batchAbortRef.current) break;
+        setBatchState(prev => ({ ...prev, currentIndex: i, currentStage: stage.label }));
+        await delay(stage.ms);
+      }
+      if (!batchAbortRef.current) {
+        runVerificationForSubmission(subId);
+        setBatchState(prev => ({ ...prev, completedIds: [...prev.completedIds, subId] }));
+      }
+    }
+
+    if (!batchAbortRef.current) {
+      setBatchState(prev => ({ ...prev, isRunning: false, isDone: true, currentIndex: -1, currentStage: '' }));
+      setShowSummaryReport(true);
+    }
+  }, [batchState.isRunning, tenderSubmissions, runVerificationForSubmission]);
+
+  const handleStopBatch = () => {
+    batchAbortRef.current = true;
+    setBatchState({ isRunning: false, currentIndex: -1, currentStage: '', completedIds: [], isDone: false });
+  };
 
   // Filtered & paginated tenders
   const filteredTenders = tenders.filter(t =>
@@ -469,7 +538,7 @@ export const OfficerDashboard: React.FC = () => {
 
       {/* Bidder cards */}
       <div className="bg-white border border-slate-200 rounded-xl shadow-xs overflow-hidden">
-        <div className="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
+        <div className="px-5 py-3.5 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 className="text-sm font-bold text-slate-900">
               Companies Applied for {currentTender.tenderNumber}
@@ -478,7 +547,62 @@ export const OfficerDashboard: React.FC = () => {
               {tenderSubmissions.length} vendor bid{tenderSubmissions.length !== 1 ? 's' : ''} submitted
             </p>
           </div>
+          {/* Batch verify controls */}
+          <div className="flex items-center gap-2">
+            {batchState.isDone && (
+              <button
+                onClick={() => setShowSummaryReport(true)}
+                className="flex items-center gap-1.5 px-3 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg transition-colors"
+              >
+                <ClipboardList className="w-3.5 h-3.5" />
+                View Summary Report
+              </button>
+            )}
+            {batchState.isRunning ? (
+              <button
+                onClick={handleStopBatch}
+                className="flex items-center gap-1.5 px-3 py-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold rounded-lg transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+                Stop
+              </button>
+            ) : (
+              <button
+                onClick={handleBatchVerification}
+                disabled={tenderSubmissions.length === 0}
+                className="flex items-center gap-1.5 px-4 py-2 bg-blue-700 hover:bg-blue-800 disabled:opacity-50 text-white text-xs font-semibold rounded-lg shadow-sm transition-all hover:shadow-md"
+              >
+                <Play className="w-3.5 h-3.5" />
+                Start Verification
+              </button>
+            )}
+          </div>
         </div>
+
+        {/* Batch Progress Bar */}
+        {batchState.isRunning && (
+          <div className="px-5 py-3 bg-blue-50 border-b border-blue-100">
+            <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center gap-2">
+                <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />
+                <span className="text-xs font-bold text-blue-800">
+                  Verifying {batchState.currentIndex + 1} of {tenderSubmissions.length}: {(() => { const sub = tenderSubmissions[batchState.currentIndex]; return sub ? companies.find(c => c.id === sub.companyId)?.name : ''; })()}
+                </span>
+              </div>
+              <span className="text-xs text-blue-600 font-mono">{batchState.currentStage}</span>
+            </div>
+            <div className="w-full h-1.5 bg-blue-200 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-blue-600 rounded-full transition-all duration-500"
+                style={{ width: `${((batchState.completedIds.length) / tenderSubmissions.length) * 100}%` }}
+              />
+            </div>
+            <div className="flex items-center justify-between mt-1.5 text-[11px] text-blue-500">
+              <span>{batchState.completedIds.length} completed</span>
+              <span>{tenderSubmissions.length - batchState.completedIds.length} remaining</span>
+            </div>
+          </div>
+        )}
 
         {tenderSubmissions.length === 0 ? (
           <div className="py-16 text-center text-slate-400">
@@ -866,6 +990,246 @@ export const OfficerDashboard: React.FC = () => {
         document={selectedDocToView}
         onClose={() => setSelectedDocToView(null)}
       />
+
+      {/* ── Summary Report Modal ─────────────────────────────────────── */}
+      {showSummaryReport && (() => {
+        const ranked = [...tenderSubmissions]
+          .sort((a, b) => (b.complianceScore || 0) - (a.complianceScore || 0))
+          .map((sub, idx) => {
+            const comp = companies.find(c => c.id === sub.companyId);
+            const score = sub.complianceScore || 0;
+            const gemChecks = GEM_BIDDING_REQUIREMENTS.map(req => ({
+              ...req,
+              result: checkRequirementMatch(req.matchKeywords, sub.documents),
+            }));
+            const satisfied = gemChecks.filter(r => r.result.status === 'satisfied').length;
+            const missing = gemChecks.filter(r => r.result.status === 'missing').length;
+            const recommendation =
+              score >= 90 && missing === 0 ? 'Technically Qualified'
+              : score >= 75 && missing <= 1 ? 'Conditionally Qualified'
+              : score >= 60 ? 'Clarification Required'
+              : 'Disqualified';
+            const recColor =
+              recommendation === 'Technically Qualified' ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+              : recommendation === 'Conditionally Qualified' ? 'bg-blue-100 text-blue-800 border-blue-200'
+              : recommendation === 'Clarification Required' ? 'bg-amber-100 text-amber-800 border-amber-200'
+              : 'bg-red-100 text-red-800 border-red-200';
+            return { sub, comp, score, idx, satisfied, missing, recommendation, recColor, gemChecks };
+          });
+
+        const qualifiedCount = ranked.filter(r => r.recommendation === 'Technically Qualified').length;
+        const avgScore = Math.round(ranked.reduce((a, r) => a + r.score, 0) / ranked.length);
+        const topBidder = ranked[0];
+
+        return (
+          <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-8 overflow-y-auto">
+            {/* Backdrop */}
+            <div
+              className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm"
+              onClick={() => setShowSummaryReport(false)}
+            />
+            {/* Modal */}
+            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl border border-slate-200 overflow-hidden">
+              {/* Header */}
+              <div className="bg-gradient-to-r from-slate-900 to-blue-900 px-6 py-5 text-white">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <BarChart2 className="w-5 h-5 text-blue-300" />
+                      <span className="text-[11px] font-bold uppercase tracking-widest text-blue-300">AI Verification Summary Report</span>
+                    </div>
+                    <h2 className="text-xl font-bold">Compliance Evaluation Report</h2>
+                    <p className="text-sm text-blue-200 mt-0.5">
+                      {currentTender.tenderNumber} · {currentTender.title.slice(0, 60)}{currentTender.title.length > 60 ? '…' : ''}
+                    </p>
+                    <p className="text-xs text-slate-400 mt-1">
+                      Generated: {new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} IST · Officer: GeM-OFFICER-789
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowSummaryReport(false)}
+                    className="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {/* KPI Strip */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5">
+                  {[
+                    { label: 'Total Bidders', value: ranked.length, icon: Building2, color: 'text-blue-300' },
+                    { label: 'Technically Qualified', value: qualifiedCount, icon: Trophy, color: 'text-emerald-300' },
+                    { label: 'Average Score', value: `${avgScore}%`, icon: TrendingUp, color: 'text-amber-300' },
+                    { label: 'Top Bidder', value: topBidder?.comp?.name?.split(' ')[0] || '—', icon: Award, color: 'text-purple-300' },
+                  ].map(({ label, value, icon: Icon, color }) => (
+                    <div key={label} className="bg-white/10 rounded-xl p-3 border border-white/10">
+                      <div className={`flex items-center gap-1.5 mb-1 ${color}`}>
+                        <Icon className="w-3.5 h-3.5" />
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-300">{label}</span>
+                      </div>
+                      <div className="text-lg font-bold text-white">{value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 space-y-5 max-h-[60vh] overflow-y-auto">
+                {/* Ranked Table */}
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <Trophy className="w-4 h-4 text-amber-500" />
+                    Bidder Rankings — Compliance Matrix
+                  </h3>
+                  <div className="space-y-3">
+                    {ranked.map(({ sub, comp, score, idx, satisfied, missing, recommendation, recColor, gemChecks }) => {
+                      const scoreColor =
+                        score >= 90 ? 'text-emerald-700 bg-emerald-50 border-emerald-200'
+                        : score >= 75 ? 'text-amber-700 bg-amber-50 border-amber-200'
+                        : 'text-red-700 bg-red-50 border-red-200';
+                      const isTop = idx === 0;
+
+                      return (
+                        <div
+                          key={sub.id}
+                          className={`rounded-xl border p-4 ${isTop ? 'border-amber-300 bg-amber-50/30' : 'border-slate-200 bg-white'}`}
+                        >
+                          {/* Row header */}
+                          <div className="flex flex-wrap items-center gap-3 mb-3">
+                            {/* Rank */}
+                            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0 ${isTop ? 'bg-amber-500 text-white' : 'bg-slate-100 text-slate-600'}`}>
+                              #{idx + 1}
+                            </div>
+                            {/* Avatar */}
+                            <div
+                              className="w-8 h-8 rounded-lg flex items-center justify-center text-white text-sm font-bold shrink-0 shadow-sm"
+                              style={{ backgroundColor: comp?.color || '#94a3b8' }}
+                            >
+                              {comp?.name?.[0] || '?'}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap">
+                                <span className="font-bold text-slate-900 text-sm">{comp?.name}</span>
+                                {isTop && <span className="text-[10px] font-bold px-1.5 py-0.5 bg-amber-100 text-amber-800 border border-amber-200 rounded">🏆 Top Bidder</span>}
+                              </div>
+                              <div className="text-[11px] text-slate-500">{comp?.city} · {comp?.sector}</div>
+                            </div>
+                            {/* Score */}
+                            <span className={`font-bold font-mono text-sm px-3 py-1 rounded-lg border ${scoreColor}`}>
+                              {score}%
+                            </span>
+                            {/* Recommendation */}
+                            <span className={`text-xs font-bold px-2.5 py-1 rounded-lg border ${recColor}`}>
+                              {recommendation}
+                            </span>
+                          </div>
+
+                          {/* Details row */}
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                            <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1">Documents</div>
+                              <div className="font-bold text-slate-800">{sub.documents.length} submitted</div>
+                              <div className="text-slate-500">{sub.documents.filter(d => d.verified).length} verified</div>
+                            </div>
+                            <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1">GeM Requirements</div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-bold text-emerald-700">{satisfied} ✓</span>
+                                <span className="font-bold text-red-600">{missing} ✗</span>
+                                <span className="text-slate-400">{GEM_BIDDING_REQUIREMENTS.length - satisfied - missing} ⚠</span>
+                              </div>
+                            </div>
+                            <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1">AI Stage</div>
+                              <div className="font-bold text-blue-700 font-mono">{sub.aiVerificationStage}</div>
+                            </div>
+                            <div className="bg-slate-50 rounded-lg p-2 border border-slate-100">
+                              <div className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider mb-1">Flags</div>
+                              <div className={`font-bold ${(sub.flags?.length ?? 0) > 0 ? 'text-amber-700' : 'text-emerald-700'}`}>
+                                {(sub.flags?.length ?? 0) > 0 ? `${sub.flags!.length} flag(s)` : 'No flags ✓'}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Flags */}
+                          {(sub.flags?.length ?? 0) > 0 && (
+                            <div className="mt-2 space-y-1">
+                              {sub.flags!.map((flag, fi) => (
+                                <div key={fi} className="flex items-start gap-1.5 text-[11px] text-amber-800 bg-amber-50 border border-amber-200 rounded px-2 py-1">
+                                  <AlertTriangle className="w-3 h-3 shrink-0 mt-0.5 text-amber-500" />
+                                  {flag}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Recommendation Summary */}
+                <div className="bg-slate-50 rounded-xl border border-slate-200 p-4">
+                  <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2">
+                    <ClipboardList className="w-4 h-4 text-blue-600" />
+                    Officer Recommendation Summary
+                  </h3>
+                  <div className="text-xs text-slate-700 space-y-2 leading-relaxed">
+                    <p>
+                      Based on AI verification of <strong>{ranked.length}</strong> bidders for tender{' '}
+                      <strong>{currentTender.tenderNumber}</strong>:
+                    </p>
+                    <ul className="space-y-1 ml-3">
+                      {ranked.map(({ comp, score, recommendation, idx }) => (
+                        <li key={idx} className="flex items-center gap-2">
+                          <span className="font-mono text-slate-400">#{idx + 1}</span>
+                          <span className="font-bold text-slate-800">{comp?.name}</span>
+                          <span className="text-slate-500">— Score: <strong>{score}%</strong></span>
+                          <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold border ${
+                            recommendation === 'Technically Qualified' ? 'bg-emerald-100 text-emerald-800 border-emerald-200'
+                            : recommendation === 'Conditionally Qualified' ? 'bg-blue-100 text-blue-800 border-blue-200'
+                            : recommendation === 'Clarification Required' ? 'bg-amber-100 text-amber-800 border-amber-200'
+                            : 'bg-red-100 text-red-800 border-red-200'
+                          }`}>{recommendation}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {topBidder && (
+                      <p className="mt-2 pt-2 border-t border-slate-200">
+                        <strong>Recommended for Award:</strong>{' '}
+                        <span className="text-emerald-700 font-bold">{topBidder.comp?.name}</span>{' '}
+                        with a compliance score of <strong>{topBidder.score}%</strong> and{' '}
+                        {topBidder.satisfied} of {GEM_BIDDING_REQUIREMENTS.length} GeM requirements satisfied.
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div className="px-6 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
+                <span className="text-xs text-slate-400">
+                  Auto-generated by GeM AI Verification Engine · {currentTender.tenderNumber}
+                </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => window.print()}
+                    className="px-4 py-2 border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-lg transition-colors"
+                  >
+                    Print Report
+                  </button>
+                  <button
+                    onClick={() => setShowSummaryReport(false)}
+                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-lg transition-colors"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </div>
   );
 };
