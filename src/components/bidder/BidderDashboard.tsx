@@ -2,7 +2,6 @@ import React, { useState, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Tender } from '../../types';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
-import { parseDocumentWithService } from '../../services/documentParser';
 import { 
   Building2, 
   FileText, 
@@ -58,11 +57,7 @@ export const BidderDashboard: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
-  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>([
-    { name: 'Technical_Specification_Compliance.pdf', size: '2.4 MB', type: 'PDF' },
-    { name: 'Make_in_India_Declaration_FY26.pdf', size: '1.1 MB', type: 'PDF' },
-    { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
-  ]);
+  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; requirement?: string }[]>([]);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);
@@ -99,108 +94,35 @@ export const BidderDashboard: React.FC = () => {
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement: string) => {
     const files = Array.from(e.target.files || []);
-    // Reset file input value immediately so user can select the same file again
-    if (e.target) e.target.value = '';
     if (files.length === 0) return;
-
-    const validFiles = files.filter(file => {
-      const ext = file.name.toLowerCase();
-      return ext.endsWith('.pdf') || ext.endsWith('.png') || ext.endsWith('.jpg') || ext.endsWith('.jpeg') || ext.endsWith('.tiff') || ext.endsWith('.webp') || ext.endsWith('.docx');
-    });
-
-    const rejectedCount = files.length - validFiles.length;
+    const pdfFiles = files.filter(file => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
+    const rejectedCount = files.length - pdfFiles.length;
     if (rejectedCount > 0) {
-      setUploadErrorMessage(`${rejectedCount} file(s) skipped. Allowed formats: PDF, PNG, JPG, TIFF, DOCX.`);
+      setUploadErrorMessage(`${rejectedCount} file${rejectedCount === 1 ? '' : 's'} skipped. Only PDF files are allowed.`);
     } else {
       setUploadErrorMessage(null);
     }
-    if (validFiles.length === 0) return;
-
-    // 1. Immediately read data URLs and add docs to list so UI updates instantly
-    const initialDocs = await Promise.all(validFiles.map(async f => ({
+    if (pdfFiles.length === 0) {
+      if (requirementInputRefs.current[requirement]) requirementInputRefs.current[requirement]!.value = '';
+      return;
+    }
+    const newDocs = await Promise.all(pdfFiles.map(async f => ({
       name: f.name,
       size: f.size > 1024 * 1024 
         ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
         : `${(f.size / 1024).toFixed(0)} KB`,
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
       fileContentUrl: await readFileAsDataUrl(f),
-      parsedData: undefined
+      requirement
     })));
-
-    setUploadedDocs(prev => [...prev, ...initialDocs]);
+    setUploadedDocs(prev => [...prev, ...newDocs]);
     setUploadSuccessMessage(
-      validFiles.length === 1
-        ? `${validFiles[0].name} attached successfully.`
-        : `${validFiles.length} documents attached successfully.`
+      pdfFiles.length === 1
+        ? `${pdfFiles[0].name} uploaded successfully.`
+        : `${pdfFiles.length} documents uploaded successfully.`
     );
-    setTimeout(() => setUploadSuccessMessage(null), 3000);
-
-    // 2. Parse in background asynchronously without blocking UI
-    validFiles.forEach(async (f) => {
-      try {
-        const parsed = await parseDocumentWithService(f, f.name);
-        if (parsed && parsed.success) {
-          setUploadedDocs(prev => prev.map(doc => 
-            doc.name === f.name ? { ...doc, parsedData: parsed } : doc
-          ));
-        }
-      } catch (err) {
-        console.warn('Background parsing notice for', f.name, err);
-      }
-    });
-  };
-
-  const handleFileDrop = async (e: React.DragEvent) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const files = Array.from(e.dataTransfer.files || []);
-    if (files.length === 0) return;
-
-    const validFiles = files.filter(file => {
-      const ext = file.name.toLowerCase();
-      return ext.endsWith('.pdf') || ext.endsWith('.png') || ext.endsWith('.jpg') || ext.endsWith('.jpeg') || ext.endsWith('.tiff') || ext.endsWith('.webp') || ext.endsWith('.docx');
-    });
-
-    const rejectedCount = files.length - validFiles.length;
-    if (rejectedCount > 0) {
-      setUploadErrorMessage(`${rejectedCount} file(s) skipped. Allowed formats: PDF, PNG, JPG, TIFF, DOCX.`);
-    } else {
-      setUploadErrorMessage(null);
-    }
-    if (validFiles.length === 0) return;
-
-    // 1. Immediately read data URLs and add docs to list so UI updates instantly
-    const initialDocs = await Promise.all(validFiles.map(async f => ({
-      name: f.name,
-      size: f.size > 1024 * 1024 
-        ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
-        : `${(f.size / 1024).toFixed(0)} KB`,
-      type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
-      fileContentUrl: await readFileAsDataUrl(f),
-      parsedData: undefined
-    })));
-
-    setUploadedDocs(prev => [...prev, ...initialDocs]);
-    setUploadSuccessMessage(
-      validFiles.length === 1
-        ? `${validFiles[0].name} attached successfully.`
-        : `${validFiles.length} documents attached successfully.`
-    );
-    setTimeout(() => setUploadSuccessMessage(null), 3000);
-
-    // 2. Parse in background asynchronously without blocking UI
-    validFiles.forEach(async (f) => {
-      try {
-        const parsed = await parseDocumentWithService(f, f.name);
-        if (parsed && parsed.success) {
-          setUploadedDocs(prev => prev.map(doc => 
-            doc.name === f.name ? { ...doc, parsedData: parsed } : doc
-          ));
-        }
-      } catch (err) {
-        console.warn('Background parsing notice for', f.name, err);
-      }
-    });
+    setTimeout(() => setUploadSuccessMessage(null), 2500);
+    if (requirementInputRefs.current[requirement]) requirementInputRefs.current[requirement]!.value = '';
   };
 
   const handleRemoveDoc = (idx: number) => {
@@ -403,16 +325,6 @@ export const BidderDashboard: React.FC = () => {
                 </p>
               </div>
 
-              {/* Hidden real file input */}
-              <input
-                ref={fileInputRef}
-                type="file"
-                multiple
-                onChange={handleFileSelect}
-                className="hidden"
-                accept=".pdf,application/pdf,image/png,image/jpeg,image/jpg,image/webp,image/tiff,.docx"
-              />
-
               {uploadSuccessMessage && (
                 <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-900 flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -426,96 +338,52 @@ export const BidderDashboard: React.FC = () => {
                 </div>
               )}
 
-              {/* Drag & Drop Upload Dropzone */}
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  setIsDragging(true);
-                }}
-                onDragLeave={() => setIsDragging(false)}
-                onDrop={handleFileDrop}
-                onClick={() => fileInputRef.current?.click()}
-                className={`p-5 rounded-xl border-2 border-dashed text-center cursor-pointer transition-all ${
-                  isDragging
-                    ? 'border-emerald-500 bg-emerald-50/70 scale-[1.005]'
-                    : 'border-slate-300 bg-slate-50/60 hover:border-emerald-500 hover:bg-emerald-50/20'
-                }`}
-              >
-                <Upload className={`w-8 h-8 mx-auto mb-2 transition-colors ${isDragging ? 'text-emerald-600' : 'text-slate-400'}`} />
-                <p className="text-xs font-semibold text-slate-700">
-                  {isDragging ? 'Drop documents to attach...' : 'Drag & drop bid files here or click to browse'}
-                </p>
-                <p className="text-[11px] text-slate-400 mt-0.5">
-                  PDF files only, up to 25 MB
-                </p>
-              </div>
-
-              {/* Document List */}
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold text-slate-700 flex items-center justify-between">
-                  <span>Attached Documents ({uploadedDocs.length})</span>
-                  <span className="text-[10px] text-slate-400 font-normal">Click "View" to preview document &amp; OCR metadata</span>
-                </h4>
-
-                {uploadedDocs.length === 0 ? (
-                  <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-500 text-center">
-                    No documents attached yet. Attach your required bid documents below.
-                  </div>
-                ) : (
-                  uploadedDocs.map((doc, idx) => (
-                    <div key={idx} className="p-3 bg-white border border-slate-200 rounded-lg flex items-center justify-between text-xs shadow-2xs hover:border-slate-300 transition-colors">
-                      <div className="flex items-center gap-2.5 truncate">
-                        <div className="w-7 h-7 rounded bg-emerald-50 text-emerald-700 border border-emerald-100 flex items-center justify-center shrink-0">
-                          <FileText className="w-3.5 h-3.5" />
-                        </div>
-                        <div className="truncate">
-                          <span className="font-semibold text-slate-900 block truncate">{doc.name}</span>
-                          <span className="text-[10px] text-slate-400 font-mono">{doc.type || 'PDF'} &bull; {doc.size || '1.8 MB'}</span>
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 shrink-0 ml-2">
-                        {doc.parsedData ? (
-                          doc.parsedData.metadata?.ocr_used ? (
-                            <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 hidden sm:inline">
-                              OCR Extracted
-                            </span>
-                          ) : (
-                            <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 hidden sm:inline">
-                              Parsed (Digital)
-                            </span>
-                          )
-                        ) : (
-                          <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 px-2 py-0.5 rounded border border-slate-200 hidden sm:flex items-center gap-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
-                            Parsing...
-                          </span>
-                        )}
-                        <button
-                          type="button"
-                          onClick={() => setSelectedDocToView({
-                            name: doc.name,
-                            fileSize: doc.size || '1.8 MB',
-                            type: doc.type || 'PDF',
-                            companyName: selectedCompany.name,
-                            fileContentUrl: doc.fileContentUrl,
-                            parsedData: (doc as any).parsedData
-                          })}
-                          className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1 transition-colors"
-                          title="View Document"
-                        >
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>View</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveDoc(idx)}
-                          className="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition-colors"
-                          title="Remove Document"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
+              <div className="space-y-5">
+                {documentGroups.map(group => (
+                  <section key={group.title} className="border border-slate-200 rounded-xl overflow-hidden">
+                    <div className="px-4 py-3 bg-slate-100 border-b border-slate-200">
+                      <h4 className="text-sm font-bold text-slate-800">{group.title}</h4>
+                    </div>
+                    <div className="divide-y divide-slate-100">
+                      {group.documents.map(requirement => {
+                        const uploadedDoc = uploadedDocs.find(doc => doc.requirement === requirement);
+                        const requirementId = requirement.replace(/[^a-z0-9]+/gi, '-').toLowerCase();
+                        return (
+                          <div key={requirement} className="p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-white">
+                            <div className="flex items-center gap-2.5 min-w-0">
+                              <FileText className="w-4 h-4 text-slate-500 shrink-0" />
+                              <div className="min-w-0">
+                                <span className="font-semibold text-slate-900 text-xs block">{requirement}</span>
+                                {uploadedDoc ? (
+                                  <span className="text-[10px] text-emerald-700 block truncate">{uploadedDoc.name} · {uploadedDoc.size}</span>
+                                ) : (
+                                  <span className="text-[10px] text-slate-400 block">PDF required</span>
+                                )}
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0">
+                              {uploadedDoc && (
+                                <>
+                                  <button
+                                    type="button"
+                                    onClick={() => setSelectedDocToView({ name: uploadedDoc.name, fileSize: uploadedDoc.size, type: uploadedDoc.type, companyName: selectedCompany.name, fileContentUrl: uploadedDoc.fileContentUrl })}
+                                    className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1"
+                                  >
+                                    <Eye className="w-3.5 h-3.5" /> View
+                                  </button>
+                                  <button type="button" onClick={() => handleRemoveDoc(uploadedDocs.indexOf(uploadedDoc))} className="p-1 text-slate-400 hover:text-red-600 rounded" title="Remove document">
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                  </button>
+                                </>
+                              )}
+                              <input ref={element => { requirementInputRefs.current[requirement] = element; }} id={requirementId} type="file" accept="application/pdf,.pdf" onChange={event => handleFileSelect(event, requirement)} className="hidden" />
+                              <button type="button" onClick={() => requirementInputRefs.current[requirement]?.click()} className="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-lg text-xs font-semibold flex items-center gap-1.5">
+                                <Upload className="w-3.5 h-3.5" /> Upload File
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </section>
                 ))}
@@ -625,8 +493,7 @@ export const BidderDashboard: React.FC = () => {
                                       companyName: selectedCompany.name,
                                       verified: doc.verified,
                                       uploadedAt: sub.submittedAt,
-                                      fileContentUrl: doc.fileContentUrl,
-                                      parsedData: (doc as any).parsedData
+                                      fileContentUrl: doc.fileContentUrl
                                     })}
                                     className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-[11px] font-semibold flex items-center gap-1 shrink-0 ml-2 transition-colors"
                                   >

@@ -15,7 +15,7 @@ interface AppContextType {
   createCompany: (companyData: Omit<Company, 'id'>) => Company;
   navigateTo: (view: AppView) => void;
   setSelectedTenderId: (tenderId: string) => void;
-  submitBid: (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]) => void;
+  submitBid: (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => void;
   runVerificationForSubmission: (submissionId: string) => void;
   addTender: (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>) => Tender;
   uploadGemBiddingDocument: (tenderId: string, doc: GemBiddingDocument) => void;
@@ -172,7 +172,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  const submitBid = (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]) => {
+  const submitBid = (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => {
     const newSub: BidSubmission = {
       id: `sub-${Date.now()}`,
       tenderId,
@@ -186,8 +186,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         type: document.type || 'PDF',
         fileSize: document.size || '1.8 MB',
         verified: false,
-        fileContentUrl: document.fileContentUrl,
-        parsedData: document.parsedData
+        fileContentUrl: document.fileContentUrl
       })),
       flags: []
     };
