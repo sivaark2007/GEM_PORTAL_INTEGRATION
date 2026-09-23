@@ -30,11 +30,46 @@ export interface TenderRequirement {
   mandatory: boolean;
 }
 
+export interface ParsedDocumentTable {
+  id?: string;
+  page_number?: number;
+  headers?: string[];
+  rows?: string[][];
+  markdown?: string;
+}
+
+export interface ParsedDocumentPage {
+  page_number: number;
+  text: string;
+  tables?: ParsedDocumentTable[];
+}
+
+export interface ParsedDocumentMetadata {
+  parser: string;
+  ocr_used: boolean;
+  page_count?: number;
+  total_characters?: number;
+  processing_time_ms?: number;
+}
+
+export interface ParsedDocumentResult {
+  success: boolean;
+  filename: string;
+  full_text: string;
+  pages: ParsedDocumentPage[];
+  tables?: ParsedDocumentTable[];
+  headings?: string[];
+  metadata: ParsedDocumentMetadata;
+  error?: string;
+  code?: string;
+}
+
 export interface GemBiddingDocument {
   name: string;
   fileSize: string;
   fileContentUrl?: string;
   uploadedAt: string;
+  parsedData?: ParsedDocumentResult;
 }
 
 export interface Tender {
@@ -68,6 +103,7 @@ export interface BidSubmission {
     fileSize: string;
     verified: boolean;
     fileContentUrl?: string;
+    parsedData?: ParsedDocumentResult;
   }[];
   complianceScore?: number;
   aiVerificationStage?: 'Pending' | 'OCR' | 'Govt_API' | 'Embeddings' | 'LLM_Analysis' | 'Completed';

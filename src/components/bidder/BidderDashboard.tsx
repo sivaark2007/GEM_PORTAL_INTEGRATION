@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Tender } from '../../types';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
+import { parseDocumentWithService } from '../../services/documentParser';
 import { 
   Building2, 
   FileText, 
@@ -34,7 +35,7 @@ export const BidderDashboard: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
-  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string }[]>([
+  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>([
     { name: 'Technical_Specification_Compliance.pdf', size: '2.4 MB', type: 'PDF' },
     { name: 'Make_in_India_Declaration_FY26.pdf', size: '1.1 MB', type: 'PDF' },
     { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
@@ -75,34 +76,55 @@ export const BidderDashboard: React.FC = () => {
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
+    // Reset file input value immediately so user can select the same file again
+    if (e.target) e.target.value = '';
     if (files.length === 0) return;
-    const pdfFiles = files.filter(file => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
-    const rejectedCount = files.length - pdfFiles.length;
+
+    const validFiles = files.filter(file => {
+      const ext = file.name.toLowerCase();
+      return ext.endsWith('.pdf') || ext.endsWith('.png') || ext.endsWith('.jpg') || ext.endsWith('.jpeg') || ext.endsWith('.tiff') || ext.endsWith('.webp') || ext.endsWith('.docx');
+    });
+
+    const rejectedCount = files.length - validFiles.length;
     if (rejectedCount > 0) {
-      setUploadErrorMessage(`${rejectedCount} file${rejectedCount === 1 ? '' : 's'} skipped. Only PDF files are allowed.`);
+      setUploadErrorMessage(`${rejectedCount} file(s) skipped. Allowed formats: PDF, PNG, JPG, TIFF, DOCX.`);
     } else {
       setUploadErrorMessage(null);
     }
-    if (pdfFiles.length === 0) {
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      return;
-    }
-    const newDocs = await Promise.all(pdfFiles.map(async f => ({
+    if (validFiles.length === 0) return;
+
+    // 1. Immediately read data URLs and add docs to list so UI updates instantly
+    const initialDocs = await Promise.all(validFiles.map(async f => ({
       name: f.name,
       size: f.size > 1024 * 1024 
         ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
         : `${(f.size / 1024).toFixed(0)} KB`,
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
-      fileContentUrl: await readFileAsDataUrl(f)
+      fileContentUrl: await readFileAsDataUrl(f),
+      parsedData: undefined
     })));
-    setUploadedDocs(prev => [...prev, ...newDocs]);
+
+    setUploadedDocs(prev => [...prev, ...initialDocs]);
     setUploadSuccessMessage(
-      pdfFiles.length === 1
-        ? `${pdfFiles[0].name} uploaded successfully.`
-        : `${pdfFiles.length} documents uploaded successfully.`
+      validFiles.length === 1
+        ? `${validFiles[0].name} attached successfully.`
+        : `${validFiles.length} documents attached successfully.`
     );
-    setTimeout(() => setUploadSuccessMessage(null), 2500);
-    if (fileInputRef.current) fileInputRef.current.value = '';
+    setTimeout(() => setUploadSuccessMessage(null), 3000);
+
+    // 2. Parse in background asynchronously without blocking UI
+    validFiles.forEach(async (f) => {
+      try {
+        const parsed = await parseDocumentWithService(f, f.name);
+        if (parsed && parsed.success) {
+          setUploadedDocs(prev => prev.map(doc => 
+            doc.name === f.name ? { ...doc, parsedData: parsed } : doc
+          ));
+        }
+      } catch (err) {
+        console.warn('Background parsing notice for', f.name, err);
+      }
+    });
   };
 
   const handleFileDrop = async (e: React.DragEvent) => {
@@ -110,29 +132,52 @@ export const BidderDashboard: React.FC = () => {
     setIsDragging(false);
     const files = Array.from(e.dataTransfer.files || []);
     if (files.length === 0) return;
-    const pdfFiles = files.filter(file => file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf'));
-    const rejectedCount = files.length - pdfFiles.length;
+
+    const validFiles = files.filter(file => {
+      const ext = file.name.toLowerCase();
+      return ext.endsWith('.pdf') || ext.endsWith('.png') || ext.endsWith('.jpg') || ext.endsWith('.jpeg') || ext.endsWith('.tiff') || ext.endsWith('.webp') || ext.endsWith('.docx');
+    });
+
+    const rejectedCount = files.length - validFiles.length;
     if (rejectedCount > 0) {
-      setUploadErrorMessage(`${rejectedCount} file${rejectedCount === 1 ? '' : 's'} skipped. Only PDF files are allowed.`);
+      setUploadErrorMessage(`${rejectedCount} file(s) skipped. Allowed formats: PDF, PNG, JPG, TIFF, DOCX.`);
     } else {
       setUploadErrorMessage(null);
     }
-    if (pdfFiles.length === 0) return;
-    const newDocs = await Promise.all(pdfFiles.map(async f => ({
+    if (validFiles.length === 0) return;
+
+    // 1. Immediately read data URLs and add docs to list so UI updates instantly
+    const initialDocs = await Promise.all(validFiles.map(async f => ({
       name: f.name,
       size: f.size > 1024 * 1024 
         ? `${(f.size / (1024 * 1024)).toFixed(1)} MB` 
         : `${(f.size / 1024).toFixed(0)} KB`,
       type: f.name.split('.').pop()?.toUpperCase() || 'PDF',
-      fileContentUrl: await readFileAsDataUrl(f)
+      fileContentUrl: await readFileAsDataUrl(f),
+      parsedData: undefined
     })));
-    setUploadedDocs(prev => [...prev, ...newDocs]);
+
+    setUploadedDocs(prev => [...prev, ...initialDocs]);
     setUploadSuccessMessage(
-      pdfFiles.length === 1
-        ? `${pdfFiles[0].name} uploaded successfully.`
-        : `${pdfFiles.length} documents uploaded successfully.`
+      validFiles.length === 1
+        ? `${validFiles[0].name} attached successfully.`
+        : `${validFiles.length} documents attached successfully.`
     );
-    setTimeout(() => setUploadSuccessMessage(null), 2500);
+    setTimeout(() => setUploadSuccessMessage(null), 3000);
+
+    // 2. Parse in background asynchronously without blocking UI
+    validFiles.forEach(async (f) => {
+      try {
+        const parsed = await parseDocumentWithService(f, f.name);
+        if (parsed && parsed.success) {
+          setUploadedDocs(prev => prev.map(doc => 
+            doc.name === f.name ? { ...doc, parsedData: parsed } : doc
+          ));
+        }
+      } catch (err) {
+        console.warn('Background parsing notice for', f.name, err);
+      }
+    });
   };
 
   const handleRemoveDoc = (idx: number) => {
@@ -342,7 +387,7 @@ export const BidderDashboard: React.FC = () => {
                 multiple
                 onChange={handleFileSelect}
                 className="hidden"
-                accept="application/pdf,.pdf"
+                accept=".pdf,application/pdf,image/png,image/jpeg,image/jpg,image/webp,image/tiff,.docx"
               />
 
               {uploadSuccessMessage && (
@@ -407,9 +452,22 @@ export const BidderDashboard: React.FC = () => {
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0 ml-2">
-                        <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60 hidden sm:inline">
-                          Ready for OCR Scan
-                        </span>
+                        {doc.parsedData ? (
+                          doc.parsedData.metadata?.ocr_used ? (
+                            <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 hidden sm:inline">
+                              OCR Extracted
+                            </span>
+                          ) : (
+                            <span className="text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 hidden sm:inline">
+                              Parsed (Digital)
+                            </span>
+                          )
+                        ) : (
+                          <span className="text-[10px] font-semibold text-slate-600 bg-slate-50 px-2 py-0.5 rounded border border-slate-200 hidden sm:flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                            Parsing...
+                          </span>
+                        )}
                         <button
                           type="button"
                           onClick={() => setSelectedDocToView({
@@ -417,7 +475,8 @@ export const BidderDashboard: React.FC = () => {
                             fileSize: doc.size || '1.8 MB',
                             type: doc.type || 'PDF',
                             companyName: selectedCompany.name,
-                            fileContentUrl: doc.fileContentUrl
+                            fileContentUrl: doc.fileContentUrl,
+                            parsedData: (doc as any).parsedData
                           })}
                           className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-xs font-semibold flex items-center gap-1 transition-colors"
                           title="View Document"
@@ -543,7 +602,8 @@ export const BidderDashboard: React.FC = () => {
                                       companyName: selectedCompany.name,
                                       verified: doc.verified,
                                       uploadedAt: sub.submittedAt,
-                                      fileContentUrl: doc.fileContentUrl
+                                      fileContentUrl: doc.fileContentUrl,
+                                      parsedData: (doc as any).parsedData
                                     })}
                                     className="px-2.5 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 rounded text-[11px] font-semibold flex items-center gap-1 shrink-0 ml-2 transition-colors"
                                   >
