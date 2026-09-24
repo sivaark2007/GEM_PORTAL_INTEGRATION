@@ -8,3 +8,14 @@ sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.9
 asyncpg>=0.29.0
 python-dotenv>=1.0.0
+
+# Gemini AI — embeddings (text-embedding-004) + LLM (gemini-2.0-flash)
+# No model download needed — runs via API call
+google-generativeai>=0.8.0
+
+# Async HTTP client — for calling Mock Government APIs
+httpx>=0.27.0
+
+# Image preprocessing for OCR improvement (no GUI needed, headless version)
+opencv-python-headless>=4.9.0
+

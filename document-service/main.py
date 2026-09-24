@@ -15,6 +15,10 @@ from sqlalchemy.orm import Session
 
 from parser import parse_document, ALLOWED_EXTENSIONS, MAX_FILE_SIZE
 from database import get_db, get_db_status, get_session_factory
+from embedder import embed_document, get_query_embedding
+from extractor import extract_fields, classify_document_type
+from requirement_extractor import extract_tender_requirements, summarize_tender_requirements
+from compliance_engine import run_compliance_pipeline
 from crud import (
     init_database,
     get_bidders,
@@ -244,6 +248,215 @@ async def handle_parse_document(file: UploadFile = File(...)):
         return JSONResponse(status_code=status_code, content=result)
 
     return JSONResponse(status_code=status.HTTP_200_OK, content=result)
+
+
+# ===========================================================================
+# Compliance Engine Endpoints
+# ===========================================================================
+
+@app.post("/tenders/{tender_id}/embed")
+async def embed_tender_document(tender_id: str, db: Session = Depends(get_db)):
+    """
+    Step 1 (Procurement Officer): Embed a tender document into vectors.
+
+    Reads the tender's gem_bidding_document text, chunks it, generates
+    Gemini embeddings, and extracts structured requirements via LLM.
+
+    Call this after uploading a tender PDF.
+    """
+    from crud import get_tender_by_id
+    tender = get_tender_by_id(db, tender_id)
+    if not tender:
+        raise HTTPException(status_code=404, detail="Tender not found")
+
+    # Extract text from the stored tender document
+    gem_doc = tender.gem_bidding_document or {}
+    tender_text = gem_doc.get("full_text", "") or gem_doc.get("text", "")
+    if not tender_text:
+        # Fallback: use title + requirements fields
+        reqs = tender.requirements or []
+        tender_text = tender.title + "\n" + "\n".join(
+            [r if isinstance(r, str) else str(r) for r in reqs]
+        )
+
+    if not tender_text.strip():
+        raise HTTPException(status_code=400, detail="No text content found in tender document")
+
+    # 1. Chunk + embed the tender document
+    chunks = embed_document(tender_text)
+    logger.info(f"Embedded {len(chunks)} chunks for tender {tender_id}")
+
+    # 2. Extract structured requirements using Gemini LLM
+    requirements = extract_tender_requirements(tender_text)
+    logger.info(f"Extracted {len(requirements)} requirements for tender {tender_id}")
+
+    return {
+        "success": True,
+        "tender_id": tender_id,
+        "chunks_embedded": len(chunks),
+        "requirements_extracted": len(requirements),
+        "requirements": requirements,
+        "summary": summarize_tender_requirements(requirements)
+    }
+
+
+@app.post("/submissions/{submission_id}/embed")
+async def embed_submission_documents(submission_id: str, db: Session = Depends(get_db)):
+    """
+    Step 2 (Bidder): Embed all bidder-uploaded documents into vectors.
+
+    For each document in the submission:
+    1. Classifies the document type (GST, PAN, Udyam, etc.)
+    2. Extracts structured fields using Gemini
+    3. Chunks and embeds the full text for RAG search
+
+    Call this after a bidder uploads their documents.
+    """
+    from crud import get_submission_by_id
+    submission = get_submission_by_id(db, submission_id)
+    if not submission:
+        raise HTTPException(status_code=404, detail="Submission not found")
+
+    all_chunks = []
+    all_extracted_fields = {}
+    doc_summaries = []
+
+    # Process each document in the submission
+    documents = submission.documents or []
+    for doc in documents:
+        parsed = doc.parsed_data or {}
+        raw_text = parsed.get("full_text", "") or parsed.get("text", "")
+
+        if not raw_text:
+            logger.warning(f"Document {doc.id} has no parsed text — skipping embedding.")
+            continue
+
+        # Classify document type if not already set
+        doc_type = parsed.get("document_type") or classify_document_type(raw_text)
+
+        # Extract structured fields
+        fields = extract_fields(raw_text, doc_type)
+        all_extracted_fields.update(fields)  # Merge all fields into one dict
+
+        # Chunk + embed the document text
+        chunks = embed_document(raw_text)
+        all_chunks.extend(chunks)
+
+        doc_summaries.append({
+            "document_name": doc.name,
+            "document_type": doc_type,
+            "chunks": len(chunks),
+            "fields_extracted": list(fields.keys())
+        })
+
+    logger.info(f"Embedded {len(all_chunks)} total chunks for submission {submission_id}")
+
+    return {
+        "success": True,
+        "submission_id": submission_id,
+        "documents_processed": len(doc_summaries),
+        "total_chunks": len(all_chunks),
+        "extracted_fields": all_extracted_fields,
+        "documents": doc_summaries
+    }
+
+
+@app.post("/submissions/{submission_id}/compliance-check")
+async def run_compliance_check(
+    submission_id: str,
+    tender_id: str,
+    db: Session = Depends(get_db)
+):
+    """
+    Step 3 (Procurement Officer): Run full compliance analysis.
+
+    Orchestrates the complete pipeline:
+    1. Load tender requirements (extracted by /tenders/{id}/embed)
+    2. Load + embed bidder documents (from /submissions/{id}/embed)
+    3. RAG: find evidence for each requirement in bidder chunks
+    4. Mock API: verify GSTIN, PAN, Udyam, etc. against government DBs
+    5. Rule Engine: check numeric thresholds (turnover >= X)
+    6. LLM Judge: determine COMPLIANT / NON_COMPLIANT / REVIEW per requirement
+    7. Compute overall compliance score (0-100)
+
+    Returns the full compliance report.
+    """
+    from crud import get_submission_by_id, get_tender_by_id
+
+    tender = get_tender_by_id(db, tender_id)
+    if not tender:
+        raise HTTPException(status_code=404, detail="Tender not found")
+
+    submission = get_submission_by_id(db, submission_id)
+    if not submission:
+        raise HTTPException(status_code=404, detail="Submission not found")
+
+    # --- Load tender requirements ---
+    gem_doc = tender.gem_bidding_document or {}
+    tender_text = gem_doc.get("full_text", "") or gem_doc.get("text", "")
+    if not tender_text:
+        reqs = tender.requirements or []
+        tender_text = tender.title + "\n" + "\n".join(
+            [r if isinstance(r, str) else str(r) for r in reqs]
+        )
+    requirements = extract_tender_requirements(tender_text)
+
+    if not requirements:
+        return {
+            "success": False,
+            "message": "No requirements could be extracted from this tender. Run /tenders/{id}/embed first."
+        }
+
+    # --- Load + embed bidder documents ---
+    all_chunks = []
+    all_extracted_fields = {}
+
+    documents = submission.documents or []
+    for doc in documents:
+        parsed = doc.parsed_data or {}
+        raw_text = parsed.get("full_text", "") or parsed.get("text", "")
+        if not raw_text:
+            continue
+        doc_type = parsed.get("document_type") or classify_document_type(raw_text)
+        fields = extract_fields(raw_text, doc_type)
+        all_extracted_fields.update(fields)
+        chunks = embed_document(raw_text)
+        all_chunks.extend(chunks)
+
+    # --- Run the compliance engine ---
+    compliance_result = await run_compliance_pipeline(
+        requirements=requirements,
+        bidder_chunks=all_chunks,
+        extracted_fields=all_extracted_fields
+    )
+
+    # --- Update compliance score in DB ---
+    from crud import update_submission_verification
+    update_submission_verification(db, submission_id, {
+        "compliance_score": compliance_result["compliance_score"],
+        "ai_verification_stage": "Completed",
+        "status": "Verified" if compliance_result["compliance_score"] >= 70 else "Under Review"
+    })
+
+    return {
+        "success": True,
+        "submission_id": submission_id,
+        "tender_id": tender_id,
+        **compliance_result
+    }
+
+
+@app.get("/submissions/{submission_id}/compliance-report")
+async def get_compliance_report(submission_id: str, db: Session = Depends(get_db)):
+    """
+    Get the latest compliance report for a bid submission.
+    Returns the stored compliance score, stage, and status.
+    """
+    from crud import get_submission_by_id
+    submission = get_submission_by_id(db, submission_id)
+    if not submission:
+        raise HTTPException(status_code=404, detail="Submission not found")
+    return submission.to_dict()
 
 
 if __name__ == "__main__":
