@@ -2,5 +2,13 @@ fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 python-multipart>=0.0.9
 pydantic>=2.0.0
+
+# Structured document extraction for digital PDFs and supported image files.
 docling>=2.0.0
 pypdf>=4.0.0
+
+# OCR fallback for scanned PDFs and images.
+rapidocr>=3.0.0
+pypdfium2>=4.30.0
+numpy>=1.26.0
+Pillow>=10.0.0
