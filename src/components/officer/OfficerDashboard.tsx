@@ -46,6 +46,8 @@ import {
   Loader2,
 } from 'lucide-react';
 import type { GemBiddingDocument } from '../../types';
+import { TenderListCard } from '../shared/TenderListCard';
+import { TenderStatusBadge } from '../shared/TenderStatusBadge';
 
 // ─── Gem Requirement cross-check (mocked from GeM-Bidding-9318928.pdf) ─────
 const GEM_BIDDING_REQUIREMENTS = [
@@ -169,20 +171,24 @@ const GemDocUpload: React.FC<GemDocUploadProps> = ({ tenderId, existing }) => {
   );
 };
 
-// ─── Status badge helper ──────────────────────────────────────────────────────
-function StatusBadge({ status }: { status: string }) {
+function VerificationBadge({ status }: { status?: string }) {
   const map: Record<string, string> = {
-    Verified: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    'Under Review': 'bg-amber-50 text-amber-700 border-amber-200',
-    Disqualified: 'bg-red-50 text-red-700 border-red-200',
-    Submitted: 'bg-blue-50 text-blue-700 border-blue-200',
-    Active: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    Evaluation: 'bg-amber-50 text-amber-700 border-amber-200',
-    Closed: 'bg-slate-100 text-slate-600 border-slate-200',
+    VALID: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+    NOT_VALID: 'bg-red-50 text-red-700 border-red-200',
+    NOT_FOUND: 'bg-red-50 text-red-700 border-red-200',
+    REVIEW_REQUIRED: 'bg-amber-50 text-amber-700 border-amber-200',
   };
+  const labelMap: Record<string, string> = {
+    VALID: 'Valid',
+    NOT_VALID: 'Not valid',
+    NOT_FOUND: 'Not found',
+    REVIEW_REQUIRED: 'Review',
+  };
+  const safeStatus = status || 'REVIEW_REQUIRED';
+
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded border text-[11px] font-bold ${map[status] || 'bg-slate-50 text-slate-600 border-slate-200'}`}>
-      {status}
+    <span className={`inline-flex items-center px-2 py-0.5 rounded border text-[10px] font-bold whitespace-nowrap ${map[safeStatus] || map.REVIEW_REQUIRED}`}>
+      {labelMap[safeStatus] || 'Review'}
     </span>
   );
 }
@@ -267,7 +273,7 @@ export const OfficerDashboard: React.FC = () => {
         await delay(stage.ms);
       }
       if (!batchAbortRef.current) {
-        runVerificationForSubmission(subId);
+        await runVerificationForSubmission(subId);
         setBatchState(prev => ({ ...prev, completedIds: [...prev.completedIds, subId] }));
       }
     }
@@ -304,13 +310,14 @@ export const OfficerDashboard: React.FC = () => {
     setLevel('bidder-detail');
   };
 
-  const handleRunAI = () => {
+  const handleRunAI = async () => {
     if (!selectedSubmissionId) return;
     setIsVerifying(true);
-    setTimeout(() => {
-      runVerificationForSubmission(selectedSubmissionId);
+    try {
+      await runVerificationForSubmission(selectedSubmissionId);
+    } finally {
       setIsVerifying(false);
-    }, 1400);
+    }
   };
 
   const handleViewDoc = (doc: { name: string; type: string; fileSize: string; verified: boolean; fileContentUrl?: string }) => {
@@ -360,97 +367,16 @@ export const OfficerDashboard: React.FC = () => {
         {pagedTenders.map(tender => {
           const subCount = submissions.filter(s => s.tenderId === tender.id).length;
           return (
-            <div
+            <TenderListCard
               key={tender.id}
-              className="bg-white border border-slate-200 rounded-lg shadow-xs hover:shadow-md transition-all cursor-pointer group"
-              style={{ borderTop: '3px solid #f59e0b' }}
-              onClick={() => handleSelectBid(tender.id)}
-            >
-              <div className="px-5 pt-4 pb-3">
-                {/* Top row */}
-                <div className="flex items-start justify-between gap-4 mb-3">
-                  <div>
-                    <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">BID NO:</span>{' '}
-                    <button
-                      className="text-sm font-bold text-blue-700 hover:text-blue-900 hover:underline transition-colors"
-                      onClick={e => { e.stopPropagation(); handleSelectBid(tender.id); }}
-                    >
-                      {tender.tenderNumber}
-                    </button>
-                  </div>
-                  <div className="flex items-center gap-3 shrink-0">
-                    <StatusBadge status={tender.status} />
-                    <button
-                      className="flex items-center gap-1 text-xs text-blue-600 hover:text-blue-800 font-medium hover:underline whitespace-nowrap"
-                      onClick={e => e.stopPropagation()}
-                    >
-                      <ExternalLink className="w-3 h-3" />
-                      View Corrigendum/Representation
-                    </button>
-                  </div>
-                </div>
-
-                {/* Main info grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-2 text-[13px]">
-                  <div className="sm:col-span-1">
-                    <div>
-                      <span className="font-semibold text-slate-800">Items:</span>{' '}
-                      <span className="text-blue-600 hover:underline cursor-pointer">
-                        {tender.items
-                          ? tender.items.length > 55
-                            ? tender.items.slice(0, 55) + '...'
-                            : tender.items
-                          : tender.title.length > 55
-                          ? tender.title.slice(0, 55) + '...'
-                          : tender.title}
-                      </span>
-                    </div>
-                    <div className="mt-1">
-                      <span className="font-semibold text-slate-800">Quantity:</span>{' '}
-                      <span className="text-slate-700">{tender.quantity ?? '—'}</span>
-                    </div>
-                    <div className="mt-1 flex items-center gap-1">
-                      <span className="font-semibold text-slate-800">Bidders Applied:</span>{' '}
-                      <span className="font-bold text-blue-700">{subCount}</span>
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-1">
-                    <div className="font-semibold text-slate-800 mb-0.5">Department Name And Address:</div>
-                    <div className="text-slate-600">{tender.ministry}</div>
-                    <div className="text-slate-600">{tender.organization}</div>
-                  </div>
-
-                  <div className="sm:col-span-1 space-y-1">
-                    <div>
-                      <span className="font-semibold text-slate-800">Start Date:</span>{' '}
-                      <span className="text-emerald-600 font-medium">{tender.startDate || '—'}</span>
-                    </div>
-                    <div>
-                      <span className="font-semibold text-slate-800">End Date:</span>{' '}
-                      <span className="text-amber-600 font-medium">{tender.endDate || tender.closingDate}</span>
-                    </div>
-                    <div className="pt-1">
-                      <GemDocUpload
-                        tenderId={tender.id}
-                        existing={tender.gemBiddingDocument}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card footer */}
-              <div className="px-5 py-2 bg-slate-50 border-t border-slate-100 flex items-center justify-between rounded-b-lg">
-                <span className="text-[11px] text-slate-500">
-                  Est. Value: <strong className="text-slate-800 font-mono">{tender.estimatedValue}</strong>
-                  {' · '}{tender.category}
-                </span>
-                <span className="text-xs text-blue-600 font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">
-                  View Applied Bidders <ChevronRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </div>
+              tender={tender}
+              mode="officer"
+              appliedCount={subCount}
+              onOfficerSelect={() => handleSelectBid(tender.id)}
+              gemDocActions={
+                <GemDocUpload tenderId={tender.id} existing={tender.gemBiddingDocument} />
+              }
+            />
           );
         })}
       </div>
@@ -519,7 +445,7 @@ export const OfficerDashboard: React.FC = () => {
               <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                 {currentTender.tenderNumber}
               </span>
-              <StatusBadge status={currentTender.status} />
+              <TenderStatusBadge status={currentTender.status} />
             </div>
             <h3 className="text-base font-bold text-slate-900 mb-1">{currentTender.title}</h3>
             <p className="text-xs text-slate-500">{currentTender.ministry} · {currentTender.organization}</p>
@@ -725,7 +651,7 @@ export const OfficerDashboard: React.FC = () => {
                         </span>
                       ) : <span className="text-xs text-slate-400">—</span>}
                     </div>
-                    <StatusBadge status={sub.status} />
+                    <TenderStatusBadge status={sub.status} />
                     <button
                       onClick={e => { e.stopPropagation(); handleSelectBidder(sub.id); }}
                       className="flex items-center gap-1 px-3 py-1.5 bg-blue-700 hover:bg-blue-800 text-white text-xs font-semibold rounded-lg transition-colors whitespace-nowrap"
@@ -758,6 +684,12 @@ export const OfficerDashboard: React.FC = () => {
       ...req,
       result: checkRequirementMatch(req.matchKeywords, selectedSubmission.documents),
     }));
+    const registryChecks = selectedSubmission.documents.flatMap(doc =>
+      (doc.verificationResult?.checks || []).map(check => ({
+        ...check,
+        documentName: doc.name,
+      }))
+    );
 
     const satisfiedCount = gemReqChecks.filter(r => r.result.status === 'satisfied').length;
     const missingCount = gemReqChecks.filter(r => r.result.status === 'missing').length;
@@ -785,7 +717,7 @@ export const OfficerDashboard: React.FC = () => {
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-2 mb-1">
                 <h2 className="text-lg font-bold text-slate-900">{selectedCompany.name}</h2>
-                <StatusBadge status={selectedSubmission.status} />
+                <TenderStatusBadge status={selectedSubmission.status} />
                 {selectedSubmission.complianceScore && (
                   <span className={`text-xs font-bold font-mono px-2 py-0.5 rounded border ${
                     selectedSubmission.complianceScore >= 90 ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
@@ -867,10 +799,11 @@ export const OfficerDashboard: React.FC = () => {
             </div>
             <div className="space-y-2">
               {selectedSubmission.documents.map((doc, i) => (
-                <div key={i} className="flex items-center justify-between p-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-colors text-xs">
-                  <div className="flex items-center gap-2 truncate">
+                <div key={i} className="p-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 transition-colors text-xs">
+                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
                     <FileText className="w-4 h-4 text-slate-400 shrink-0" />
-                    <div className="truncate">
+                    <div className="min-w-0">
                       <div className="font-semibold text-slate-900 truncate">{doc.name}</div>
                       <div className="text-[10px] text-slate-400">{doc.type} · {doc.fileSize}</div>
                     </div>
@@ -888,6 +821,15 @@ export const OfficerDashboard: React.FC = () => {
                       View
                     </button>
                   </div>
+                  </div>
+                  {doc.verificationResult && (
+                    <div className="mt-2 pl-6 flex items-start justify-between gap-2">
+                      <div className="text-[10px] text-slate-500 leading-snug line-clamp-2">
+                        {doc.verificationResult.summary}
+                      </div>
+                      <VerificationBadge status={doc.verificationResult.finalStatus} />
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
@@ -909,7 +851,23 @@ export const OfficerDashboard: React.FC = () => {
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs">
             <h3 className="text-sm font-bold text-slate-900 mb-3">Government Registry Checks</h3>
             <div className="space-y-2 text-xs">
-              {[
+              {registryChecks.length === 0 ? (
+                <div className="p-4 rounded-lg border border-slate-200 bg-slate-50 text-slate-500">
+                  Run full AI verification to call the mock government APIs for this bidder's parsed documents.
+                </div>
+              ) : registryChecks.map((check, i) => (
+                <div key={`${check.documentName}-${check.source}-${i}`} className="flex items-start justify-between gap-3 p-3 rounded-lg border border-slate-200 bg-slate-50">
+                  <div className="min-w-0">
+                    <div className="font-bold text-slate-900">{check.source}</div>
+                    <div className="text-[10px] text-slate-500 mt-0.5 break-all">
+                      {check.identifier} from {check.documentName}
+                    </div>
+                    <div className="text-[10px] text-slate-500 mt-1 leading-snug">{check.message}</div>
+                  </div>
+                  <VerificationBadge status={check.status} />
+                </div>
+              ))}
+              {false && [
                 { title: 'GSTIN Active Status', desc: 'GSTN API: GSTR-3B filings active — no tax default', status: 'Active & Clear', ok: true },
                 { title: 'MCA-21 Company Master Data', desc: 'CIN verified with Ministry of Corporate Affairs', status: 'Matched', ok: true },
                 { title: 'MSME Udyam Registry', desc: 'Udyam qualification for EMD exemption', status: 'Eligible', ok: true },

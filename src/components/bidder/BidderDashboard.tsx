@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Tender } from '../../types';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
+import { TenderListCard } from '../shared/TenderListCard';
+import { TenderDetailSummary } from '../shared/TenderDetailSummary';
 import { parseDocumentWithService } from '../../services/documentParser';
 import { 
   Building2, 
@@ -24,29 +26,6 @@ import {
   ChevronUp
 } from 'lucide-react';
 
-const documentGroups = [
-  {
-    title: 'Identity & Tax',
-    documents: ['PAN Card / PAN Details', 'GST Registration Certificate / GSTIN', 'Income Tax Return (ITR)']
-  },
-  {
-    title: 'Business Registration',
-    documents: ['Udyam Registration Certificate', 'MCA Company/LLP Registration Details', 'Startup India / DPIIT Recognition Certificate', 'NSIC Registration Certificate']
-  },
-  {
-    title: 'Statutory Compliance',
-    documents: ['EPFO Registration Details', 'ESIC Registration Details', 'GST Compliance / Return Details', 'Income Tax Compliance Details']
-  },
-  {
-    title: 'Product / Procurement Compliance',
-    documents: ['BIS Certificate / Licence', 'Make in India / Local Content Declaration', 'OEM Authorization Certificate']
-  },
-  {
-    title: 'Digital Document Verification',
-    documents: ['DigiLocker-issued Documents']
-  }
-];
-
 type UploadedDocument = {
   name: string;
   size?: string;
@@ -68,7 +47,18 @@ export const BidderDashboard: React.FC = () => {
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
-  const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
+  const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0] ?? null);
+
+  useEffect(() => {
+    if (tenders.length === 0) {
+      setSelectedTenderToApply(null);
+      return;
+    }
+    setSelectedTenderToApply(prev => {
+      if (!prev) return tenders[0];
+      return tenders.find(t => t.id === prev.id) ?? tenders[0];
+    });
+  }, [tenders]);
   const [uploadedDocs, setUploadedDocs] = useState<UploadedDocument[]>(
     (selectedCompany && draftDocuments[selectedCompany.id]) 
       ? draftDocuments[selectedCompany.id] 
@@ -111,6 +101,21 @@ export const BidderDashboard: React.FC = () => {
 
   // Filter submissions made by this company
   const companySubmissions = submissions.filter(s => s.companyId === selectedCompany.id);
+
+  const openGemDocument = (tender: Tender) => {
+    const gemDoc = tender.gemBiddingDocument;
+    if (!gemDoc?.fileContentUrl) return;
+    setSelectedDocToView({
+      name: gemDoc.name,
+      fileSize: gemDoc.fileSize,
+      type: 'PDF',
+      companyName: 'GeM Portal',
+      verified: true,
+      uploadedAt: gemDoc.uploadedAt,
+      fileContentUrl: gemDoc.fileContentUrl,
+      parsedData: gemDoc.parsedData,
+    });
+  };
 
   const readFileAsDataUrl = (file: File) => new Promise<string>((resolve, reject) => {
     const reader = new FileReader();

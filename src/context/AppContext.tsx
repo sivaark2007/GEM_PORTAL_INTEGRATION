@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { AppRole, AppView, Company, Tender, BidSubmission, GemBiddingDocument } from '../types';
 import { INITIAL_COMPANIES, INITIAL_TENDERS, INITIAL_SUBMISSIONS } from '../data/dummyData';
+import { verifySubmissionDocuments } from '../services/documentVerification';
+import { parseDocumentWithService } from '../services/documentParser';
 
 interface AppContextType {
   role: AppRole;
@@ -16,7 +18,7 @@ interface AppContextType {
   navigateTo: (view: AppView) => void;
   setSelectedTenderId: (tenderId: string) => void;
   submitBid: (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => void;
-  runVerificationForSubmission: (submissionId: string) => void;
+  runVerificationForSubmission: (submissionId: string) => Promise<void>;
   addTender: (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>) => Tender;
   uploadGemBiddingDocument: (tenderId: string, doc: GemBiddingDocument) => void;
   draftDocuments: Record<string, any[]>;
@@ -26,6 +28,8 @@ interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 const LOCAL_STORAGE_KEY_COMPANIES = 'gem_ai_companies_v1';
+const LOCAL_STORAGE_KEY_TENDERS = 'gem_ai_tenders_v1';
+const LOCAL_STORAGE_KEY_SUBMISSIONS = 'gem_ai_submissions_v1';
 const LOCAL_STORAGE_KEY_ROLE = 'gem_ai_role_v1';
 const LOCAL_STORAGE_KEY_VIEW = 'gem_ai_view_v1';
 const LOCAL_STORAGE_KEY_SELECTED_COMP = 'gem_ai_selected_comp_v1';
@@ -90,8 +94,31 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return INITIAL_COMPANIES[0] || null;
   });
 
-  const [tenders, setTenders] = useState<Tender[]>(INITIAL_TENDERS);
-  const [submissions, setSubmissions] = useState<BidSubmission[]>(INITIAL_SUBMISSIONS);
+  const [tenders, setTenders] = useState<Tender[]>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY_TENDERS);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch (e) {
+      console.warn('Failed to load tenders from localStorage', e);
+    }
+    return INITIAL_TENDERS;
+  });
+
+  const [submissions, setSubmissions] = useState<BidSubmission[]>(() => {
+    try {
+      const saved = localStorage.getItem(LOCAL_STORAGE_KEY_SUBMISSIONS);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
+    } catch (e) {
+      console.warn('Failed to load submissions from localStorage', e);
+    }
+    return INITIAL_SUBMISSIONS;
+  });
   const [selectedTenderId, setSelectedTenderId] = useState<string>(INITIAL_TENDERS[0].id);
   const [draftDocuments, setDraftDocuments] = useState<Record<string, any[]>>({});
 
@@ -116,6 +143,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       // ignore
     }
   }, [companies]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY_TENDERS, JSON.stringify(tenders));
+    } catch (e) {
+      // ignore
+    }
+  }, [tenders]);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY_SUBMISSIONS, JSON.stringify(submissions));
+    } catch (e) {
+      // ignore
+    }
+  }, [submissions]);
 
   useEffect(() => {
     try {
@@ -218,19 +261,63 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     ));
   };
 
-  const runVerificationForSubmission = (submissionId: string) => {
-    setSubmissions(prev => prev.map(sub => {
-      if (sub.id === submissionId) {
+  const runVerificationForSubmission = async (submissionId: string) => {
+    const submission = submissions.find(sub => sub.id === submissionId);
+    const company = companies.find(comp => comp.id === submission?.companyId);
+
+    if (!submission || !company) return;
+
+    setSubmissions(prev => prev.map(sub =>
+      sub.id === submissionId ? { ...sub, aiVerificationStage: 'Govt_API', status: 'Under Review' } : sub
+    ));
+
+    try {
+      const documentsWithParsedText = await Promise.all(submission.documents.map(async document => {
+        if (document.parsedData?.full_text || !document.fileContentUrl) return document;
+
+        try {
+          const blob = await fetch(document.fileContentUrl).then(response => response.blob());
+          const parsedData = await parseDocumentWithService(blob, document.name);
+          return parsedData.success ? { ...document, parsedData } : document;
+        } catch (error) {
+          console.warn('Officer verification could not parse document before API checks:', error);
+          return document;
+        }
+      }));
+
+      const verification = await verifySubmissionDocuments(submission.id, company, documentsWithParsedText);
+      setSubmissions(prev => prev.map(sub => {
+        if (sub.id !== submissionId) return sub;
+
         return {
           ...sub,
           aiVerificationStage: 'Completed',
-          status: 'Verified',
-          complianceScore: Math.floor(Math.random() * 15) + 84,
-          documents: sub.documents.map(d => ({ ...d, verified: true }))
+          status: verification.overallStatus,
+          complianceScore: verification.complianceScore,
+          flags: verification.flags,
+          documents: documentsWithParsedText.map(document => {
+            const result = verification.documents.find(item => item.documentName === document.name);
+            return {
+              ...document,
+              verified: result?.finalStatus === 'VALID',
+              verificationResult: result,
+            };
+          }),
         };
-      }
-      return sub;
-    }));
+      }));
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Verification failed.';
+      setSubmissions(prev => prev.map(sub =>
+        sub.id === submissionId
+          ? {
+              ...sub,
+              aiVerificationStage: 'Govt_API',
+              status: 'Under Review',
+              flags: [...(sub.flags || []), message],
+            }
+          : sub
+      ));
+    }
   };
 
   return (
