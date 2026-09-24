@@ -1,0 +1,72 @@
+[
+    {
+        "esic_number": "ESIC-MOCK-001",
+        "enterprise_name": "ABC Technologies Pvt Ltd",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-002",
+        "enterprise_name": "XYZ Solutions Private Limited",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-003",
+        "enterprise_name": "PQR Electronics Private Limited",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-004",
+        "enterprise_name": "LMN Industrial Solutions Pvt Ltd",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-005",
+        "enterprise_name": "RST Technologies Limited",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-006",
+        "enterprise_name": "WXYZ Computer Systems Pvt Ltd",
+        "registration_status": "ACTIVE",
+        "compliance_status": "NON_COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-007",
+        "enterprise_name": "MNO Office Equipment Pvt Ltd",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-008",
+        "enterprise_name": "QRS Digital Systems Pvt Ltd",
+        "registration_status": "INACTIVE",
+        "compliance_status": "NON_COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-009",
+        "enterprise_name": "ABC Industrial Automation Pvt Ltd",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    },
+    {
+        "esic_number": "ESIC-MOCK-010",
+        "enterprise_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "registration_status": "ACTIVE",
+        "compliance_status": "COMPLIANT",
+        "last_contribution_month": "2026-08"
+    }
+]

@@ -1,0 +1,62 @@
+[
+    {
+        "enterprise_name": "ABC Technologies Pvt Ltd",
+        "required_local_content": 50,
+        "declared_local_content": 65,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "XYZ Solutions Private Limited",
+        "required_local_content": 50,
+        "declared_local_content": 55,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "PQR Electronics Private Limited",
+        "required_local_content": 60,
+        "declared_local_content": 70,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "LMN Industrial Solutions Pvt Ltd",
+        "required_local_content": 50,
+        "declared_local_content": 45,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "RST Technologies Limited",
+        "required_local_content": 60,
+        "declared_local_content": 60,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "WXYZ Computer Systems Pvt Ltd",
+        "required_local_content": 50,
+        "declared_local_content": 75,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "MNO Office Equipment Pvt Ltd",
+        "required_local_content": 40,
+        "declared_local_content": 40,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "QRS Digital Systems Pvt Ltd",
+        "required_local_content": 50,
+        "declared_local_content": 45,
+        "certificate_status": "INVALID"
+    },
+    {
+        "enterprise_name": "ABC Industrial Automation Pvt Ltd",
+        "required_local_content": 60,
+        "declared_local_content": 80,
+        "certificate_status": "VALID"
+    },
+    {
+        "enterprise_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "required_local_content": 50,
+        "declared_local_content": 65,
+        "certificate_status": "VALID"
+    }
+]

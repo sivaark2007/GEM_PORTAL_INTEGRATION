@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { Company } from '../types';
 import { CreateCompanyModal } from './CreateCompanyModal';
-import { 
-  Plus, 
-  Search, 
-  ArrowLeft, 
-  ArrowRight, 
-  Building2, 
-  ShieldCheck, 
+import {
+  Plus,
+  Search,
+  ArrowLeft,
+  ArrowRight,
+  Building2,
+  ShieldCheck,
   FileCheck2,
   Sparkles,
   Info
@@ -18,8 +18,9 @@ export const BidderSelectionPage: React.FC = () => {
   const { companies, selectCompany, createCompany, navigateTo } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [creationError, setCreationError] = useState('');
 
-  const filteredCompanies = companies.filter(c => 
+  const filteredCompanies = companies.filter(c =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     c.gstin.toLowerCase().includes(searchTerm.toLowerCase()) ||
     c.pan.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -27,10 +28,15 @@ export const BidderSelectionPage: React.FC = () => {
   );
 
   const handleCreateCompany = (companyData: Omit<Company, 'id'>, enterImmediately: boolean) => {
-    const created = createCompany(companyData);
-    setIsModalOpen(false);
-    if (enterImmediately) {
-      selectCompany(created);
+    try {
+      const created = createCompany(companyData);
+      setCreationError('');
+      setIsModalOpen(false);
+      if (enterImmediately) {
+        selectCompany(created);
+      }
+    } catch (error) {
+      setCreationError(error instanceof Error ? error.message : 'Company registration validation failed.');
     }
   };
 
@@ -46,12 +52,12 @@ export const BidderSelectionPage: React.FC = () => {
   return (
     <div className="min-h-[calc(100vh-4.25rem)] bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto space-y-6">
-        
+
         {/* Navigation Breadcrumb / Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200">
           <div>
             <div className="flex items-center gap-2 text-xs text-slate-500 mb-1">
-              <button 
+              <button
                 onClick={() => navigateTo('role-selection')}
                 className="hover:text-slate-900 inline-flex items-center gap-1 font-medium text-slate-600"
               >
@@ -124,7 +130,7 @@ export const BidderSelectionPage: React.FC = () => {
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className="flex items-center gap-3">
                       {/* Logo placeholder with distinctive color/initials */}
-                      <div 
+                      <div
                         className="w-11 h-11 rounded-lg flex items-center justify-center font-bold text-sm tracking-wider text-white shadow-2xs shrink-0"
                         style={{ backgroundColor: company.color || '#0d9488' }}
                       >
@@ -209,8 +215,12 @@ export const BidderSelectionPage: React.FC = () => {
       {/* Registration Modal */}
       <CreateCompanyModal
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setCreationError('');
+          setIsModalOpen(false);
+        }}
         onCreate={handleCreateCompany}
+        creationError={creationError}
       />
     </div>
   );

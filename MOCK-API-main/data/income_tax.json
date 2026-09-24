@@ -1,0 +1,62 @@
+[
+    {
+        "pan": "ABCD00001E",
+        "enterprise_name": "ABC Technologies Pvt Ltd",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00002E",
+        "enterprise_name": "XYZ Solutions Private Limited",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00003E",
+        "enterprise_name": "PQR Electronics Private Limited",
+        "income_tax_status": "NON_COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00004E",
+        "enterprise_name": "LMN Industrial Solutions Pvt Ltd",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00005E",
+        "enterprise_name": "RST Technologies Limited",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00006E",
+        "enterprise_name": "WXYZ Computer Systems Pvt Ltd",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00007E",
+        "enterprise_name": "MNO Office Equipment Pvt Ltd",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00008E",
+        "enterprise_name": "QRS Digital Systems Pvt Ltd",
+        "income_tax_status": "NON_COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00009E",
+        "enterprise_name": "ABC Industrial Automation Pvt Ltd",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    },
+    {
+        "pan": "ABCD00010E",
+        "enterprise_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "income_tax_status": "COMPLIANT",
+        "assessment_year": "2025-26"
+    }
+]

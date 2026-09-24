@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Tender } from '../../types';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
+import { TenderListCard } from '../shared/TenderListCard';
+import { TenderDetailSummary } from '../shared/TenderDetailSummary';
 import { parseDocumentWithService } from '../../services/documentParser';
 import { 
   Building2, 
@@ -99,7 +101,18 @@ export const BidderDashboard: React.FC = () => {
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
-  const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
+  const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0] ?? null);
+
+  useEffect(() => {
+    if (tenders.length === 0) {
+      setSelectedTenderToApply(null);
+      return;
+    }
+    setSelectedTenderToApply(prev => {
+      if (!prev) return tenders[0];
+      return tenders.find(t => t.id === prev.id) ?? tenders[0];
+    });
+  }, [tenders]);
   const [uploadedDocs, setUploadedDocs] = useState<UploadedDocument[]>(
     (selectedCompany && draftDocuments[selectedCompany.id]) 
       ? draftDocuments[selectedCompany.id] 
@@ -142,6 +155,21 @@ export const BidderDashboard: React.FC = () => {
 
   // Filter submissions made by this company
   const companySubmissions = submissions.filter(s => s.companyId === selectedCompany.id);
+
+  const openGemDocument = (tender: Tender) => {
+    const gemDoc = tender.gemBiddingDocument;
+    if (!gemDoc?.fileContentUrl) return;
+    setSelectedDocToView({
+      name: gemDoc.name,
+      fileSize: gemDoc.fileSize,
+      type: 'PDF',
+      companyName: 'GeM Portal',
+      verified: true,
+      uploadedAt: gemDoc.uploadedAt,
+      fileContentUrl: gemDoc.fileContentUrl,
+      parsedData: gemDoc.parsedData,
+    });
+  };
 
   const readFileAsDataUrl = (file: File) => new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
@@ -403,52 +431,18 @@ export const BidderDashboard: React.FC = () => {
                 );
 
                 return (
-                  <div key={tender.id} className="bg-white border border-slate-200 border-t-4 border-t-amber-400 shadow-2xs hover:shadow-sm transition-shadow">
-                    <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between gap-3">
-                      <div className="text-sm font-semibold text-slate-800">
-                        BID NO: <span className="text-sky-700 font-bold">{tender.tenderNumber}</span>
-                      </div>
-                      <span className="text-xs text-sky-700 font-semibold">{tender.status}</span>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.35fr_0.9fr] gap-4 px-4 py-4 text-xs">
-                      <div>
-                        <div className="font-bold text-slate-800 mb-1">Items:</div>
-                        <div className="text-slate-700 leading-relaxed">{tender.title}</div>
-                        <div className="text-slate-500 mt-2">Category: <span className="text-slate-700">{tender.category}</span></div>
-                      </div>
-                      <div>
-                        <div className="font-bold text-slate-800 mb-1">Department Name And Address:</div>
-                        <div className="text-slate-700">{tender.ministry}</div>
-                        <div className="text-slate-700 mt-1">{tender.organization}</div>
-                      </div>
-                      <div className="md:text-right">
-                        <div><span className="font-bold text-slate-800">Bid End Date:</span> <span className="text-amber-600">{tender.closingDate}</span></div>
-                        <div className="mt-2"><span className="font-bold text-slate-800">Estimated Value:</span> <span className="text-slate-700">{tender.estimatedValue}</span></div>
-                        {alreadySubmitted ? (
-                          <button
-                            type="button"
-                            onClick={() => setActiveTab('status')}
-                            className="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 font-semibold text-xs transition-colors cursor-pointer"
-                            title="Click to view submission status"
-                          >
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                            <span>Bid Submitted</span>
-                            <ArrowLeft className="w-3.5 h-3.5 rotate-180 text-emerald-700" />
-                          </button>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              setSelectedTenderToApply(tender);
-                              setActiveTab('apply');
-                            }}
-                            className="mt-3 inline-flex items-center gap-1.5 text-sky-700 hover:text-sky-900 font-semibold underline underline-offset-2"
-                          >
-                            <ArrowLeft className="w-3.5 h-3.5 rotate-180" /> View / Apply
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  <TenderListCard
+                    key={tender.id}
+                    tender={tender}
+                    mode="bidder"
+                    appliedCount={tender.appliedBiddersCount}
+                    alreadySubmitted={alreadySubmitted}
+                    onBidderApply={() => {
+                      setSelectedTenderToApply(tender);
+                      setActiveTab('apply');
+                    }}
+                    onViewGemDocument={() => openGemDocument(tender)}
+                  />
                 );
               })}
             </div>

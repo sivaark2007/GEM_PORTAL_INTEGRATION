@@ -40,6 +40,25 @@ export interface GemBiddingDocument {
   parseError?: string;
 }
 
+export type VerificationStatus = 'VALID' | 'NOT_VALID' | 'NOT_FOUND' | 'REVIEW_REQUIRED';
+
+export interface RegistryCheckResult {
+  source: string;
+  endpoint: string;
+  identifier: string;
+  status: VerificationStatus;
+  message: string;
+  rawResponse?: any;
+}
+
+export interface DocumentVerificationResult {
+  documentName: string;
+  finalStatus: VerificationStatus;
+  extractedIdentifiers: Record<string, string[]>;
+  checks: RegistryCheckResult[];
+  summary: string;
+}
+
 export interface Tender {
   id: string;
   tenderNumber: string;
@@ -72,6 +91,7 @@ export interface BidSubmission {
     verified: boolean;
     fileContentUrl?: string;
     parsedData?: any;
+    verificationResult?: DocumentVerificationResult;
   }[];
   complianceScore?: number;
   aiVerificationStage?: 'Pending' | 'OCR' | 'Govt_API' | 'Embeddings' | 'LLM_Analysis' | 'Completed';

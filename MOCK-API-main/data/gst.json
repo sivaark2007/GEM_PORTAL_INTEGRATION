@@ -1,0 +1,82 @@
+[
+    {
+        "gstin": "33ABCDE1234F1Z5",
+        "legal_name": "ABC Technologies Pvt Ltd",
+        "trade_name": "ABC Technologies",
+        "status": "ACTIVE",
+        "registration_date": "2022-04-10",
+        "state": "Tamil Nadu"
+    },
+    {
+        "gstin": "33XYZAB5678G2Z6",
+        "legal_name": "XYZ Solutions Private Limited",
+        "trade_name": "XYZ Solutions",
+        "status": "CANCELLED",
+        "registration_date": "2021-08-15",
+        "state": "Tamil Nadu"
+    },
+    {
+        "gstin": "33PQRCD9012H3Z7",
+        "legal_name": "PQR Electronics Private Limited",
+        "trade_name": "PQR Electronics",
+        "status": "ACTIVE",
+        "registration_date": "2023-01-20",
+        "state": "Tamil Nadu"
+    },
+    {
+        "gstin": "29LMNOP3456J4Z8",
+        "legal_name": "LMN Industrial Solutions Pvt Ltd",
+        "trade_name": "LMN Industries",
+        "status": "ACTIVE",
+        "registration_date": "2020-06-18",
+        "state": "Karnataka"
+    },
+    {
+        "gstin": "27RSTUV7890K5Z9",
+        "legal_name": "RST Technologies Limited",
+        "trade_name": "RST Tech",
+        "status": "SUSPENDED",
+        "registration_date": "2019-11-25",
+        "state": "Maharashtra"
+    },
+    {
+        "gstin": "32WXYZ1234L6Z1",
+        "legal_name": "WXYZ Computer Systems Pvt Ltd",
+        "trade_name": "WXYZ Computers",
+        "status": "ACTIVE",
+        "registration_date": "2024-02-12",
+        "state": "Kerala"
+    },
+    {
+        "gstin": "33MNOPQ5678M7Z2",
+        "legal_name": "MNO Office Equipment Pvt Ltd",
+        "trade_name": "MNO Office",
+        "status": "ACTIVE",
+        "registration_date": "2022-09-05",
+        "state": "Tamil Nadu"
+    },
+    {
+        "gstin": "19QRSTU9012N8Z3",
+        "legal_name": "QRS Digital Systems Pvt Ltd",
+        "trade_name": "QRS Digital",
+        "status": "ACTIVE",
+        "registration_date": "2023-05-17",
+        "state": "West Bengal"
+    },
+    {
+        "gstin": "36ABCDE3456P9Z4",
+        "legal_name": "ABC Industrial Automation Pvt Ltd",
+        "trade_name": "ABC Automation",
+        "status": "ACTIVE",
+        "registration_date": "2021-03-22",
+        "state": "Telangana"
+    },
+    {
+        "gstin": "24FGHIJ7890Q1Z5",
+        "legal_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "trade_name": "FGH Infra",
+        "status": "CANCELLED",
+        "registration_date": "2018-12-14",
+        "state": "Gujarat"
+    }
+]

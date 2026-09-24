@@ -1,4 +1,5 @@
-import { Company, Tender, BidSubmission } from '../types';
+﻿import { Company, Tender, BidSubmission } from '../types';
+import { MOCK_COMPANY_RECORDS } from './mockRegistry';
 
 export const INITIAL_COMPANIES: Company[] = [
   {
@@ -6,140 +7,140 @@ export const INITIAL_COMPANIES: Company[] = [
     name: 'ABC Technologies Pvt Ltd',
     email: 'contact@abctechnologies.in',
     contactNumber: '+91 98110 23412',
-    gstin: '07AAACA1234F1Z5',
-    pan: 'AAACA1234F',
-    udyamNumber: 'UDYAM-DL-01-0023451',
-    cin: 'U72200DL2015PTC281920',
-    city: 'New Delhi',
+    gstin: MOCK_COMPANY_RECORDS[0].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[0].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[0].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[0].cin || '',
+    city: 'Chennai',
     sector: 'IT Infrastructure & Hardware',
     color: '#0284c7',
-    registeredDate: '12 Jan 2018'
+    registeredDate: '10 Apr 2022'
   },
   {
     id: 'comp-2',
-    name: 'XYZ Solutions Pvt Ltd',
+    name: 'XYZ Solutions Private Limited',
     email: 'tenders@xyzsolutions.co.in',
     contactNumber: '+91 98221 44512',
-    gstin: '27AABCX5432E1Z8',
-    pan: 'AABCX5432E',
-    udyamNumber: 'UDYAM-MH-03-0098412',
-    cin: 'U72900MH2016PTC294112',
-    city: 'Mumbai',
+    gstin: MOCK_COMPANY_RECORDS[1].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[1].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[1].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[1].cin || '',
+    city: 'Chennai',
     sector: 'Enterprise Software & Cloud',
     color: '#0d9488',
-    registeredDate: '04 Mar 2019'
+    registeredDate: '15 Aug 2021'
   },
   {
     id: 'comp-3',
-    name: 'Nova Systems India',
-    email: 'info@novasystems.in',
+    name: 'PQR Electronics Private Limited',
+    email: 'info@pqrelectronics.in',
     contactNumber: '+91 98450 67123',
-    gstin: '29AABCN8891D1Z2',
-    pan: 'AABCN8891D',
-    udyamNumber: 'UDYAM-KR-03-0044521',
-    cin: 'U30007KA2017PTC099182',
-    city: 'Bengaluru',
+    gstin: MOCK_COMPANY_RECORDS[2].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[2].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[2].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[2].cin || '',
+    city: 'Chennai',
     sector: 'Defense & Electronic Systems',
     color: '#4f46e5',
-    registeredDate: '19 Aug 2017'
+    registeredDate: '20 Jan 2023'
   },
   {
     id: 'comp-4',
-    name: 'TechVision India',
-    email: 'procurement@techvision.in',
+    name: 'LMN Industrial Solutions Pvt Ltd',
+    email: 'procurement@lmnindustries.in',
     contactNumber: '+91 98712 33490',
-    gstin: '06AAACT9901B1Z4',
-    pan: 'AAACT9901B',
-    udyamNumber: 'UDYAM-HR-05-0019284',
-    cin: 'U74999HR2018PTC078129',
-    city: 'Gurugram',
-    sector: 'AI & Automated Surveillance',
+    gstin: MOCK_COMPANY_RECORDS[3].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[3].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[3].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[3].cin || '',
+    city: 'Bengaluru',
+    sector: 'AI & Industrial Automation',
     color: '#7c3aed',
-    registeredDate: '23 Nov 2018'
+    registeredDate: '18 Jun 2020'
   },
   {
     id: 'comp-5',
-    name: 'Alpha Computers',
-    email: 'sales@alphacomputers.net',
+    name: 'RST Technologies Limited',
+    email: 'sales@rsttechnologies.net',
     contactNumber: '+91 94120 78234',
-    gstin: '09AAACA9012J1Z3',
-    pan: 'AAACA9012J',
-    udyamNumber: 'UDYAM-UP-12-0055190',
-    cin: 'U31900UP2014PTC065421',
-    city: 'Noida',
+    gstin: MOCK_COMPANY_RECORDS[4].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[4].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[4].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[4].cin || '',
+    city: 'Mumbai',
     sector: 'Commercial Computing Equipment',
     color: '#2563eb',
-    registeredDate: '15 Feb 2016'
+    registeredDate: '25 Nov 2019'
   },
   {
     id: 'comp-6',
-    name: 'NextGen Systems',
-    email: 'bids@nextgensystems.in',
+    name: 'WXYZ Computer Systems Pvt Ltd',
+    email: 'bids@wxyzcomputers.in',
     contactNumber: '+91 98301 99231',
-    gstin: '19AABCN4412L1Z9',
-    pan: 'AABCN4412L',
-    udyamNumber: 'UDYAM-WB-10-0038192',
-    cin: 'U72200WB2019PTC221901',
-    city: 'Kolkata',
+    gstin: MOCK_COMPANY_RECORDS[5].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[5].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[5].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[5].cin || '',
+    city: 'Kochi',
     sector: 'Network Architecture & Telecom',
     color: '#d97706',
-    registeredDate: '10 May 2020'
+    registeredDate: '12 Feb 2024'
   },
   {
     id: 'comp-7',
-    name: 'Vertex Technologies',
-    email: 'compliance@vertextech.org',
+    name: 'MNO Office Equipment Pvt Ltd',
+    email: 'compliance@mnooffice.org',
     contactNumber: '+91 99002 11456',
-    gstin: '33AABCV7721K1Z1',
-    pan: 'AABCV7721K',
-    udyamNumber: 'UDYAM-TN-02-0081294',
-    cin: 'U72300TN2015PTC098231',
+    gstin: MOCK_COMPANY_RECORDS[6].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[6].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[6].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[6].cin || '',
     city: 'Chennai',
     sector: 'Cybersecurity & Data Center Solutions',
     color: '#059669',
-    registeredDate: '08 Oct 2017'
+    registeredDate: '05 Sep 2022'
   },
   {
     id: 'comp-8',
-    name: 'Prime Digital Solutions',
-    email: 'govbids@primedigital.in',
+    name: 'QRS Digital Systems Pvt Ltd',
+    email: 'govbids@qrsdigital.in',
     contactNumber: '+91 97188 55670',
-    gstin: '24AABCP6631H1Z7',
-    pan: 'AABCP6631H',
-    udyamNumber: 'UDYAM-GJ-01-0062819',
-    cin: 'U72200GJ2016PTC089114',
-    city: 'Ahmedabad',
+    gstin: MOCK_COMPANY_RECORDS[7].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[7].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[7].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[7].cin || '',
+    city: 'Kolkata',
     sector: 'Smart City & IoT Deployment',
     color: '#e11d48',
-    registeredDate: '27 Jun 2019'
+    registeredDate: '17 May 2023'
   },
   {
     id: 'comp-9',
-    name: 'Orbit Infotech',
-    email: 'tenderdesk@orbitinfotech.com',
+    name: 'ABC Industrial Automation Pvt Ltd',
+    email: 'tenderdesk@abcautomation.com',
     contactNumber: '+91 96190 44521',
-    gstin: '36AABCO3321M1Z6',
-    pan: 'AABCO3321M',
-    udyamNumber: 'UDYAM-TS-09-0029184',
-    cin: 'U72400TG2018PTC121890',
+    gstin: MOCK_COMPANY_RECORDS[8].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[8].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[8].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[8].cin || '',
     city: 'Hyderabad',
     sector: 'Cloud Hosting & System Integration',
     color: '#9333ea',
-    registeredDate: '14 Sep 2020'
+    registeredDate: '22 Mar 2021'
   },
   {
     id: 'comp-10',
-    name: 'BlueSky Technologies',
-    email: 'director@blueskytech.in',
+    name: 'FGH Infrastructure Solutions Pvt Ltd',
+    email: 'director@fghinfra.in',
     contactNumber: '+91 98260 88219',
-    gstin: '23AABCB1190N1Z5',
-    pan: 'AABCB1190N',
-    udyamNumber: 'UDYAM-MP-20-0044129',
-    cin: 'U72900MP2021PTC051289',
-    city: 'Bhopal',
+    gstin: MOCK_COMPANY_RECORDS[9].gstin || '',
+    pan: MOCK_COMPANY_RECORDS[9].pan || '',
+    udyamNumber: MOCK_COMPANY_RECORDS[9].udyamNumber || '',
+    cin: MOCK_COMPANY_RECORDS[9].cin || '',
+    city: 'Ahmedabad',
     sector: 'AI Video Analytics & Automation',
     color: '#0284c7',
-    registeredDate: '29 Jan 2021'
+    registeredDate: '14 Dec 2018'
   }
 ];
 
@@ -218,7 +219,7 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-101',
     tenderId: 'GEM/2026/B/894102',
-    companyId: 'comp-1', // ABC Technologies
+    companyId: 'comp-1',
     submittedAt: '2026-09-18 14:32 IST',
     status: 'Verified',
     complianceScore: 94,
@@ -234,7 +235,7 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-102',
     tenderId: 'GEM/2026/B/894102',
-    companyId: 'comp-2', // XYZ Solutions
+    companyId: 'comp-2',
     submittedAt: '2026-09-19 11:15 IST',
     status: 'Under Review',
     complianceScore: 78,
@@ -249,13 +250,13 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-103',
     tenderId: 'GEM/2026/B/894102',
-    companyId: 'comp-3', // Nova Systems India
+    companyId: 'comp-3',
     submittedAt: '2026-09-19 16:40 IST',
     status: 'Verified',
     complianceScore: 91,
     aiVerificationStage: 'Completed',
     documents: [
-      { name: 'Nova_Hardware_Spec_Sheet.pdf', type: 'PDF', fileSize: '3.2 MB', verified: true },
+      { name: 'PQR_Hardware_Spec_Sheet.pdf', type: 'PDF', fileSize: '3.2 MB', verified: true },
       { name: 'OEM_MAF_Authorization.pdf', type: 'PDF', fileSize: '1.4 MB', verified: true },
       { name: 'Audited_Balance_Sheets.pdf', type: 'PDF', fileSize: '4.5 MB', verified: true }
     ],
@@ -264,13 +265,13 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-104',
     tenderId: 'GEM/2026/B/894102',
-    companyId: 'comp-4', // TechVision India
+    companyId: 'comp-4',
     submittedAt: '2026-09-20 09:12 IST',
     status: 'Under Review',
     complianceScore: 82,
     aiVerificationStage: 'Embeddings',
     documents: [
-      { name: 'AI_Surveillance_Spec.pdf', type: 'PDF', fileSize: '2.9 MB', verified: true },
+      { name: 'LMN_Industrial_Spec.pdf', type: 'PDF', fileSize: '2.9 MB', verified: true },
       { name: 'Tax_Clearance_2026.pdf', type: 'PDF', fileSize: '1.2 MB', verified: true }
     ],
     flags: ['Local content declaration calculation format discrepancy']
@@ -278,13 +279,13 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-105',
     tenderId: 'GEM/2026/B/894102',
-    companyId: 'comp-7', // Vertex Technologies
+    companyId: 'comp-7',
     submittedAt: '2026-09-20 18:22 IST',
     status: 'Verified',
     complianceScore: 96,
     aiVerificationStage: 'Completed',
     documents: [
-      { name: 'Vertex_Enterprise_Solution_Proposal.pdf', type: 'PDF', fileSize: '5.1 MB', verified: true },
+      { name: 'MNO_Enterprise_Solution_Proposal.pdf', type: 'PDF', fileSize: '5.1 MB', verified: true },
       { name: 'OEM_Tier1_Certificate.pdf', type: 'PDF', fileSize: '1.8 MB', verified: true },
       { name: 'CA_Certified_Turnover_Signed.pdf', type: 'PDF', fileSize: '2.7 MB', verified: true }
     ],
@@ -293,22 +294,21 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-106',
     tenderId: 'GEM/2026/B/894102',
-    companyId: 'comp-8', // Prime Digital Solutions
+    companyId: 'comp-8',
     submittedAt: '2026-09-21 10:05 IST',
     status: 'Disqualified',
     complianceScore: 42,
     aiVerificationStage: 'Completed',
     documents: [
-      { name: 'PrimeDigital_Proposal.pdf', type: 'PDF', fileSize: '1.9 MB', verified: true },
+      { name: 'QRS_Digital_Proposal.pdf', type: 'PDF', fileSize: '1.9 MB', verified: true },
       { name: 'Expired_Tax_Clearance.pdf', type: 'PDF', fileSize: '750 KB', verified: false }
     ],
     flags: ['Mandatory MII certificate missing', 'GST return filing delayed beyond allowable cure window']
   },
-  // Railway tender submissions
   {
     id: 'sub-201',
     tenderId: 'GEM/2026/B/895311',
-    companyId: 'comp-4', // TechVision India
+    companyId: 'comp-4',
     submittedAt: '2026-09-14 10:00 IST',
     status: 'Verified',
     complianceScore: 89,
@@ -323,7 +323,7 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-202',
     tenderId: 'GEM/2026/B/895311',
-    companyId: 'comp-9', // Orbit Infotech
+    companyId: 'comp-9',
     submittedAt: '2026-09-15 14:30 IST',
     status: 'Under Review',
     complianceScore: 71,
@@ -337,13 +337,13 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-203',
     tenderId: 'GEM/2026/B/895311',
-    companyId: 'comp-10', // BlueSky Technologies
+    companyId: 'comp-10',
     submittedAt: '2026-09-16 09:45 IST',
     status: 'Verified',
     complianceScore: 93,
     aiVerificationStage: 'Completed',
     documents: [
-      { name: 'BlueSky_AI_Analytics_Spec.pdf', type: 'PDF', fileSize: '4.1 MB', verified: true },
+      { name: 'FGH_AI_Analytics_Spec.pdf', type: 'PDF', fileSize: '4.1 MB', verified: true },
       { name: 'ISO_Certification_2024.pdf', type: 'PDF', fileSize: '1.1 MB', verified: true },
       { name: 'Govt_Completion_Certificates.pdf', type: 'PDF', fileSize: '2.5 MB', verified: true }
     ],
@@ -352,22 +352,21 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-204',
     tenderId: 'GEM/2026/B/895311',
-    companyId: 'comp-3', // Nova Systems India
+    companyId: 'comp-3',
     submittedAt: '2026-09-17 16:00 IST',
     status: 'Under Review',
     complianceScore: 76,
     aiVerificationStage: 'Embeddings',
     documents: [
-      { name: 'Nova_CCTV_Bid_Proposal.pdf', type: 'PDF', fileSize: '3.5 MB', verified: true },
+      { name: 'PQR_CCTV_Bid_Proposal.pdf', type: 'PDF', fileSize: '3.5 MB', verified: true },
       { name: 'Udyam_Certificate.pdf', type: 'PDF', fileSize: '380 KB', verified: true }
     ],
     flags: ['ISO 27001 certificate expiry date needs verification']
   },
-  // Networking tender submissions
   {
     id: 'sub-301',
     tenderId: 'GEM/2026/B/897740',
-    companyId: 'comp-6', // NextGen Systems
+    companyId: 'comp-6',
     submittedAt: '2026-09-10 11:00 IST',
     status: 'Verified',
     complianceScore: 88,
@@ -382,7 +381,7 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-302',
     tenderId: 'GEM/2026/B/897740',
-    companyId: 'comp-7', // Vertex Technologies
+    companyId: 'comp-7',
     submittedAt: '2026-09-11 15:20 IST',
     status: 'Under Review',
     complianceScore: 74,
@@ -396,13 +395,13 @@ export const INITIAL_SUBMISSIONS: BidSubmission[] = [
   {
     id: 'sub-303',
     tenderId: 'GEM/2026/B/897740',
-    companyId: 'comp-5', // Alpha Computers
+    companyId: 'comp-5',
     submittedAt: '2026-09-12 10:30 IST',
     status: 'Disqualified',
     complianceScore: 38,
     aiVerificationStage: 'Completed',
     documents: [
-      { name: 'Alpha_Networking_Proposal.pdf', type: 'PDF', fileSize: '1.7 MB', verified: false }
+      { name: 'RST_Networking_Proposal.pdf', type: 'PDF', fileSize: '1.7 MB', verified: false }
     ],
     flags: ['No OEM partner certification submitted', 'SLA commitment affidavit missing']
   }

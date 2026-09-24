@@ -1,0 +1,72 @@
+[
+    {
+        "udyam_number": "UDYAM-TN-00-1234567",
+        "enterprise_name": "ABC Technologies Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Micro",
+        "state": "Tamil Nadu"
+    },
+    {
+        "udyam_number": "UDYAM-TN-00-7654321",
+        "enterprise_name": "XYZ Solutions Private Limited",
+        "status": "ACTIVE",
+        "enterprise_type": "Small",
+        "state": "Tamil Nadu"
+    },
+    {
+        "udyam_number": "UDYAM-TN-00-1122334",
+        "enterprise_name": "PQR Electronics Private Limited",
+        "status": "ACTIVE",
+        "enterprise_type": "Medium",
+        "state": "Tamil Nadu"
+    },
+    {
+        "udyam_number": "UDYAM-KA-01-2233445",
+        "enterprise_name": "LMN Industrial Solutions Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Small",
+        "state": "Karnataka"
+    },
+    {
+        "udyam_number": "UDYAM-MH-27-3344556",
+        "enterprise_name": "RST Technologies Limited",
+        "status": "INACTIVE",
+        "enterprise_type": "Medium",
+        "state": "Maharashtra"
+    },
+    {
+        "udyam_number": "UDYAM-KL-32-4455667",
+        "enterprise_name": "WXYZ Computer Systems Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Micro",
+        "state": "Kerala"
+    },
+    {
+        "udyam_number": "UDYAM-TN-00-5566778",
+        "enterprise_name": "MNO Office Equipment Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Small",
+        "state": "Tamil Nadu"
+    },
+    {
+        "udyam_number": "UDYAM-WB-19-6677889",
+        "enterprise_name": "QRS Digital Systems Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Micro",
+        "state": "West Bengal"
+    },
+    {
+        "udyam_number": "UDYAM-TS-36-7788990",
+        "enterprise_name": "ABC Industrial Automation Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Medium",
+        "state": "Telangana"
+    },
+    {
+        "udyam_number": "UDYAM-GJ-24-8899001",
+        "enterprise_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "status": "ACTIVE",
+        "enterprise_type": "Small",
+        "state": "Gujarat"
+    }
+]
