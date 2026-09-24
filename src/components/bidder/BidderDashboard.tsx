@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Tender } from '../../types';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
@@ -53,22 +53,35 @@ export const BidderDashboard: React.FC = () => {
     tenders, 
     submissions, 
     submitBid, 
-    navigateTo 
+    navigateTo,
+    draftDocuments,
+    setDraftDocuments
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
-  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>([
-    { name: 'Technical_Specification_Compliance.pdf', size: '2.4 MB', type: 'PDF' },
-    { name: 'Make_in_India_Declaration_FY26.pdf', size: '1.1 MB', type: 'PDF' },
-    { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
-  ]);
+  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>(
+    (selectedCompany && draftDocuments[selectedCompany.id]) 
+      ? draftDocuments[selectedCompany.id] 
+      : []
+  );
+  
+  useEffect(() => {
+    if (selectedCompany) {
+      setDraftDocuments(prev => ({
+        ...prev,
+        [selectedCompany.id]: uploadedDocs
+      }));
+    }
+  }, [uploadedDocs, selectedCompany, setDraftDocuments]);
+
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);
   const [selectedDocToView, setSelectedDocToView] = useState<DocumentInfo | null>(null);
   const [expandedSubmissions, setExpandedSubmissions] = useState<Record<string, boolean>>({});
   const requirementInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragging, setIsDragging] = useState(false);
 
   if (!selectedCompany) {
@@ -97,7 +110,7 @@ export const BidderDashboard: React.FC = () => {
     reader.readAsDataURL(file);
   });
 
-  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement: string) => {
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement?: string) => {
     const files = Array.from(e.target.files || []);
     // Reset file input value immediately so user can select the same file again
     if (e.target) e.target.value = '';
@@ -235,20 +248,20 @@ export const BidderDashboard: React.FC = () => {
               className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-2xs shrink-0"
               style={{ backgroundColor: selectedCompany.color || '#059669' }}
             >
-              {selectedCompany.name.slice(0, 2).toUpperCase()}
+              {(selectedCompany.name || 'AB').slice(0, 2).toUpperCase()}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-slate-900">{selectedCompany.name}</h1>
+                <h1 className="text-xl font-bold text-slate-900">{selectedCompany.name || 'Bidder Entity'}</h1>
                 <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
                   Active Bidder Portal
                 </span>
               </div>
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500 mt-1">
                 <span>GSTIN: <strong className="font-mono text-slate-700">{selectedCompany.gstin}</strong></span>
-                <span>·</span>
+                <span>┬╖</span>
                 <span>PAN: <strong className="font-mono text-slate-700">{selectedCompany.pan}</strong></span>
-                <span>·</span>
+                <span>┬╖</span>
                 <span>Udyam: <strong className="font-mono text-slate-700">{selectedCompany.udyamNumber}</strong></span>
               </div>
             </div>
@@ -517,8 +530,8 @@ export const BidderDashboard: React.FC = () => {
                         </button>
                       </div>
                     </div>
-                  </section>
-                ))}
+                  ))
+                )}
               </div>
             </div>
 
