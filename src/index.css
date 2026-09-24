@@ -1,1 +1,172 @@
 @import "tailwindcss";
+
+/* ==========================================================================
+   Indian Government UX4G Design System - Global Tokens & Stylesheet
+   Compliant with: UX4G Guidelines & WCAG 2.1 AA (minimum 4.5:1 contrast)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Design Tokens (:root)
+   -------------------------------------------------------------------------- */
+:root {
+  /* --- Typography: Font Families --- */
+  --ux4g-font-primary: "Noto Sans UI", "Noto Sans", system-ui, -apple-system, sans-serif;
+  --ux4g-font-display: "Noto Sans Display", system-ui, sans-serif;
+
+  /* --- Typography: Standard Font Weights --- */
+  --ux4g-weight-regular: 400;
+  --ux4g-weight-medium: 500;
+  --ux4g-weight-semibold: 600;
+  --ux4g-weight-bold: 700;
+
+  /* --- Color Palette Tokens --- */
+  /* Brand / Primary Accent: Deep Blue (#1D0A69) - for primary headers, nav accents, .gov.in root identity */
+  --ux4g-brand-primary: #1D0A69;
+  --ux4g-brand-primary-hover: #14074b;
+  --ux4g-brand-primary-light: #f0edfa;
+
+  /* Primary Text Color: Deep Earthy Brown (#150202) - for body text over light backgrounds */
+  --ux4g-text-primary: #150202;
+  --ux4g-text-secondary: #3b2828;
+  --ux4g-text-muted: #5e4848;
+
+  /* Emblem & Text Locks: True Black (#000000) - specifically for State Emblem / primary text locks */
+  --ux4g-emblem: #000000;
+
+  /* Status Success: Liberty Green (#198754) - alerts, checkmarks, positive states (WCAG 2.1 AA 4.55:1 on white) */
+  --ux4g-status-success: #198754;
+  --ux4g-status-success-light: #e8f5ee;
+  --ux4g-status-success-dark: #12633d;
+
+  /* Status Warning: Mustard Yellow (#FFC107) - warnings, pending notifications */
+  --ux4g-status-warning: #FFC107;
+  --ux4g-status-warning-light: #fff8e1;
+  --ux4g-status-warning-dark: #b28500;
+  /* High contrast text token for text rendered over warning background (contrast ratio > 11:1 against #FFC107) */
+  --ux4g-status-warning-text: #150202;
+
+  /* Surfaces & Canvas */
+  --ux4g-bg-canvas: #f8fafc;
+  --ux4g-bg-surface: #ffffff;
+  --ux4g-border-default: #e2e8f0;
+}
+
+/* --------------------------------------------------------------------------
+   2. Tailwind CSS v4 Theme Integration
+   -------------------------------------------------------------------------- */
+@theme {
+  /* Font Family Mappings */
+  --font-sans: "Noto Sans UI", "Noto Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Noto Sans Display", system-ui, sans-serif;
+
+  /* Standard Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* UX4G Named Color Tokens */
+  --color-ux4g-brand: #1D0A69;
+  --color-ux4g-text: #150202;
+  --color-ux4g-emblem: #000000;
+  --color-ux4g-success: #198754;
+  --color-ux4g-warning: #FFC107;
+
+  /* Sync default Tailwind color tokens with UX4G palette */
+  --color-slate-900: #150202; /* Primary text over light background */
+  --color-slate-800: #251313;
+  --color-slate-700: #3b2828;
+}
+
+/* --------------------------------------------------------------------------
+   3. Global Element Typography & Base Styles
+   -------------------------------------------------------------------------- */
+
+/* Primary Font Family for all body text, UI labels, buttons, and form inputs */
+html,
+body {
+  font-family: var(--ux4g-font-primary);
+  color: var(--ux4g-text-primary);
+  background-color: var(--ux4g-bg-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea,
+select,
+label,
+table,
+th,
+td {
+  font-family: var(--ux4g-font-primary);
+}
+
+/* Display Font Family for large headings (H1, H2, or text 36px and above) */
+h1,
+h2,
+.text-3xl,
+.text-4xl,
+.text-5xl,
+.text-6xl,
+[data-display-font="true"] {
+  font-family: var(--ux4g-font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Standard Font Weight utility mappings */
+.font-normal {
+  font-weight: var(--ux4g-weight-regular);
+}
+.font-medium {
+  font-weight: var(--ux4g-weight-medium);
+}
+.font-semibold {
+  font-weight: var(--ux4g-weight-semibold);
+}
+.font-bold,
+.font-extrabold {
+  font-weight: var(--ux4g-weight-bold);
+}
+
+/* --------------------------------------------------------------------------
+   4. UX4G Identity & Government Theme Utility Classes
+   -------------------------------------------------------------------------- */
+
+/* State Emblem & Text Locks (True Black) */
+.ux4g-emblem,
+.state-emblem,
+[data-emblem="true"] {
+  color: var(--ux4g-emblem);
+}
+
+/* Brand / Primary Accent (.gov.in Root Identity & Headers) */
+.ux4g-brand-accent {
+  background-color: var(--ux4g-brand-primary);
+  color: #ffffff;
+}
+
+.ux4g-brand-text {
+  color: var(--ux4g-brand-primary);
+}
+
+/* Status: Success (Liberty Green - WCAG 2.1 AA Compliant) */
+.ux4g-status-success {
+  color: var(--ux4g-status-success);
+}
+.ux4g-badge-success {
+  background-color: var(--ux4g-status-success-light);
+  color: var(--ux4g-status-success);
+  border: 1px solid rgba(25, 135, 84, 0.25);
+}
+
+/* Status: Warning (Mustard Yellow with WCAG 2.1 AA Compliant Text) */
+.ux4g-status-warning {
+  color: var(--ux4g-status-warning-dark);
+}
+.ux4g-badge-warning {
+  background-color: var(--ux4g-status-warning-light);
+  color: var(--ux4g-status-warning-text);
+  border: 1px solid rgba(255, 193, 7, 0.4);
+}
