@@ -1,4 +1,4 @@
-import { ParsedDocumentResult } from '../types';
+import type { ParsedDocumentResult } from '../types';
 
 export async function parseDocumentWithService(
   fileOrBlob: File | Blob,

@@ -248,11 +248,11 @@ export const BidderDashboard: React.FC = () => {
               className="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-2xs shrink-0"
               style={{ backgroundColor: selectedCompany.color || '#059669' }}
             >
-              {selectedCompany.name.slice(0, 2).toUpperCase()}
+              {(selectedCompany.name || 'AB').slice(0, 2).toUpperCase()}
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold text-slate-900">{selectedCompany.name}</h1>
+                <h1 className="text-xl font-bold text-slate-900">{selectedCompany.name || 'Bidder Entity'}</h1>
                 <span className="text-[10px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
                   Active Bidder Portal
                 </span>

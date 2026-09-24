@@ -74,3 +74,20 @@ export interface BidSubmission {
   aiVerificationStage?: 'Pending' | 'OCR' | 'Govt_API' | 'Embeddings' | 'LLM_Analysis' | 'Completed';
   flags?: string[];
 }
+
+export interface ParsedDocumentResult {
+  success: boolean;
+  filename: string;
+  full_text: string;
+  pages?: any[];
+  metadata?: {
+    parser?: string;
+    ocr_used?: boolean;
+    [key: string]: any;
+  };
+  error?: string;
+  code?: string;
+  extractedData?: Record<string, string>;
+  aiInsights?: string;
+  ocrSampleText?: string;
+}

@@ -213,10 +213,14 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
               <div>
                 <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Extracted Fields</h4>
                 <div className="bg-white border border-slate-200 rounded-xl overflow-hidden divide-y divide-slate-100 shadow-2xs">
-                  {Object.entries(document.parsedData?.extractedData || extractedData).map(([key, value]) => (
+                  {Object.entries(
+                    (document.parsedData?.extractedData && typeof document.parsedData.extractedData === 'object')
+                      ? document.parsedData.extractedData
+                      : extractedData
+                  ).map(([key, value]) => (
                     <div key={key} className="p-3 sm:px-4 sm:py-3 flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4 hover:bg-slate-50 transition-colors">
                       <span className="text-xs font-medium text-slate-500 sm:w-1/3 shrink-0">{key}</span>
-                      <span className="text-sm font-semibold text-slate-900 text-left sm:text-right">{value as string}</span>
+                      <span className="text-sm font-semibold text-slate-900 text-left sm:text-right">{String(value ?? '')}</span>
                     </div>
                   ))}
                 </div>
@@ -227,7 +231,7 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
                 <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Raw OCR Output</h4>
                 <div className="bg-slate-900 rounded-xl p-4 shadow-inner">
                   <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap break-words leading-relaxed">
-                    {document.parsedData?.ocrSampleText || ocrSampleText}
+                    {document.parsedData?.ocrSampleText || document.parsedData?.full_text || ocrSampleText}
                   </pre>
                 </div>
               </div>
