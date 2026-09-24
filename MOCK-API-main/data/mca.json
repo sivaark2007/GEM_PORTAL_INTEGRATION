@@ -1,0 +1,72 @@
+[
+    {
+        "cin": "U12345TN2022PTC123456",
+        "company_name": "ABC Technologies Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Tamil Nadu"
+    },
+    {
+        "cin": "U98765TN2021PTC654321",
+        "company_name": "XYZ Solutions Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Tamil Nadu"
+    },
+    {
+        "cin": "U45678TN2023PTC234567",
+        "company_name": "PQR Electronics Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Tamil Nadu"
+    },
+    {
+        "cin": "U34567KA2020PTC345678",
+        "company_name": "LMN Industrial Solutions Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Karnataka"
+    },
+    {
+        "cin": "U23456MH2019PTC456789",
+        "company_name": "RST Technologies Limited",
+        "status": "ACTIVE",
+        "company_type": "Public Limited",
+        "registered_state": "Maharashtra"
+    },
+    {
+        "cin": "U87654KL2024PTC567890",
+        "company_name": "WXYZ Computer Systems Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Kerala"
+    },
+    {
+        "cin": "U76543TN2022PTC678901",
+        "company_name": "MNO Office Equipment Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Tamil Nadu"
+    },
+    {
+        "cin": "U65432WB2023PTC789012",
+        "company_name": "QRS Digital Systems Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "West Bengal"
+    },
+    {
+        "cin": "U54321TS2021PTC890123",
+        "company_name": "ABC Industrial Automation Private Limited",
+        "status": "ACTIVE",
+        "company_type": "Private Limited",
+        "registered_state": "Telangana"
+    },
+    {
+        "cin": "U43210GJ2018PTC901234",
+        "company_name": "FGH Infrastructure Solutions Private Limited",
+        "status": "STRUCK_OFF",
+        "company_type": "Private Limited",
+        "registered_state": "Gujarat"
+    }
+]

@@ -6,12 +6,14 @@ interface CreateCompanyModalProps {
   isOpen: boolean;
   onClose: () => void;
   onCreate: (companyData: Omit<Company, 'id'>, enterImmediately: boolean) => void;
+  creationError?: string;
 }
 
 export const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
   isOpen,
   onClose,
   onCreate,
+  creationError,
 }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -124,6 +126,13 @@ export const CreateCompanyModal: React.FC<CreateCompanyModalProps> = ({
             <div className="flex items-center gap-2 p-3 text-xs text-red-700 bg-red-50 border border-red-200 rounded-lg">
               <AlertCircle className="w-4 h-4 shrink-0" />
               <span>{error}</span>
+            </div>
+          )}
+
+          {creationError && (
+            <div className="flex items-center gap-2 p-3 text-xs text-red-700 bg-red-50 border border-red-200 rounded-lg">
+              <AlertCircle className="w-4 h-4 shrink-0" />
+              <span>{creationError}</span>
             </div>
           )}
 

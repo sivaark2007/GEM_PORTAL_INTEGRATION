@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { AppRole, AppView, Company, Tender, BidSubmission, GemBiddingDocument } from '../types';
 import { INITIAL_COMPANIES, INITIAL_TENDERS, INITIAL_SUBMISSIONS } from '../data/dummyData';
+import { findMockCompanyConflict } from '../data/mockRegistry';
 import { verifySubmissionDocuments } from '../services/documentVerification';
 import { parseDocumentWithService } from '../services/documentParser';
 
@@ -27,8 +28,8 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const LOCAL_STORAGE_KEY_COMPANIES = 'gem_ai_companies_v1';
-const LOCAL_STORAGE_KEY_TENDERS = 'gem_ai_tenders_v1';
+const LOCAL_STORAGE_KEY_COMPANIES = 'gem_ai_companies_v2';
+const LOCAL_STORAGE_KEY_TENDERS = 'gem_ai_tenders_v2';
 const LOCAL_STORAGE_KEY_SUBMISSIONS = 'gem_ai_submissions_v1';
 const LOCAL_STORAGE_KEY_ROLE = 'gem_ai_role_v1';
 const LOCAL_STORAGE_KEY_VIEW = 'gem_ai_view_v1';
@@ -194,8 +195,34 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const createCompany = (companyData: Omit<Company, 'id'>): Company => {
+    const identifierFields: Array<keyof Pick<Company, 'gstin' | 'pan' | 'udyamNumber' | 'cin'>> = [
+      'gstin', 'pan', 'udyamNumber', 'cin'
+    ];
+    const normalizedIdentifiers = Object.fromEntries(
+      identifierFields.map(field => [field, companyData[field]?.trim().toUpperCase() || ''])
+    ) as Pick<Company, 'gstin' | 'pan' | 'udyamNumber' | 'cin'>;
+    const mockConflict = findMockCompanyConflict(normalizedIdentifiers);
+
+    if (mockConflict) {
+      throw new Error(`${String(mockConflict.field)} ${mockConflict.value} is already registered in the mock government registry.`);
+    }
+
+    const registeredConflict = companies.find(company => identifierFields.some(field => {
+      const identifier = normalizedIdentifiers[field];
+      return identifier && company[field]?.trim().toUpperCase() === identifier;
+    }));
+
+    if (registeredConflict) {
+      const field = identifierFields.find(candidate => {
+        const identifier = normalizedIdentifiers[candidate];
+        return identifier && registeredConflict[candidate]?.trim().toUpperCase() === identifier;
+      });
+      throw new Error(`${String(field)} ${normalizedIdentifiers[field || 'gstin']} is already registered for ${registeredConflict.name}.`);
+    }
+
     const newCompany: Company = {
       ...companyData,
+      ...normalizedIdentifiers,
       id: `comp-${Date.now()}`,
       isCustom: true,
       color: '#0284c7',

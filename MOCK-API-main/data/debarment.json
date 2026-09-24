@@ -1,0 +1,52 @@
+[
+    {
+        "pan": "ABCDE1234F",
+        "status": "NOT_DEBARRED"
+    },
+    {
+        "pan": "XYZAB5678G",
+        "status": "DEBARRED",
+        "from_date": "2026-01-15",
+        "to_date": "2028-01-14",
+        "authority": "Mock Procurement Authority"
+    },
+    {
+        "pan": "PQRCD9012H",
+        "status": "NOT_DEBARRED"
+    },
+    {
+        "pan": "LMNOP3456J",
+        "status": "NOT_DEBARRED"
+    },
+    {
+        "pan": "RSTUV7890K",
+        "status": "DEBARRED",
+        "from_date": "2025-06-01",
+        "to_date": "2027-05-31",
+        "authority": "Mock Procurement Authority"
+    },
+    {
+        "pan": "WXYZ1234L",
+        "status": "NOT_DEBARRED"
+    },
+    {
+        "pan": "MNOPQ5678M",
+        "status": "UNDER_REVIEW",
+        "authority": "Mock Procurement Authority"
+    },
+    {
+        "pan": "QRSTU9012N",
+        "status": "NOT_DEBARRED"
+    },
+    {
+        "pan": "ABCDE3456P",
+        "status": "NOT_DEBARRED"
+    },
+    {
+        "pan": "FGHIJ7890Q",
+        "status": "DEBARRED",
+        "from_date": "2026-03-10",
+        "to_date": "2029-03-09",
+        "authority": "Mock Procurement Authority"
+    }
+]

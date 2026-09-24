@@ -1,0 +1,52 @@
+[
+    {
+        "pan": "ABCDE1234F",
+        "legal_name": "ABC Technologies Pvt Ltd",
+        "status": "VALID"
+    },
+    {
+        "pan": "XYZAB5678G",
+        "legal_name": "XYZ Solutions Private Limited",
+        "status": "VALID"
+    },
+    {
+        "pan": "PQRCD9012H",
+        "legal_name": "PQR Electronics Private Limited",
+        "status": "VALID"
+    },
+    {
+        "pan": "LMNOP3456J",
+        "legal_name": "LMN Industrial Solutions Pvt Ltd",
+        "status": "VALID"
+    },
+    {
+        "pan": "RSTUV7890K",
+        "legal_name": "RST Technologies Limited",
+        "status": "INVALID"
+    },
+    {
+        "pan": "WXYZ1234L",
+        "legal_name": "WXYZ Computer Systems Pvt Ltd",
+        "status": "VALID"
+    },
+    {
+        "pan": "MNOPQ5678M",
+        "legal_name": "MNO Office Equipment Pvt Ltd",
+        "status": "VALID"
+    },
+    {
+        "pan": "QRSTU9012N",
+        "legal_name": "QRS Digital Systems Pvt Ltd",
+        "status": "VALID"
+    },
+    {
+        "pan": "ABCDE3456P",
+        "legal_name": "ABC Industrial Automation Pvt Ltd",
+        "status": "VALID"
+    },
+    {
+        "pan": "FGHIJ7890Q",
+        "legal_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "status": "VALID"
+    }
+]

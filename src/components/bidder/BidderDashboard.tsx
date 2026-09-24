@@ -357,45 +357,18 @@ export const BidderDashboard: React.FC = () => {
                 );
 
                 return (
-                  <div key={tender.id} className="bg-white border border-slate-200 border-t-4 border-t-amber-400 shadow-2xs hover:shadow-sm transition-shadow">
-                    <div className="px-4 py-3 border-b border-slate-100 flex items-center justify-between gap-3">
-                      <div className="text-sm font-semibold text-slate-800">
-                        BID NO: <span className="text-sky-700 font-bold">{tender.tenderNumber}</span>
-                      </div>
-                      <span className="text-xs text-sky-700 font-semibold">{tender.status}</span>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-[1.1fr_1.35fr_0.9fr] gap-4 px-4 py-4 text-xs">
-                      <div>
-                        <div className="font-bold text-slate-800 mb-1">Items:</div>
-                        <div className="text-slate-700 leading-relaxed">{tender.title}</div>
-                        <div className="text-slate-500 mt-2">Category: <span className="text-slate-700">{tender.category}</span></div>
-                      </div>
-                      <div>
-                        <div className="font-bold text-slate-800 mb-1">Department Name And Address:</div>
-                        <div className="text-slate-700">{tender.ministry}</div>
-                        <div className="text-slate-700 mt-1">{tender.organization}</div>
-                      </div>
-                      <div className="md:text-right">
-                        <div><span className="font-bold text-slate-800">Bid End Date:</span> <span className="text-amber-600">{tender.closingDate}</span></div>
-                        <div className="mt-2"><span className="font-bold text-slate-800">Estimated Value:</span> <span className="text-slate-700">{tender.estimatedValue}</span></div>
-                        {alreadySubmitted ? (
-                          <div className="inline-flex items-center gap-1 mt-3 text-emerald-700 font-semibold">
-                            <CheckCircle2 className="w-3.5 h-3.5" /> Bid Submitted
-                          </div>
-                        ) : (
-                          <button
-                            onClick={() => {
-                              setSelectedTenderToApply(tender);
-                              setActiveTab('apply');
-                            }}
-                            className="mt-3 inline-flex items-center gap-1.5 text-sky-700 hover:text-sky-900 font-semibold underline underline-offset-2"
-                          >
-                            <ArrowLeft className="w-3.5 h-3.5 rotate-180" /> View / Apply
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  <TenderListCard
+                    key={tender.id}
+                    tender={tender}
+                    mode="bidder"
+                    appliedCount={tender.appliedBiddersCount}
+                    alreadySubmitted={alreadySubmitted}
+                    onBidderApply={() => {
+                      setSelectedTenderToApply(tender);
+                      setActiveTab('apply');
+                    }}
+                    onViewGemDocument={() => openGemDocument(tender)}
+                  />
                 );
               })}
             </div>

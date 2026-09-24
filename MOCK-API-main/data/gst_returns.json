@@ -1,0 +1,72 @@
+[
+    {
+        "gstin": "33ABCDE0001F1Z5",
+        "enterprise_name": "ABC Technologies Pvt Ltd",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "33ABCDE0002F1Z5",
+        "enterprise_name": "XYZ Solutions Private Limited",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "33ABCDE0003F1Z5",
+        "enterprise_name": "PQR Electronics Private Limited",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "29ABCDE0004F1Z5",
+        "enterprise_name": "LMN Industrial Solutions Pvt Ltd",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "27ABCDE0005F1Z5",
+        "enterprise_name": "RST Technologies Limited",
+        "return_filing_status": "PENDING",
+        "last_return_period": "2026-08",
+        "pending_returns": 2
+    },
+    {
+        "gstin": "32ABCDE0006F1Z5",
+        "enterprise_name": "WXYZ Computer Systems Pvt Ltd",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "33ABCDE0007F1Z5",
+        "enterprise_name": "MNO Office Equipment Pvt Ltd",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "19ABCDE0008F1Z5",
+        "enterprise_name": "QRS Digital Systems Pvt Ltd",
+        "return_filing_status": "PENDING",
+        "last_return_period": "2026-08",
+        "pending_returns": 1
+    },
+    {
+        "gstin": "36ABCDE0009F1Z5",
+        "enterprise_name": "ABC Industrial Automation Pvt Ltd",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    },
+    {
+        "gstin": "24ABCDE0010F1Z5",
+        "enterprise_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "return_filing_status": "FILED",
+        "last_return_period": "2026-08",
+        "pending_returns": 0
+    }
+]

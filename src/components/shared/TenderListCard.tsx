@@ -85,12 +85,10 @@ export const TenderListCard: React.FC<TenderListCardProps> = ({
               <span className="font-semibold text-slate-800">Title:</span>{' '}
               <span className="text-slate-700 leading-snug">{tender.title}</span>
             </div>
-            {mode === 'officer' ? (
-              <div className="mt-1 flex items-center gap-1">
-                <span className="font-semibold text-slate-800">Bidders Applied:</span>{' '}
-                <span className="font-bold text-blue-700">{appliedCount}</span>
-              </div>
-            ) : null}
+            <div className="mt-1 flex items-center gap-1">
+              <span className="font-semibold text-slate-800">Bidders Applied:</span>{' '}
+              <span className="font-bold text-blue-700">{mode === 'officer' ? appliedCount : tender.appliedBiddersCount}</span>
+            </div>
           </div>
 
           <div className="sm:col-span-1">
