@@ -1,5 +1,56 @@
 # GeM Portal Integration
 
+## 🐳 Quick Start with Docker (Recommended)
+
+> **No Python or Node.js needed** — just Docker Desktop!
+
+### 1. Install Docker Desktop
+Download from 👉 https://www.docker.com/products/docker-desktop/ and start it.
+
+### 2. Set up environment
+```bash
+# Windows
+copy .env.example .env
+
+# Mac / Linux
+cp .env.example .env
+```
+Open `.env` and set your Gemini API key:
+```
+GEMINI_API_KEY=your_key_here
+```
+Get a free key at 👉 https://aistudio.google.com/app/apikey
+
+### 3. Start everything
+```bash
+docker compose up --build
+```
+First run takes ~5–10 minutes (downloads images). Next runs take ~30 seconds.
+
+### 4. Open the app
+```
+http://localhost:5000
+```
+
+### 5. Stop
+```bash
+docker compose down
+```
+
+---
+
+## Service Ports
+
+| Service | URL |
+|---|---|
+| Main App (React + Express) | http://localhost:5000 |
+| Document Service API docs | http://localhost:8000/docs |
+| Mock Government API docs | http://localhost:9000/docs |
+
+---
+
+## Manual Setup (without Docker)
+
 This project contains a React/Vite frontend, an Express API server, and a Python
 document-processing service. The document service extracts structured content
 with **Docling** and uses **RapidOCR** as a fallback for scanned PDFs and images.
