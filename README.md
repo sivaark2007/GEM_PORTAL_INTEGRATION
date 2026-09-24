@@ -67,16 +67,24 @@ Open the URL displayed by Vite, normally `http://localhost:3000`.
 
 ```text
 Browser -> Vite frontend -> Express server (:5000) -> Python service (:8000)
-                                                    -> Docling
-                                                    -> RapidOCR fallback
+                                                    -> PyPDF (digital PDFs)
+                                                    -> RapidOCR (scans/images)
+                                                    -> Docling (optional detailed layout)
 ```
 
 - The frontend sends uploads to `POST /api/parse-document`.
 - The Express server forwards each file to the Python service at
   `http://127.0.0.1:8000/parse-document`.
-- Docling is tried first for structured text, headings, tables, and metadata.
-- For scanned documents, or if Docling cannot process a file, RapidOCR is used
-  when available. A basic text fallback is used if neither parser can process it.
+- Digital PDFs use fast embedded-text extraction by default.
+- Scanned documents and images use RapidOCR when available.
+- Docling is available for detailed layout/table extraction, but is disabled for
+  normal uploads because its CPU model can make even small files slow.
+
+For tender documents uploaded by a Procurement Officer, the extracted result is
+stored with the tender as `gemBiddingDocument.parsedData` and shown in the
+Officer Dashboard. This is the handoff data for the LLM requirement-extraction
+stage and the later embedding/RAG workflow; those AI stages do not run inside
+the upload handler.
 
 The supported file types are PDF, PNG, JPG/JPEG, TIFF, WEBP, BMP, DOCX, and TXT.
 The current maximum upload size is 25 MB.
@@ -87,6 +95,11 @@ The current maximum upload size is 25 MB.
 - `PORT` — optional Express server port; defaults to `5000`.
 - `PYTHON_DOC_SERVICE_URL` — optional Python parse endpoint; defaults to
   `http://127.0.0.1:8000/parse-document`.
+- `DOCLING_TABLES_ENABLED` — set to `true` only when table-cell extraction is
+  required. It defaults to `false` to keep normal document parsing responsive.
+- `DOCLING_DIGITAL_ENABLED` — set to `true` to use Docling's detailed visual
+  layout pipeline for digital PDFs. It defaults to `false`; the fast PyPDF path
+  is recommended for normal uploads.
 
 ## Troubleshooting
 

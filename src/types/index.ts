@@ -35,6 +35,9 @@ export interface GemBiddingDocument {
   fileSize: string;
   fileContentUrl?: string;
   uploadedAt: string;
+  parsedData?: ParsedDocumentResult;
+  parsingStatus?: 'processing' | 'complete' | 'failed';
+  parseError?: string;
 }
 
 export interface Tender {

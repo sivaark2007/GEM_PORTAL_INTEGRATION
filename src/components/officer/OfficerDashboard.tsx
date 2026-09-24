@@ -1,8 +1,8 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { useApp } from '../../context/AppContext';
 import { CreateTenderModal } from './CreateTenderModal';
-import type { UploadedDoc } from './CreateTenderModal';
 import { DocumentViewerModal, DocumentInfo } from '../DocumentViewerModal';
+import { parseDocumentWithService } from '../../services/documentParser';
 import {
   Building2,
   FileText,
@@ -104,21 +104,37 @@ interface GemDocUploadProps {
 const GemDocUpload: React.FC<GemDocUploadProps> = ({ tenderId, existing }) => {
   const { uploadGemBiddingDocument } = useApp();
   const fileRef = useRef<HTMLInputElement>(null);
+  const parseRequestRef = useRef(0);
 
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    const requestId = ++parseRequestRef.current;
     const url = URL.createObjectURL(file);
     const sizeStr = file.size > 1024 * 1024
       ? `${(file.size / (1024 * 1024)).toFixed(1)} MB`
       : `${(file.size / 1024).toFixed(0)} KB`;
-    uploadGemBiddingDocument(tenderId, {
+    const document = {
       name: file.name,
       fileSize: sizeStr,
       fileContentUrl: url,
       uploadedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-    });
+    };
+    uploadGemBiddingDocument(tenderId, { ...document, parsingStatus: 'processing' });
     if (fileRef.current) fileRef.current.value = '';
+
+    try {
+      const parsed = await parseDocumentWithService(file, file.name);
+      if (requestId !== parseRequestRef.current) return;
+      uploadGemBiddingDocument(tenderId, parsed.success
+        ? { ...document, parsedData: parsed, parsingStatus: 'complete' }
+        : { ...document, parsingStatus: 'failed', parseError: parsed.error || 'Tender document parsing failed.' }
+      );
+    } catch (error) {
+      if (requestId !== parseRequestRef.current) return;
+      const message = error instanceof Error ? error.message : 'Tender document parsing failed.';
+      uploadGemBiddingDocument(tenderId, { ...document, parsingStatus: 'failed', parseError: message });
+    }
   };
 
   return (
@@ -129,6 +145,9 @@ const GemDocUpload: React.FC<GemDocUploadProps> = ({ tenderId, existing }) => {
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
           <span className="font-semibold text-emerald-800 truncate max-w-[140px]">{existing.name}</span>
           <span className="text-emerald-600">{existing.fileSize}</span>
+          {existing.parsingStatus === 'processing' && <Loader2 className="w-3.5 h-3.5 text-blue-600 animate-spin" />}
+          {existing.parsingStatus === 'complete' && <span className="text-emerald-700 font-semibold">Parsed</span>}
+          {existing.parsingStatus === 'failed' && <span className="text-red-700 font-semibold" title={existing.parseError}>Parse failed</span>}
           <button
             onClick={() => fileRef.current?.click()}
             className="ml-auto text-emerald-700 hover:text-emerald-900 font-semibold underline whitespace-nowrap"
@@ -535,6 +554,53 @@ export const OfficerDashboard: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {currentTender.gemBiddingDocument && (
+        <section className="bg-white border border-slate-200 rounded-xl shadow-xs overflow-hidden">
+          <div className="px-5 py-3 border-b border-slate-200 flex items-center gap-2">
+            <FileSearch className="w-4 h-4 text-blue-700" />
+            <div>
+              <h2 className="text-sm font-bold text-slate-900">Extracted Tender Text</h2>
+              <p className="text-xs text-slate-500">Source data for the upcoming LLM, embeddings, and RAG stages.</p>
+            </div>
+          </div>
+          <div className="p-5">
+            {currentTender.gemBiddingDocument.parsingStatus === 'processing' && (
+              <div className="flex items-center gap-2 text-sm text-blue-700">
+                <Loader2 className="w-4 h-4 animate-spin" /> Extracting text from the tender document…
+              </div>
+            )}
+            {currentTender.gemBiddingDocument.parsingStatus === 'failed' && (
+              <div className="text-sm text-red-700 bg-red-50 border border-red-200 rounded-lg p-3">
+                Parsing failed: {currentTender.gemBiddingDocument.parseError || 'Unknown parser error.'}
+              </div>
+            )}
+            {currentTender.gemBiddingDocument.parsedData && (
+              <>
+                <div className="flex flex-wrap gap-2 mb-3 text-[11px]">
+                  <span className="px-2 py-1 rounded bg-blue-50 border border-blue-200 text-blue-800 font-semibold">
+                    {currentTender.gemBiddingDocument.parsedData.metadata?.parser || 'Document parser'}
+                  </span>
+                  <span className="px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-700">
+                    {currentTender.gemBiddingDocument.parsedData.metadata?.ocr_used ? 'OCR used' : 'Digital text extracted'}
+                  </span>
+                  {currentTender.gemBiddingDocument.parsedData.metadata?.processing_time_ms != null && (
+                    <span className="px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-700">
+                      {currentTender.gemBiddingDocument.parsedData.metadata.processing_time_ms} ms
+                    </span>
+                  )}
+                </div>
+                <pre className="max-h-80 overflow-auto whitespace-pre-wrap rounded-lg bg-slate-950 p-4 text-xs leading-5 text-slate-100">
+                  {currentTender.gemBiddingDocument.parsedData.full_text || 'No readable text was found in this document.'}
+                </pre>
+              </>
+            )}
+            {!currentTender.gemBiddingDocument.parsingStatus && !currentTender.gemBiddingDocument.parsedData && (
+              <p className="text-sm text-slate-500">Replace this existing document once to extract its text.</p>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Bidder cards */}
       <div className="bg-white border border-slate-200 rounded-xl shadow-xs overflow-hidden">
@@ -978,6 +1044,9 @@ export const OfficerDashboard: React.FC = () => {
               fileSize: gemDoc.size,
               fileContentUrl: gemDoc.fileContentUrl,
               uploadedAt: dateStr,
+              parsedData: gemDoc.parsedData,
+              parsingStatus: gemDoc.parsingStatus,
+              parseError: gemDoc.parseError,
             });
           }
           setShowCreateTender(false);

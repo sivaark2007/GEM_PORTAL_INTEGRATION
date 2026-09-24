@@ -47,6 +47,15 @@ const documentGroups = [
   }
 ];
 
+type UploadedDocument = {
+  name: string;
+  size?: string;
+  type?: string;
+  fileContentUrl?: string;
+  parsedData?: any;
+  parseError?: string;
+};
+
 export const BidderDashboard: React.FC = () => {
   const { 
     selectedCompany, 
@@ -60,7 +69,7 @@ export const BidderDashboard: React.FC = () => {
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
-  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>(
+  const [uploadedDocs, setUploadedDocs] = useState<UploadedDocument[]>(
     (selectedCompany && draftDocuments[selectedCompany.id]) 
       ? draftDocuments[selectedCompany.id] 
       : []
@@ -110,6 +119,30 @@ export const BidderDashboard: React.FC = () => {
     reader.readAsDataURL(file);
   });
 
+  const parseDocumentsInSequence = async (files: File[]) => {
+    for (const file of files) {
+      try {
+        const parsed = await parseDocumentWithService(file, file.name);
+        if (parsed?.success) {
+          setUploadedDocs(prev => prev.map(doc =>
+            doc.name === file.name ? { ...doc, parsedData: parsed, parseError: undefined } : doc
+          ));
+        } else {
+          setUploadedDocs(prev => prev.map(doc =>
+            doc.name === file.name
+              ? { ...doc, parseError: parsed?.error || 'The document could not be parsed.' }
+              : doc
+          ));
+        }
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'The document could not be parsed.';
+        setUploadedDocs(prev => prev.map(doc =>
+          doc.name === file.name ? { ...doc, parseError: message } : doc
+        ));
+      }
+    }
+  };
+
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>, requirement?: string) => {
     const files = Array.from(e.target.files || []);
     // Reset file input value immediately so user can select the same file again
@@ -148,19 +181,8 @@ export const BidderDashboard: React.FC = () => {
     );
     setTimeout(() => setUploadSuccessMessage(null), 3000);
 
-    // 2. Parse in background asynchronously without blocking UI
-    validFiles.forEach(async (f) => {
-      try {
-        const parsed = await parseDocumentWithService(f, f.name);
-        if (parsed && parsed.success) {
-          setUploadedDocs(prev => prev.map(doc => 
-            doc.name === f.name ? { ...doc, parsedData: parsed } : doc
-          ));
-        }
-      } catch (err) {
-        console.warn('Background parsing notice for', f.name, err);
-      }
-    });
+    // Run one CPU-intensive parser job at a time to keep the app responsive.
+    void parseDocumentsInSequence(validFiles);
   };
 
   const handleFileDrop = async (e: React.DragEvent) => {
@@ -201,19 +223,8 @@ export const BidderDashboard: React.FC = () => {
     );
     setTimeout(() => setUploadSuccessMessage(null), 3000);
 
-    // 2. Parse in background asynchronously without blocking UI
-    validFiles.forEach(async (f) => {
-      try {
-        const parsed = await parseDocumentWithService(f, f.name);
-        if (parsed && parsed.success) {
-          setUploadedDocs(prev => prev.map(doc => 
-            doc.name === f.name ? { ...doc, parsedData: parsed } : doc
-          ));
-        }
-      } catch (err) {
-        console.warn('Background parsing notice for', f.name, err);
-      }
-    });
+    // Run one CPU-intensive parser job at a time to keep the app responsive.
+    void parseDocumentsInSequence(validFiles);
   };
 
   const handleRemoveDoc = (idx: number) => {
@@ -488,7 +499,14 @@ export const BidderDashboard: React.FC = () => {
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0 ml-2">
-                        {doc.parsedData ? (
+                        {doc.parseError ? (
+                          <span
+                            className="text-[10px] font-semibold text-red-700 bg-red-50 px-2 py-0.5 rounded border border-red-200 hidden sm:inline"
+                            title={doc.parseError}
+                          >
+                            Parsing failed
+                          </span>
+                        ) : doc.parsedData ? (
                           doc.parsedData.metadata?.ocr_used ? (
                             <span className="text-[10px] font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 hidden sm:inline">
                               OCR Extracted

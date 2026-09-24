@@ -16,19 +16,28 @@ import {
   ShieldCheck,
   File,
   Sparkles,
+  Loader2,
 } from 'lucide-react';
-import { Tender, TenderRequirement } from '../../types';
+import { ParsedDocumentResult, Tender, TenderRequirement } from '../../types';
+import { parseDocumentWithService } from '../../services/documentParser';
 
 interface CreateTenderModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (tender: Omit<Tender, 'id' | 'appliedBiddersCount'>, documentFiles: UploadedDoc[], gemDoc?: UploadedDoc & { fileContentUrl?: string }) => void;
+  onSubmit: (tender: Omit<Tender, 'id' | 'appliedBiddersCount'>, documentFiles: UploadedDoc[], gemDoc?: TenderDocumentUpload) => void;
 }
 
 export interface UploadedDoc {
   name: string;
   size: string;
   type: string;
+}
+
+export interface TenderDocumentUpload extends UploadedDoc {
+  fileContentUrl?: string;
+  parsedData?: ParsedDocumentResult;
+  parsingStatus?: 'processing' | 'complete' | 'failed';
+  parseError?: string;
 }
 
 type Step = 1 | 2 | 3;
@@ -84,7 +93,7 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
 
   // Step 3: Documents
   const [uploadedDocs, setUploadedDocs] = useState<UploadedDoc[]>([]);
-  const [gemBiddingDoc, setGemBiddingDoc] = useState<(UploadedDoc & { fileContentUrl?: string }) | null>(null);
+  const [gemBiddingDoc, setGemBiddingDoc] = useState<TenderDocumentUpload | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const gemFileInputRef = useRef<HTMLInputElement>(null);
@@ -161,20 +170,38 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
     setUploadedDocs(prev => [...prev, ...newDocs]);
   };
 
-  const handleGemFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleGemFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     const url = URL.createObjectURL(file);
     const sizeStr = file.size > 1024 * 1024
       ? `${(file.size / (1024 * 1024)).toFixed(1)} MB`
       : `${(file.size / 1024).toFixed(0)} KB`;
-    setGemBiddingDoc({
+    const document: TenderDocumentUpload = {
       name: file.name,
       size: sizeStr,
       type: 'PDF',
       fileContentUrl: url,
-    });
+      parsingStatus: 'processing',
+    };
+    setGemBiddingDoc(document);
     if (gemFileInputRef.current) gemFileInputRef.current.value = '';
+
+    try {
+      const parsed = await parseDocumentWithService(file, file.name);
+      setGemBiddingDoc(current => current?.fileContentUrl === url
+        ? (parsed.success
+          ? { ...document, parsedData: parsed, parsingStatus: 'complete' }
+          : { ...document, parsingStatus: 'failed', parseError: parsed.error || 'Tender document parsing failed.' })
+        : current
+      );
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Tender document parsing failed.';
+      setGemBiddingDoc(current => current?.fileContentUrl === url
+        ? { ...document, parsingStatus: 'failed', parseError: message }
+        : current
+      );
+    }
   };
 
   const removeDoc = (idx: number) => {
@@ -182,6 +209,10 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
   };
 
   const handleSubmit = () => {
+    if (gemBiddingDoc?.parsingStatus === 'processing') {
+      setErrors(prev => ({ ...prev, gemDoc: 'Wait for tender document text extraction to finish.' }));
+      return;
+    }
     const yearSuffix = new Date().getFullYear();
     const randomNum = Math.floor(100000 + Math.random() * 900000);
     const tenderNumber = `GEM/${yearSuffix}/B/${randomNum}`;
@@ -597,8 +628,11 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
                   <div className="flex items-center gap-2 p-3 bg-white rounded-lg border border-blue-200">
                     <File className="w-4 h-4 text-blue-600 shrink-0" />
                     <div className="flex-1 truncate">
-                      <div className="text-xs font-semibold text-slate-900 truncate">{gemBiddingDoc.name}</div>
-                      <div className="text-[10px] text-slate-400">{gemBiddingDoc.size}</div>
+                    <div className="text-xs font-semibold text-slate-900 truncate">{gemBiddingDoc.name}</div>
+                    <div className="text-[10px] text-slate-400">{gemBiddingDoc.size}</div>
+                    {gemBiddingDoc.parsingStatus === 'processing' && <div className="text-[10px] text-blue-700 flex items-center gap-1"><Loader2 className="w-3 h-3 animate-spin" /> Extracting text…</div>}
+                    {gemBiddingDoc.parsingStatus === 'complete' && <div className="text-[10px] text-emerald-700">Text extracted</div>}
+                    {gemBiddingDoc.parsingStatus === 'failed' && <div className="text-[10px] text-red-700" title={gemBiddingDoc.parseError}>Parsing failed</div>}
                     </div>
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
                     <button
@@ -621,6 +655,8 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
                   </button>
                 )}
               </div>
+
+              {errors.gemDoc && <p className="text-xs text-red-600">{errors.gemDoc}</p>}
 
               {/* Additional Supporting Documents Drop Zone */}
               <div>
@@ -758,7 +794,8 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
           ) : (
             <button
               onClick={handleSubmit}
-              className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors flex items-center gap-1.5"
+              disabled={gemBiddingDoc?.parsingStatus === 'processing'}
+              className="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors flex items-center gap-1.5"
             >
               <CheckCircle2 className="w-4 h-4" />
               Publish Tender
