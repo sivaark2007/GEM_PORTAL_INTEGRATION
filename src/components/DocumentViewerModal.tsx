@@ -25,6 +25,7 @@ export interface DocumentInfo {
   verified?: boolean;
   uploadedAt?: string;
   fileContentUrl?: string;
+  parsedData?: any;
 }
 
 interface DocumentViewerModalProps {
@@ -168,9 +169,11 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
           </div>
         </div>
 
-        {/* Document Preview */}
-        <div className="flex-1 min-h-0 overflow-hidden bg-slate-100">
-          <div className="h-full w-full bg-white">
+        {/* Document Preview & OCR Panel */}
+        <div className="flex-1 min-h-0 overflow-hidden bg-slate-100 flex flex-col md:flex-row">
+          
+          {/* Left: Original File Preview */}
+          <div className="flex-1 h-full bg-white relative border-r border-slate-200">
             {document.fileContentUrl ? (
               <iframe
                 src={`${document.fileContentUrl}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
@@ -182,7 +185,53 @@ export const DocumentViewerModal: React.FC<DocumentViewerModalProps> = ({
                 Document preview is unavailable for this file.
               </div>
             )}
+          </div>
 
+          {/* Right: OCR & Analysis Panel */}
+          <div className="w-full md:w-[450px] lg:w-[500px] bg-slate-50 flex flex-col h-full overflow-y-auto shrink-0">
+            {/* Tab Header for Panel */}
+            <div className="px-5 py-3 border-b border-slate-200 bg-white sticky top-0 z-10 flex items-center justify-between">
+              <h3 className="font-semibold text-slate-800 flex items-center gap-2 text-sm">
+                <Sparkles className="w-4 h-4 text-purple-600" />
+                AI Analysis & Extraction
+              </h3>
+            </div>
+
+            <div className="p-5 space-y-6">
+              {/* Alert / AI Insights */}
+              <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4">
+                <h4 className="text-xs font-bold text-emerald-800 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                  <CheckCircle2 className="w-4 h-4" />
+                  Verification Insights
+                </h4>
+                <div className="text-sm text-emerald-900 whitespace-pre-wrap leading-relaxed">
+                  {document.parsedData?.aiInsights || aiInsights}
+                </div>
+              </div>
+
+              {/* Extracted Key-Value Data */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Extracted Fields</h4>
+                <div className="bg-white border border-slate-200 rounded-xl overflow-hidden divide-y divide-slate-100 shadow-2xs">
+                  {Object.entries(document.parsedData?.extractedData || extractedData).map(([key, value]) => (
+                    <div key={key} className="p-3 sm:px-4 sm:py-3 flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-4 hover:bg-slate-50 transition-colors">
+                      <span className="text-xs font-medium text-slate-500 sm:w-1/3 shrink-0">{key}</span>
+                      <span className="text-sm font-semibold text-slate-900 text-left sm:text-right">{value as string}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Raw OCR Text */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Raw OCR Output</h4>
+                <div className="bg-slate-900 rounded-xl p-4 shadow-inner">
+                  <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap break-words leading-relaxed">
+                    {document.parsedData?.ocrSampleText || ocrSampleText}
+                  </pre>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

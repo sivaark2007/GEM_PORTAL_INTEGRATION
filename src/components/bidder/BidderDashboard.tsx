@@ -53,16 +53,28 @@ export const BidderDashboard: React.FC = () => {
     tenders, 
     submissions, 
     submitBid, 
-    navigateTo 
+    navigateTo,
+    draftDocuments,
+    setDraftDocuments
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'available' | 'apply' | 'status'>('available');
   const [selectedTenderToApply, setSelectedTenderToApply] = useState<Tender | null>(tenders[0]);
-  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>([
-    { name: 'Technical_Specification_Compliance.pdf', size: '2.4 MB', type: 'PDF' },
-    { name: 'Make_in_India_Declaration_FY26.pdf', size: '1.1 MB', type: 'PDF' },
-    { name: 'CA_Audited_Balance_Sheet.pdf', size: '3.8 MB', type: 'PDF' }
-  ]);
+  const [uploadedDocs, setUploadedDocs] = useState<{ name: string; size?: string; type?: string; fileContentUrl?: string; parsedData?: any }[]>(
+    (selectedCompany && draftDocuments[selectedCompany.id]) 
+      ? draftDocuments[selectedCompany.id] 
+      : []
+  );
+  
+  useEffect(() => {
+    if (selectedCompany) {
+      setDraftDocuments(prev => ({
+        ...prev,
+        [selectedCompany.id]: uploadedDocs
+      }));
+    }
+  }, [uploadedDocs, selectedCompany, setDraftDocuments]);
+
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
   const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
   const [uploadErrorMessage, setUploadErrorMessage] = useState<string | null>(null);

@@ -19,6 +19,8 @@ interface AppContextType {
   runVerificationForSubmission: (submissionId: string) => void;
   addTender: (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>) => Tender;
   uploadGemBiddingDocument: (tenderId: string, doc: GemBiddingDocument) => void;
+  draftDocuments: Record<string, any[]>;
+  setDraftDocuments: React.Dispatch<React.SetStateAction<Record<string, any[]>>>;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -91,6 +93,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [tenders, setTenders] = useState<Tender[]>(INITIAL_TENDERS);
   const [submissions, setSubmissions] = useState<BidSubmission[]>(INITIAL_SUBMISSIONS);
   const [selectedTenderId, setSelectedTenderId] = useState<string>(INITIAL_TENDERS[0].id);
+  const [draftDocuments, setDraftDocuments] = useState<Record<string, any[]>>({});
 
   useEffect(() => {
     const handlePopState = () => setView(pathToView(window.location.pathname));
@@ -172,7 +175,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  const submitBid = (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => {
+  const submitBid = (tenderId: string, companyId: string, documents: any[]) => {
     const newSub: BidSubmission = {
       id: `sub-${Date.now()}`,
       tenderId,
@@ -184,9 +187,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       documents: documents.map(document => ({
         name: document.name,
         type: document.type || 'PDF',
-        fileSize: document.size || '1.8 MB',
+        fileSize: document.size || document.fileSize || '1.8 MB',
         verified: false,
-        fileContentUrl: document.fileContentUrl
+        fileContentUrl: document.fileContentUrl,
+        parsedData: document.parsedData
       })),
       flags: []
     };
@@ -247,7 +251,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         submitBid,
         runVerificationForSubmission,
         addTender,
-        uploadGemBiddingDocument
+        uploadGemBiddingDocument,
+        draftDocuments,
+        setDraftDocuments
       }}
     >
       {children}
