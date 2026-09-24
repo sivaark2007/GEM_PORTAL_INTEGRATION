@@ -382,19 +382,25 @@ def parse_document(file_bytes: bytes, filename: str) -> Dict[str, Any]:
         else:
             use_ocr = False
 
-        # If scanned PDF or image, run automatic RapidOCR
+        # Prioritize Docling for structured extraction if available
+        if DOCLING_AVAILABLE:
+            try:
+                # Docling can handle PDFs natively; for images it might need PDF wrapping, 
+                # but Docling v2 handles images directly in DocumentConverter!
+                # We will route all through Docling first.
+                return parse_with_docling(temp_file_path, filename, use_ocr=use_ocr)
+            except Exception as docling_err:
+                logger.error(f"Docling pipeline notice: {docling_err}. Falling back to alternative OCR/Parser.")
+                if use_ocr and RAPID_OCR_AVAILABLE:
+                    return parse_scanned_document_with_ocr(temp_file_path, filename, is_image=is_image)
+                return parse_with_fallback(temp_file_path, filename, is_image=is_image, use_ocr=False)
+
+        # Fallback to RapidOCR if Docling is unavailable
         if use_ocr and RAPID_OCR_AVAILABLE:
             return parse_scanned_document_with_ocr(temp_file_path, filename, is_image=is_image)
 
-        # If digital document, run Docling conversion
-        if DOCLING_AVAILABLE and not is_image:
-            try:
-                return parse_with_docling(temp_file_path, filename, use_ocr=False)
-            except Exception as docling_err:
-                logger.error(f"Docling pipeline notice: {docling_err}. Using text fallback.")
-                return parse_with_fallback(temp_file_path, filename, is_image=is_image, use_ocr=False)
-        else:
-            return parse_with_fallback(temp_file_path, filename, is_image=is_image, use_ocr=use_ocr)
+        # Ultimate fallback
+        return parse_with_fallback(temp_file_path, filename, is_image=is_image, use_ocr=use_ocr)
 
     except Exception as general_err:
         logger.error(f"Failed to process document '{filename}': {general_err}", exc_info=True)
