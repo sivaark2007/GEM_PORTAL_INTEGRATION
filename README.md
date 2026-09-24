@@ -101,6 +101,55 @@ The current maximum upload size is 25 MB.
   layout pipeline for digital PDFs. It defaults to `false`; the fast PyPDF path
   is recommended for normal uploads.
 
+## PostgreSQL Database Setup
+
+The backend uses PostgreSQL via **SQLAlchemy** and **psycopg2** to store Bidders, Tenders, and Bids (including certificates and Docling OCR parsed data).
+
+### Database Configuration & Environment Variables
+
+Create `document-service/.env` (or copy from `document-service/.env.example`):
+
+```bash
+# PostgreSQL Database Settings
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=gem_portal
+DB_USER=postgres
+DB_PASSWORD=postgres
+
+# Alternatively, set full connection string:
+DATABASE_URL=postgresql+psycopg2://postgres:postgres@localhost:5432/gem_portal
+```
+
+> **Note:** If PostgreSQL is not currently running locally, the service automatically uses a local SQLite fallback (`gem_portal.db`) so development continues without disruption.
+
+### Initialize PostgreSQL Database & Seed Tables
+
+Run the database setup script to create the database and initialize tables:
+
+```powershell
+cd document-service
+python init_postgres.py
+cd ..
+```
+
+### Database Tables & Stored Data
+
+- **`bidders`**: Bidder company profiles (`id`, `name`, `email`, `contact_number`, `gstin`, `pan`, `udyam_number`, `cin`, `city`, `sector`, `registered_date`).
+- **`tenders`**: Government published tenders (`tender_number`, `title`, `organization`, `ministry`, `estimated_value`, `closing_date`, `requirements` JSON, and `gem_bidding_document` with Docling parsed data).
+- **`bid_submissions`**: Bidder tender submissions (`tender_id`, `company_id`, `status`, `compliance_score`, `ai_verification_stage`, `flags`).
+- **`bid_documents`**: Bidder certificates and documents (`name`, `type`, `file_size`, `verified`, `file_content_url`, `parsed_data` from OCR/Docling).
+
+### Database Endpoints (FastAPI on Port 8000)
+
+- `GET /health` & `GET /api/db/status` — Database connection status and health check.
+- `GET /api/bidders` & `POST /api/bidders` — Fetch and register bidders.
+- `GET /api/tenders` & `POST /api/tenders` — Fetch and create Government tenders.
+- `POST /api/tenders/document` — Attach parsed GeM bidding specification to a tender.
+- `GET /api/bids` & `POST /api/bids` — Fetch and submit bids with certificates and parsed data.
+- `POST /api/bids/{bid_id}/verify` — Update verification status, score, and flags.
+- `POST /parse-document` — Docling and RapidOCR document parsing endpoint.
+
 ## Troubleshooting
 
 - If the frontend reports `PYTHON_SERVICE_UNAVAILABLE`, start `document-service/main.py`
