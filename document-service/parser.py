@@ -31,17 +31,76 @@ except Exception as e:
 
 # Docling import
 DOCLING_AVAILABLE = False
-try:
-    from docling.document_converter import DocumentConverter, PdfFormatOption
-    from docling.datamodel.base_models import InputFormat
-    from docling.datamodel.pipeline_options import PdfPipelineOptions
-    DOCLING_AVAILABLE = True
-    logger.info("Docling library loaded successfully.")
-except Exception as e:
-    logger.warning(f"Docling library not yet available: {e}")
+DOCLING_IMPORT_ATTEMPTED = False
+DocumentConverter = None
+PdfFormatOption = None
+InputFormat = None
+PdfPipelineOptions = None
 
 ALLOWED_EXTENSIONS = {'.pdf', '.png', '.jpg', '.jpeg', '.tiff', '.webp', '.bmp', '.docx', '.txt'}
 MAX_FILE_SIZE = 25 * 1024 * 1024  # 25 MB
+OCR_RENDER_SCALE = 1.5
+# Table structure analysis is useful but expensive. Enable it only where the
+# application needs table cells, rather than for every uploaded document.
+DOCLING_TABLES_ENABLED = os.getenv("DOCLING_TABLES_ENABLED", "false").lower() == "true"
+# Docling's visual-layout model is much slower than direct PDF text extraction
+# on CPU. Keep it available for detailed analysis, but do not make a normal
+# upload wait for it unless the deployment explicitly enables it.
+DOCLING_DIGITAL_ENABLED = os.getenv("DOCLING_DIGITAL_ENABLED", "false").lower() == "true"
+_docling_converters: Dict[bool, Any] = {}
+
+
+def ensure_docling_available() -> bool:
+    """Load Docling only for the optional detailed-layout path."""
+    global DOCLING_AVAILABLE, DOCLING_IMPORT_ATTEMPTED
+    global DocumentConverter, PdfFormatOption, InputFormat, PdfPipelineOptions
+
+    if DOCLING_IMPORT_ATTEMPTED:
+        return DOCLING_AVAILABLE
+
+    DOCLING_IMPORT_ATTEMPTED = True
+    try:
+        from docling.document_converter import DocumentConverter as _DocumentConverter, PdfFormatOption as _PdfFormatOption
+        from docling.datamodel.base_models import InputFormat as _InputFormat
+        from docling.datamodel.pipeline_options import PdfPipelineOptions as _PdfPipelineOptions
+
+        DocumentConverter = _DocumentConverter
+        PdfFormatOption = _PdfFormatOption
+        InputFormat = _InputFormat
+        PdfPipelineOptions = _PdfPipelineOptions
+        DOCLING_AVAILABLE = True
+        logger.info("Docling library loaded for detailed layout processing.")
+    except Exception as error:
+        logger.warning("Docling library is unavailable: %s", error)
+
+    return DOCLING_AVAILABLE
+
+
+def get_docling_converter(use_ocr: bool):
+    """Create each Docling pipeline once and reuse it for later uploads."""
+    if not ensure_docling_available():
+        raise RuntimeError("Docling is not available in this Python environment.")
+
+    converter = _docling_converters.get(use_ocr)
+    if converter is not None:
+        return converter
+
+    pipeline_options = PdfPipelineOptions()
+    pipeline_options.do_ocr = use_ocr
+    pipeline_options.do_table_structure = DOCLING_TABLES_ENABLED and not use_ocr
+
+    converter = DocumentConverter(
+        format_options={
+            InputFormat.PDF: PdfFormatOption(pipeline_options=pipeline_options)
+        }
+    )
+    _docling_converters[use_ocr] = converter
+    logger.info(
+        "Initialized reusable Docling pipeline (ocr=%s, tables=%s).",
+        use_ocr,
+        pipeline_options.do_table_structure,
+    )
+    return converter
 
 
 def is_scanned_pdf(file_path: str, char_threshold_per_page: int = 40) -> bool:
@@ -132,7 +191,9 @@ def parse_scanned_document_with_ocr(file_path: str, filename: str, is_image: boo
             total_pages = len(pdf)
             for page_idx in range(total_pages):
                 page = pdf[page_idx]
-                pil_image = page.render(scale=2.0).to_pil()
+                # 1.5x is clear enough for certificates while avoiding the large
+                # CPU and memory cost of rendering every page at 2x.
+                pil_image = page.render(scale=OCR_RENDER_SCALE).to_pil()
                 extracted = run_ocr_on_pil_image(pil_image)
                 
                 # Check for headings
@@ -165,7 +226,7 @@ def parse_scanned_document_with_ocr(file_path: str, filename: str, is_image: boo
         "tables": tables_list,
         "headings": list(dict.fromkeys(headings_list))[:15],
         "metadata": {
-            "parser": "Docling RapidOCR",
+            "parser": "RapidOCR",
             "ocr_used": True,
             "page_count": len(pages_list),
             "total_characters": len(full_text),
@@ -180,18 +241,7 @@ def parse_with_docling(file_path: str, filename: str, use_ocr: bool) -> Dict[str
     """
     start_time = time.time()
     
-    # Configure Docling pipeline
-    pipeline_options = PdfPipelineOptions()
-    pipeline_options.do_ocr = use_ocr
-    pipeline_options.do_table_structure = True
-    
-    pdf_format_option = PdfFormatOption(pipeline_options=pipeline_options)
-    converter = DocumentConverter(
-        format_options={
-            InputFormat.PDF: pdf_format_option
-        }
-    )
-    
+    converter = get_docling_converter(use_ocr)
     conv_res = converter.convert(file_path)
     doc = conv_res.document
     
@@ -325,7 +375,7 @@ def parse_with_fallback(file_path: str, filename: str, is_image: bool, use_ocr: 
         "tables": tables_list,
         "headings": list(dict.fromkeys(headings_list))[:15],
         "metadata": {
-            "parser": "Docling Engine",
+            "parser": "PyPDF text extraction" if not is_image else "Basic image fallback",
             "ocr_used": use_ocr,
             "page_count": len(pages_list),
             "total_characters": len(full_text),
@@ -382,17 +432,27 @@ def parse_document(file_bytes: bytes, filename: str) -> Dict[str, Any]:
         else:
             use_ocr = False
 
-        # Prioritize Docling for structured extraction if available
-        if DOCLING_AVAILABLE:
+        # Scanned files are handled by the lightweight RapidOCR path first.
+        # Sending them through Docling OCR and table recognition first made even
+        # small scans take a long time on CPU-only developer machines.
+        if use_ocr and RAPID_OCR_AVAILABLE:
+            logger.info("Using RapidOCR fast path for scanned document '%s'.", filename)
+            return parse_scanned_document_with_ocr(temp_file_path, filename, is_image=is_image)
+
+        # A PDF that already has a text layer does not need visual layout
+        # detection just to obtain its text. This is substantially faster and
+        # avoids a large first-upload model load on CPU-only machines.
+        if ext == '.pdf' and not use_ocr and not DOCLING_DIGITAL_ENABLED:
+            logger.info("Using fast embedded-text parser for digital document '%s'.", filename)
+            return parse_with_fallback(temp_file_path, filename, is_image=False, use_ocr=False)
+
+        # Digital documents use a reusable Docling converter. OCR is only used
+        # here when RapidOCR is unavailable.
+        if ensure_docling_available():
             try:
-                # Docling can handle PDFs natively; for images it might need PDF wrapping, 
-                # but Docling v2 handles images directly in DocumentConverter!
-                # We will route all through Docling first.
                 return parse_with_docling(temp_file_path, filename, use_ocr=use_ocr)
             except Exception as docling_err:
-                logger.error(f"Docling pipeline notice: {docling_err}. Falling back to alternative OCR/Parser.")
-                if use_ocr and RAPID_OCR_AVAILABLE:
-                    return parse_scanned_document_with_ocr(temp_file_path, filename, is_image=is_image)
+                logger.error(f"Docling pipeline notice: {docling_err}. Using fallback parser.")
                 return parse_with_fallback(temp_file_path, filename, is_image=is_image, use_ocr=False)
 
         # Fallback to RapidOCR if Docling is unavailable
