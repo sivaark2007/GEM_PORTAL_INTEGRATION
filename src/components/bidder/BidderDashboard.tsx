@@ -46,6 +46,8 @@ const documentGroups = [
   }
 ];
 
+const requiredDocuments = documentGroups.flatMap(group => group.documents);
+
 export const BidderDashboard: React.FC = () => {
   const { 
     selectedCompany, 
@@ -84,6 +86,10 @@ export const BidderDashboard: React.FC = () => {
 
   // Filter submissions made by this company
   const companySubmissions = submissions.filter(s => s.companyId === selectedCompany.id);
+  const uploadedRequirementCount = requiredDocuments.filter(requirement =>
+    uploadedDocs.some(document => document.requirement === requirement)
+  ).length;
+  const allDocumentsUploaded = uploadedRequirementCount === requiredDocuments.length;
 
   const readFileAsDataUrl = (file: File) => new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
@@ -115,11 +121,14 @@ export const BidderDashboard: React.FC = () => {
       fileContentUrl: await readFileAsDataUrl(f),
       requirement
     })));
-    setUploadedDocs(prev => [...prev, ...newDocs]);
+    setUploadedDocs(prev => [
+      ...prev.filter(document => document.requirement !== requirement),
+      newDocs[0]
+    ]);
     setUploadSuccessMessage(
       pdfFiles.length === 1
         ? `${pdfFiles[0].name} uploaded successfully.`
-        : `${pdfFiles.length} documents uploaded successfully.`
+        : `${pdfFiles.length} documents uploaded successfully. The first PDF was attached to this requirement.`
     );
     setTimeout(() => setUploadSuccessMessage(null), 2500);
     if (requirementInputRefs.current[requirement]) requirementInputRefs.current[requirement]!.value = '';
@@ -137,7 +146,7 @@ export const BidderDashboard: React.FC = () => {
   };
 
   const handleFinalSubmit = () => {
-    if (!selectedTenderToApply) return;
+    if (!selectedTenderToApply || !allDocumentsUploaded) return;
     submitBid(selectedTenderToApply.id, selectedCompany.id, uploadedDocs);
     setSubmissionSuccess(true);
     setTimeout(() => {
@@ -272,9 +281,13 @@ export const BidderDashboard: React.FC = () => {
                         <div><span className="font-bold text-slate-800">Bid End Date:</span> <span className="text-amber-600">{tender.closingDate}</span></div>
                         <div className="mt-2"><span className="font-bold text-slate-800">Estimated Value:</span> <span className="text-slate-700">{tender.estimatedValue}</span></div>
                         {alreadySubmitted ? (
-                          <div className="inline-flex items-center gap-1 mt-3 text-emerald-700 font-semibold">
+                          <button
+                            type="button"
+                            onClick={() => setActiveTab('status')}
+                            className="inline-flex items-center gap-1 mt-3 text-emerald-700 hover:text-emerald-900 font-semibold underline underline-offset-2"
+                          >
                             <CheckCircle2 className="w-3.5 h-3.5" /> Bid Submitted
-                          </div>
+                          </button>
                         ) : (
                           <button
                             onClick={() => {
@@ -297,13 +310,15 @@ export const BidderDashboard: React.FC = () => {
 
         {/* TAB 2: APPLY & UPLOAD DOCUMENTS */}
         {activeTab === 'apply' && selectedTenderToApply && (
-          <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-2xs space-y-6">
-            <div className="border-b border-slate-200 pb-4">
+          <div className="bg-white border border-slate-200 border-t-4 border-t-amber-400 shadow-2xs space-y-6 p-4 sm:p-6">
+            <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
               <span className="text-xs font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-semibold">
                 Application for {selectedTenderToApply.tenderNumber}
               </span>
-              <h2 className="text-lg font-bold text-slate-900 mt-1">{selectedTenderToApply.title}</h2>
-              <p className="text-xs text-slate-500">{selectedTenderToApply.organization}</p>
+              <div className="sm:text-right">
+                <h2 className="text-sm font-bold text-slate-900">{selectedTenderToApply.title}</h2>
+                <p className="text-xs text-slate-500 mt-1">{selectedTenderToApply.ministry} · {selectedTenderToApply.organization}</p>
+              </div>
             </div>
 
             {submissionSuccess && (
@@ -318,10 +333,13 @@ export const BidderDashboard: React.FC = () => {
 
             {/* Document Upload Section */}
             <div className="space-y-4">
-              <div>
-                <h3 className="text-sm font-bold text-slate-900">Upload Required Bid Documents</h3>
+              <div className="bg-white border border-slate-200 border-t-4 border-t-amber-400 px-4 py-4">
+                <h3 className="text-sm font-bold text-slate-900">Upload Required Bid Documents <span className="text-red-600">*</span></h3>
                 <p className="text-xs text-slate-500 mt-1">
-                  Upload one PDF for each applicable document requirement.
+                  Every document below is compulsory. Upload one PDF for each requirement.
+                </p>
+                <p className="text-xs font-semibold text-slate-700 mt-2">
+                  Uploaded: {uploadedRequirementCount} / {requiredDocuments.length} required documents
                 </p>
               </div>
 
@@ -342,7 +360,7 @@ export const BidderDashboard: React.FC = () => {
                 {documentGroups.map(group => (
                   <section key={group.title} className="border border-slate-200 rounded-xl overflow-hidden">
                     <div className="px-4 py-3 bg-slate-100 border-b border-slate-200">
-                      <h4 className="text-sm font-bold text-slate-800">{group.title}</h4>
+                      <h4 className="text-sm font-bold text-slate-800">{group.title} <span className="text-red-600">*</span></h4>
                     </div>
                     <div className="divide-y divide-slate-100">
                       {group.documents.map(requirement => {
@@ -353,7 +371,7 @@ export const BidderDashboard: React.FC = () => {
                             <div className="flex items-center gap-2.5 min-w-0">
                               <FileText className="w-4 h-4 text-slate-500 shrink-0" />
                               <div className="min-w-0">
-                                <span className="font-semibold text-slate-900 text-xs block">{requirement}</span>
+                                <span className="font-semibold text-slate-900 text-xs block">{requirement} <span className="text-red-600">*</span></span>
                                 {uploadedDoc ? (
                                   <span className="text-[10px] text-emerald-700 block truncate">{uploadedDoc.name} · {uploadedDoc.size}</span>
                                 ) : (
@@ -397,11 +415,11 @@ export const BidderDashboard: React.FC = () => {
               </span>
               <button
                 onClick={handleFinalSubmit}
-                disabled={uploadedDocs.length === 0}
+                disabled={!allDocumentsUploaded}
                 className="px-6 py-2.5 bg-emerald-700 hover:bg-emerald-800 disabled:opacity-50 text-white text-xs font-bold rounded-lg shadow-sm transition-colors flex items-center justify-center gap-2"
               >
                 <Send className="w-3.5 h-3.5" />
-                <span>Submit Final Bid ({uploadedDocs.length} Documents)</span>
+                <span>{allDocumentsUploaded ? `Submit Final Bid (${uploadedDocs.length} Documents)` : `Upload All Required Documents (${uploadedRequirementCount}/${requiredDocuments.length})`}</span>
               </button>
             </div>
           </div>
@@ -410,8 +428,8 @@ export const BidderDashboard: React.FC = () => {
         {/* TAB 3: VIEW SUBMISSION STATUS */}
         {activeTab === 'status' && (
           <div className="space-y-4">
-            <div className="bg-white rounded-xl border border-slate-200 shadow-2xs overflow-hidden">
-              <div className="p-4 border-b border-slate-200">
+            <div className="bg-white border border-slate-200 border-t-4 border-t-amber-400 shadow-2xs overflow-hidden">
+              <div className="p-4 border-b border-slate-200 flex items-center justify-between gap-3">
                 <h2 className="text-base font-bold text-slate-900">
                   Bid Submissions for {selectedCompany.name}
                 </h2>
@@ -436,7 +454,7 @@ export const BidderDashboard: React.FC = () => {
                     const tender = tenders.find(t => t.id === sub.tenderId);
                     const isExpanded = expandedSubmissions[sub.id] ?? true;
                     return (
-                      <div key={sub.id} className="p-4 space-y-3">
+                      <div key={sub.id} className="p-4 space-y-3 border-t-4 border-t-amber-400">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                           <div>
                             <div className="text-xs font-mono text-emerald-700 font-semibold">{sub.tenderId}</div>
