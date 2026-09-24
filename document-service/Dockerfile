@@ -1,15 +1,28 @@
-# ── Stage: Document Service (FastAPI + ML + PostgreSQL) ──────────────────────
-# Uses a full Python image because docling, rapidocr, and numpy need
-# native build tools (gcc, etc.)
+# =============================================================================
+# Document Service — Optimized Multi-Layer Dockerfile
+# =============================================================================
+# KEY OPTIMIZATION: Dependencies are split into 3 separate cached layers:
+#
+#   Layer 1 — OS packages     (cached unless apt packages change)
+#   Layer 2 — Light packages  (fastapi, sqlalchemy, etc. — installs in ~1 min)
+#   Layer 3 — Heavy ML pkgs   (docling, rapidocr, PyTorch — ~20 min FIRST TIME,
+#                               then INSTANT from Docker cache on every rebuild)
+#
+# After the first build, rebuilding only re-runs layers that changed.
+# If you only change .py source files → rebuild takes ~5 seconds.
+# If you add a light dependency → only Layer 2 re-runs (~1 min).
+# If you update docling/rapidocr → only Layer 3 re-runs (~20 min).
+# =============================================================================
+
 FROM python:3.11
 
-# Set working directory
 WORKDIR /app
 
-# Install OS-level dependencies needed by:
-#   - psycopg2 (libpq-dev)
-#   - Pillow / image processing (libjpeg, libpng, libfreetype)
-#   - rapidocr (libglib2.0)
+# ── Layer 1: OS-level system dependencies ─────────────────────────────────────
+# libpq-dev   → needed by psycopg2 (PostgreSQL driver)
+# libjpeg-dev → needed by Pillow (image processing)
+# libglib2.0  → needed by rapidocr
+# gcc         → needed to compile some Python C extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     libpq-dev \
@@ -19,18 +32,27 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first so Docker can cache this layer
-# (only re-installs when requirements.txt changes)
-COPY requirements.txt .
+# ── Layer 2: Light Python packages (~1 min, cached after first build) ─────────
+# Copy ONLY the light requirements file first.
+# Docker will cache this layer and skip re-installing if the file hasn't changed.
+COPY requirements-light.txt .
+RUN pip install --no-cache-dir -r requirements-light.txt
 
-# Install all Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# ── Layer 3: Heavy ML packages (~20 min FIRST TIME, then cached) ──────────────
+# docling pulls in PyTorch (~2GB) + transformer models.
+# rapidocr pulls in onnxruntime + OCR models.
+# By keeping this as a separate COPY+RUN, Docker caches this expensive layer.
+# As long as requirements-heavy.txt doesn't change, this layer is NEVER re-run.
+COPY requirements-heavy.txt .
+RUN pip install --no-cache-dir -r requirements-heavy.txt
 
-# Copy the rest of the source code
+# ── Source code (changes frequently — always last for best cache usage) ────────
+# Copying source AFTER dependencies means code changes don't invalidate
+# the expensive dependency layers above.
 COPY . .
 
-# Expose port 8000 (document-service API port)
+# Expose the FastAPI port
 EXPOSE 8000
 
-# Start the FastAPI document service with uvicorn
+# Start the document service
 CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
