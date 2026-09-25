@@ -51,6 +51,12 @@ import {
   Scale,
   Landmark,
   Gavel,
+  ShieldAlert,
+  Users,
+  Lock,
+  Unlock,
+  FileWarning,
+  Zap,
 } from 'lucide-react';
 import type { GemBiddingDocument } from '../../types';
 import { TenderListCard } from '../shared/TenderListCard';
@@ -705,6 +711,54 @@ const ComparativeEvaluationModal: React.FC<ComparativeModalProps> = ({
   onSelectBidder,
 }) => {
   const tenderSubmissions = submissions.filter(s => s.tenderId === tender.id);
+  const [anomalyData, setAnomalyData] = useState<any>(null);
+  const [loadingAnomaly, setLoadingAnomaly] = useState(false);
+  const [showOverrideModal, setShowOverrideModal] = useState(false);
+  const [overrideNotes, setOverrideNotes] = useState('');
+  const [officerId, setOfficerId] = useState('OFFICER-ADMIN');
+  const [overrideSuccess, setOverrideSuccess] = useState<string | null>(null);
+
+  // Fetch or evaluate anomaly data on mount
+  React.useEffect(() => {
+    const fetchAnomaly = async () => {
+      setLoadingAnomaly(true);
+      try {
+        const res = await fetch(`/api/tenders/${encodeURIComponent(tender.id)}/anomaly-assessment`);
+        if (res.ok) {
+          const data = await res.json();
+          setAnomalyData(data);
+        }
+      } catch (e) {
+        console.warn('Could not fetch anomaly data:', e);
+      } finally {
+        setLoadingAnomaly(false);
+      }
+    };
+    fetchAnomaly();
+  }, [tender.id]);
+
+  const handleAdminOverride = async (action: 'OVERRIDE_ALLOW' | 'DISQUALIFY_CARTEL' | 'SHOW_CAUSE') => {
+    try {
+      const res = await fetch(`/api/tenders/${encodeURIComponent(tender.id)}/anomaly-override`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          officerEmployeeId: officerId,
+          justificationNotes: overrideNotes || 'Administrative clearance approved after manual verification.',
+          action,
+        }),
+      });
+      if (res.ok) {
+        setOverrideSuccess(`Administrative action '${action}' recorded with audit timestamp.`);
+        setTimeout(() => {
+          setShowOverrideModal(false);
+          setOverrideSuccess(null);
+        }, 1500);
+      }
+    } catch (e) {
+      console.error('Failed to submit override:', e);
+    }
+  };
 
   const sorted = [...tenderSubmissions].sort((a, b) => {
     const isADebarred = a.gemFrameworkEvaluation?.stage1Baseline.debarmentCheck.status === 'DEBARRED';
@@ -718,9 +772,12 @@ const ComparativeEvaluationModal: React.FC<ComparativeModalProps> = ({
     return (a.commercialQuote || 999999999) - (b.commercialQuote || 999999999);
   });
 
+  const isHighCollusion = anomalyData?.risk_tier === 'HIGH_COLLUSION_RISK' || (anomalyData?.rule_flags?.length || 0) > 0;
+  const isSuspicious = anomalyData?.risk_tier === 'SUSPICIOUS_PATTERNS';
+
   return (
     <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-6xl max-h-[92vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-6xl max-h-[94vh] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="px-6 py-4 bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -733,6 +790,18 @@ const ComparativeEvaluationModal: React.FC<ComparativeModalProps> = ({
                 <span className="text-[10px] font-mono bg-white/20 px-2 py-0.5 rounded-full font-bold">
                   {tender.tenderNumber}
                 </span>
+                {anomalyData && (
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${
+                    isHighCollusion
+                      ? 'bg-red-500/20 text-red-300 border-red-400/40'
+                      : isSuspicious
+                      ? 'bg-amber-500/20 text-amber-300 border-amber-400/40'
+                      : 'bg-emerald-500/20 text-emerald-300 border-emerald-400/40'
+                  }`}>
+                    <ShieldAlert className="w-3 h-3" />
+                    ML Collusion Risk: {anomalyData.risk_tier?.replace(/_/g, ' ')} ({Math.round((anomalyData.anomaly_score || 0) * 100)}%)
+                  </span>
+                )}
               </div>
               <p className="text-xs text-indigo-200">
                 Official GeM Statutory Selection Method: <strong>{tender.selectionMethod || 'L1 Lowest Price'}</strong> · {sorted.length} Bidders Evaluated
@@ -746,6 +815,64 @@ const ComparativeEvaluationModal: React.FC<ComparativeModalProps> = ({
             <X className="w-5 h-5" />
           </button>
         </div>
+
+        {/* 🛡️ Collusion & Anti-Fraud Radar Alert Banner */}
+        {anomalyData && (
+          <div className={`px-6 py-3 border-b flex items-center justify-between gap-4 ${
+            isHighCollusion 
+              ? 'bg-red-50 border-red-200 text-red-900' 
+              : isSuspicious 
+              ? 'bg-amber-50 border-amber-200 text-amber-900' 
+              : 'bg-emerald-50/80 border-emerald-200 text-emerald-900'
+          }`}>
+            <div className="flex items-start gap-3">
+              <div className={`p-2 rounded-xl mt-0.5 ${
+                isHighCollusion ? 'bg-red-100 text-red-700' : isSuspicious ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'
+              }`}>
+                <ShieldAlert className="w-5 h-5" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold text-xs">
+                    {isHighCollusion 
+                      ? '🚨 HIGH COLLUSION / CARTEL RISK DETECTED (GFR Rule 144 / Competition Act)' 
+                      : isSuspicious 
+                      ? '⚠️ SUSPICIOUS BIDDING PATTERNS (Statistical Anomaly Detected)' 
+                      : '✓ Anti-Collusion Radar: Clean Market Variance Verified'}
+                  </span>
+                  <span className="text-[10px] font-mono bg-white/80 px-2 py-0.2 rounded border">
+                    Isolation Forest Score: {Math.round((anomalyData.anomaly_score || 0) * 100)}%
+                  </span>
+                </div>
+                <p className="text-xs mt-0.5 opacity-90 leading-tight">
+                  {anomalyData.recommendation}
+                </p>
+                {anomalyData.rule_flags && anomalyData.rule_flags.length > 0 && (
+                  <div className="mt-1.5 flex flex-wrap gap-1.5">
+                    {anomalyData.rule_flags.map((flag: any, fIdx: number) => (
+                      <span key={fIdx} className="text-[10px] font-bold px-2 py-0.5 rounded bg-white/90 text-red-800 border border-red-200 shadow-xs flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3 text-red-600" />
+                        {flag.title}: {flag.description}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              {isHighCollusion && (
+                <button
+                  onClick={() => setShowOverrideModal(true)}
+                  className="px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-xs flex items-center gap-1.5 shadow-sm transition-all"
+                >
+                  <Gavel className="w-3.5 h-3.5" />
+                  Admin Governance Action
+                </button>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Content Table */}
         <div className="overflow-auto flex-1 p-6">
@@ -795,8 +922,10 @@ const ComparativeEvaluationModal: React.FC<ComparativeModalProps> = ({
 
                     {/* Bidder */}
                     <td className="py-3 px-3">
-                      <div className="font-bold text-slate-900">{comp?.name || sub.companyId}</div>
-                      <div className="text-[10px] text-slate-400 font-mono">PAN: {comp?.pan || '—'}</div>
+                      <div className="font-bold text-slate-900 flex items-center gap-1.5">
+                        {comp?.name || sub.companyId}
+                      </div>
+                      <div className="text-[10px] text-slate-400 font-mono">PAN: {comp?.pan || '—'} · Ph: {comp?.contactNumber || '—'}</div>
                     </td>
 
                     {/* Commercial Offer */}
@@ -889,15 +1018,105 @@ const ComparativeEvaluationModal: React.FC<ComparativeModalProps> = ({
 
         {/* Footer */}
         <div className="px-6 py-3 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
-          <span>Evaluated under General Terms and Conditions (GTC) and General Financial Rules (GFR).</span>
-          <button
-            onClick={onClose}
-            className="px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold text-xs transition-colors"
-          >
-            Close Matrix
-          </button>
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-indigo-600" />
+            <span>Integrated GeM GTC / GFR 2017 &amp; ML Anti-Collusion Protection Active.</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {isHighCollusion && (
+              <button
+                onClick={() => setShowOverrideModal(true)}
+                className="px-3 py-1.5 bg-amber-600 hover:bg-amber-700 text-white rounded-lg font-semibold text-xs transition-colors"
+              >
+                Vigilance Override
+              </button>
+            )}
+            <button
+              onClick={onClose}
+              className="px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold text-xs transition-colors"
+            >
+              Close Matrix
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* 🏛️ Admin Governance / Override Modal */}
+      {showOverrideModal && (
+        <div className="fixed inset-0 z-60 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-lg overflow-hidden animate-in zoom-in-95 duration-150">
+            <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+              <div className="flex items-center gap-2.5">
+                <Gavel className="w-5 h-5 text-amber-400" />
+                <h3 className="font-bold text-sm">Procurement Officer Administrative Governance</h3>
+              </div>
+              <button onClick={() => setShowOverrideModal(false)} className="text-white/70 hover:text-white">
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4">
+              {overrideSuccess ? (
+                <div className="p-4 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-semibold flex items-center gap-2">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                  {overrideSuccess}
+                </div>
+              ) : (
+                <>
+                  <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900">
+                    <strong>Statutory Notice:</strong> Overriding an ML Collusion Alert or disqualifying a cartel will be permanently recorded with your Officer ID in the immutable vigilance audit log.
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Officer Employee ID / Designation</label>
+                    <input
+                      type="text"
+                      value={officerId}
+                      onChange={(e) => setOfficerId(e.target.value)}
+                      className="w-full text-xs px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none font-mono"
+                      placeholder="e.g. GEM-OFFICER-8941"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-slate-700 mb-1">Justification Memo / Vigilance Findings</label>
+                    <textarea
+                      rows={3}
+                      value={overrideNotes}
+                      onChange={(e) => setOverrideNotes(e.target.value)}
+                      className="w-full text-xs px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                      placeholder="Specify rationale for override (e.g. verified genuine subcontracting consortium or OEM direct pricing variance)..."
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2 pt-2">
+                    <button
+                      onClick={() => handleAdminOverride('OVERRIDE_ALLOW')}
+                      className="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                    >
+                      <Unlock className="w-4 h-4" />
+                      Approve &amp; Allow L1 Contract Award (Override)
+                    </button>
+                    <button
+                      onClick={() => handleAdminOverride('DISQUALIFY_CARTEL')}
+                      className="w-full py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-xs flex items-center justify-center gap-1.5 transition-colors"
+                    >
+                      <XCircle className="w-4 h-4" />
+                      Disqualify Flagged Cartel Group (GFR 144)
+                    </button>
+                    <button
+                      onClick={() => handleAdminOverride('SHOW_CAUSE')}
+                      className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg font-semibold text-xs transition-colors"
+                    >
+                      Issue Formal Show-Cause Notice
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -549,7 +549,88 @@ async def get_compliance_report(submission_id: str, db: Session = Depends(get_db
     return submission.to_dict()
 
 
+# ---------------- ML Tender Anomaly & Anti-Collusion Endpoints ----------------
+
+@app.get("/api/tenders/{tender_id}/anomaly-assessment")
+@app.get("/tenders/{tender_id}/anomaly-assessment")
+async def get_tender_anomaly_assessment(tender_id: str, db: Session = Depends(get_db)):
+    """
+    Runs real-time ML Isolation Forest & Rule-Based Anomaly & Collusion evaluation
+    on the specified tender and its participating bidders.
+    """
+    from crud import get_tender_by_id, get_bidders, update_tender_anomaly
+    from anomaly_detector import assess_tender_collusion_risk
+
+    tender = get_tender_by_id(db, tender_id)
+    if not tender:
+        raise HTTPException(status_code=404, detail=f"Tender {tender_id} not found")
+
+    submissions = tender.submissions or []
+    all_bidders = get_bidders(db)
+    bidders_map = {b.id: b.to_dict() for b in all_bidders}
+
+    # Run inference and rule analysis
+    assessment = assess_tender_collusion_risk(tender, submissions, bidders_map)
+
+    # Persist updated score into database
+    update_tender_anomaly(db, tender_id, assessment)
+
+    return assessment
+
+
+@app.post("/api/tenders/{tender_id}/anomaly-override")
+@app.post("/tenders/{tender_id}/anomaly-override")
+async def override_tender_anomaly(
+    tender_id: str, 
+    payload: Dict[str, Any], 
+    db: Session = Depends(get_db)
+):
+    """
+    Allows a Procurement Officer / Admin to record a formal override justification
+    memo with Officer Employee ID and statutory audit tracking.
+    """
+    from crud import get_tender_by_id, record_admin_override
+
+    tender = get_tender_by_id(db, tender_id)
+    if not tender:
+        raise HTTPException(status_code=404, detail=f"Tender {tender_id} not found")
+
+    officer_id = payload.get("officerEmployeeId") or payload.get("officer_id") or "OFFICER-ADMIN"
+    justification = payload.get("justificationNotes") or payload.get("notes") or "Administrative clearance verified."
+    action = payload.get("action") or "OVERRIDE_ALLOW"
+
+    updated_tender = record_admin_override(db, tender_id, officer_id, justification, action)
+    if not updated_tender:
+        raise HTTPException(status_code=500, detail="Failed to record admin override")
+
+    return {
+        "success": True,
+        "tenderId": tender_id,
+        "anomalyStatus": updated_tender.anomaly_status,
+        "adminOverrideNotes": updated_tender.admin_override_notes,
+        "adminOverrideBy": updated_tender.admin_override_by,
+        "adminOverrideAt": updated_tender.admin_override_at.isoformat() if updated_tender.admin_override_at else None,
+        "message": f"Administrative action '{action}' recorded successfully."
+    }
+
+
+@app.get("/api/anomaly/model-status")
+@app.get("/anomaly/model-status")
+async def get_anomaly_model_status():
+    """Returns the runtime status, calibration threshold, and feature set of the ML Anomaly Engine."""
+    from anomaly_detector import get_model_bundle, FEATURE_NAMES
+    bundle = get_model_bundle()
+    return {
+        "status": "READY" if bundle else "CALIBRATING",
+        "version": bundle.get("version", "1.0.0") if bundle else "None",
+        "threshold": bundle.get("threshold", 0.54) if bundle else None,
+        "featureCount": len(FEATURE_NAMES),
+        "features": FEATURE_NAMES
+    }
+
+
 if __name__ == "__main__":
     import uvicorn
     # Start on 127.0.0.1:8000
     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+

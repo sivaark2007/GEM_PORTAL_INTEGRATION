@@ -356,3 +356,52 @@ def update_submission_verification(db: Session, submission_id: str, ver_in: Veri
     db.commit()
     db.refresh(sub)
     return sub
+
+
+def update_tender_anomaly(db: Session, tender_id: str, anomaly_result: dict) -> Optional[TenderModel]:
+    """Saves anomaly assessment results to the tender record."""
+    tender = get_tender_by_id(db, tender_id)
+    if not tender:
+        return None
+
+    score_pct = int(anomaly_result.get("anomaly_score", 0) * 100)
+    tender.anomaly_score = score_pct
+    tender.predicted_anomaly = anomaly_result.get("predicted_anomaly", False)
+    tender.risk_tier = anomaly_result.get("risk_tier", "LOW_RISK")
+    tender.anomaly_flags = anomaly_result.get("rule_flags", [])
+    if tender.anomaly_status not in ["OVERRIDDEN", "REJECTED"]:
+        tender.anomaly_status = "FLAGGED" if tender.predicted_anomaly else "CLEARED"
+
+    db.commit()
+    db.refresh(tender)
+    return tender
+
+
+def record_admin_override(
+    db: Session, 
+    tender_id: str, 
+    officer_id: str, 
+    justification_notes: str, 
+    action: str = "OVERRIDE_ALLOW"
+) -> Optional[TenderModel]:
+    """Records formal officer administrative override memo and audit log."""
+    from datetime import datetime
+    tender = get_tender_by_id(db, tender_id)
+    if not tender:
+        return None
+
+    tender.admin_override_notes = justification_notes
+    tender.admin_override_by = officer_id
+    tender.admin_override_at = datetime.utcnow()
+
+    if action == "OVERRIDE_ALLOW":
+        tender.anomaly_status = "OVERRIDDEN"
+    elif action == "DISQUALIFY_CARTEL":
+        tender.anomaly_status = "REJECTED"
+    elif action == "SHOW_CAUSE":
+        tender.anomaly_status = "FLAGGED"
+
+    db.commit()
+    db.refresh(tender)
+    return tender
+

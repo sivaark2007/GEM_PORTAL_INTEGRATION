@@ -92,6 +92,14 @@ class TenderResponse(BaseModel):
     appliedBiddersCount: Optional[int] = 0
     requirements: Optional[List[TenderRequirement]] = []
     gemBiddingDocument: Optional[Dict[str, Any]] = None
+    anomalyScore: Optional[int] = 0
+    predictedAnomaly: Optional[bool] = False
+    riskTier: Optional[str] = "LOW_RISK"
+    anomalyFlags: Optional[List[Any]] = []
+    anomalyStatus: Optional[str] = "CLEARED"
+    adminOverrideNotes: Optional[str] = None
+    adminOverrideBy: Optional[str] = None
+    adminOverrideAt: Optional[str] = None
 
     class Config:
         from_attributes = True
@@ -113,6 +121,7 @@ class BidSubmissionCreate(BaseModel):
     tenderId: str
     companyId: str
     submittedAt: Optional[str] = None
+    commercialQuote: Optional[str] = None
     status: Optional[str] = "Under Review"
     complianceScore: Optional[int] = 85
     aiVerificationStage: Optional[str] = "Pending"
@@ -125,6 +134,7 @@ class BidSubmissionResponse(BaseModel):
     tenderId: str
     companyId: str
     submittedAt: Optional[str] = ""
+    commercialQuote: Optional[str] = None
     status: Optional[str] = "Under Review"
     complianceScore: Optional[int] = 85
     aiVerificationStage: Optional[str] = "Pending"
@@ -140,3 +150,28 @@ class VerificationUpdate(BaseModel):
     complianceScore: Optional[int] = 92
     aiVerificationStage: Optional[str] = "Completed"
     flags: Optional[List[str]] = []
+
+
+# ---------------- Anomaly & Admin Governance Schemas ----------------
+class AnomalyOverrideRequest(BaseModel):
+    tenderId: str
+    officerEmployeeId: str
+    justificationNotes: str
+    action: Optional[str] = "OVERRIDE_ALLOW"  # 'OVERRIDE_ALLOW' | 'DISQUALIFY_CARTEL' | 'SHOW_CAUSE'
+
+
+class AnomalyAssessmentResponse(BaseModel):
+    tenderId: str
+    tenderTitle: Optional[str] = None
+    estimatedValue: Optional[Any] = None
+    bidCount: int = 0
+    anomalyScore: float = 0.0
+    mlRawScore: float = 0.0
+    predictedAnomaly: bool = False
+    riskTier: str = "LOW_RISK"
+    recommendation: str = ""
+    ruleFlags: List[Dict[str, Any]] = []
+    linkedBidderPairs: List[Dict[str, Any]] = []
+    features: Dict[str, Any] = {}
+    evaluatedAt: str = ""
+

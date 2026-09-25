@@ -125,6 +125,46 @@ export interface Tender {
     minPerformanceQuantityPercent?: number;
     requireOEMAuth?: boolean;
   };
+  anomalyScore?: number;
+  predictedAnomaly?: boolean;
+  riskTier?: 'LOW_RISK' | 'SUSPICIOUS_PATTERNS' | 'HIGH_COLLUSION_RISK';
+  anomalyFlags?: AnomalyRuleFlag[];
+  anomalyStatus?: 'CLEARED' | 'FLAGGED' | 'OVERRIDDEN' | 'REJECTED';
+  adminOverrideNotes?: string;
+  adminOverrideBy?: string;
+  adminOverrideAt?: string;
+}
+
+export type RiskTier = 'LOW_RISK' | 'SUSPICIOUS_PATTERNS' | 'HIGH_COLLUSION_RISK';
+
+export interface AnomalyRuleFlag {
+  code: string;
+  severity: 'CRITICAL' | 'WARNING' | 'INFO';
+  title: string;
+  description: string;
+  involved_entities?: string[];
+}
+
+export interface LinkedBidderPair {
+  bidder_a: string;
+  bidder_b: string;
+  reasons: string[];
+}
+
+export interface AnomalyAssessment {
+  tender_id: string;
+  tender_title?: string;
+  estimated_value?: number | string;
+  bid_count: number;
+  anomaly_score: number;
+  ml_raw_score: number;
+  predicted_anomaly: boolean;
+  risk_tier: RiskTier;
+  recommendation: string;
+  rule_flags: AnomalyRuleFlag[];
+  linked_bidder_pairs: LinkedBidderPair[];
+  features: Record<string, number | string>;
+  evaluated_at: string;
 }
 
 export type GemSelectionMethod = 'L1' | 'RA' | 'QCBS' | 'Run_L1';

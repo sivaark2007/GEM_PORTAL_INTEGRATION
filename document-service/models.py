@@ -70,6 +70,14 @@ class TenderModel(Base):
     applied_bidders_count = Column(Integer, default=0)
     requirements = Column(JSON, nullable=True, default=list)
     gem_bidding_document = Column(JSON, nullable=True)
+    anomaly_score = Column(Integer, default=0)
+    predicted_anomaly = Column(Boolean, default=False)
+    risk_tier = Column(String(50), default="LOW_RISK")  # 'LOW_RISK' | 'SUSPICIOUS_PATTERNS' | 'HIGH_COLLUSION_RISK'
+    anomaly_flags = Column(JSON, nullable=True, default=list)
+    anomaly_status = Column(String(50), default="CLEARED")  # 'CLEARED' | 'FLAGGED' | 'OVERRIDDEN' | 'REJECTED'
+    admin_override_notes = Column(Text, nullable=True)
+    admin_override_by = Column(String(100), nullable=True)
+    admin_override_at = Column(DateTime, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -94,6 +102,14 @@ class TenderModel(Base):
             "appliedBiddersCount": self.applied_bidders_count,
             "requirements": self.requirements or [],
             "gemBiddingDocument": self.gem_bidding_document,
+            "anomalyScore": self.anomaly_score,
+            "predictedAnomaly": self.predicted_anomaly,
+            "riskTier": self.risk_tier,
+            "anomalyFlags": self.anomaly_flags or [],
+            "anomalyStatus": self.anomaly_status or "CLEARED",
+            "adminOverrideNotes": self.admin_override_notes,
+            "adminOverrideBy": self.admin_override_by,
+            "adminOverrideAt": self.admin_override_at.isoformat() if self.admin_override_at else None,
         }
 
 
@@ -105,6 +121,7 @@ class BidSubmissionModel(Base):
     tender_id = Column(String(100), ForeignKey("tenders.id", ondelete="CASCADE"), nullable=False, index=True)
     company_id = Column(String(100), ForeignKey("bidders.id", ondelete="CASCADE"), nullable=False, index=True)
     submitted_at = Column(String(100), nullable=True)
+    commercial_quote = Column(String(100), nullable=True)
     status = Column(String(50), default="Under Review")  # 'Submitted' | 'Verified' | 'Under Review' | 'Disqualified'
     compliance_score = Column(Integer, default=85)
     ai_verification_stage = Column(String(50), default="Pending")  # 'Pending' | 'OCR' | 'Govt_API' | 'Embeddings' | 'LLM_Analysis' | 'Completed'
@@ -131,6 +148,7 @@ class BidSubmissionModel(Base):
             "tenderId": self.tender_id,
             "companyId": self.company_id,
             "submittedAt": self.submitted_at,
+            "commercialQuote": self.commercial_quote,
             "status": self.status,
             "complianceScore": self.compliance_score,
             "aiVerificationStage": self.ai_verification_stage,
