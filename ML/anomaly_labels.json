@@ -1,0 +1,660 @@
+[
+    {
+        "tender_id": "GEM/2024/B/2340450",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/4753496",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/5694644",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/7656217",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/9551288",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/3053231",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/9862399",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G001",
+        "involved_pans": [
+            "TLTCV1200U",
+            "SDICK7590Q",
+            "AHKCM4492S",
+            "YLVCM6878U"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/4071556",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/3517354",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/3660245",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/6919817",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/7207788",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/7787831",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2025/B/9408225",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G002",
+        "involved_pans": [
+            "NTACG2796E",
+            "TEICN9280E",
+            "WXYZ1234L"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2023/B/1186363",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2023/B/4930521",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/1773986",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/2007399",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/3416289",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/7562376",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2024/B/8447499",
+        "anomaly_type": "BID_ROTATION",
+        "group_id": "G003",
+        "involved_pans": [
+            "LASCN6968X",
+            "EIICP3621A",
+            "IEUCO4328M"
+        ],
+        "description": "Same small group bids together and takes turns winning; cheaper outsiders get disqualified."
+    },
+    {
+        "tender_id": "GEM/2023/B/2278892",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G004",
+        "involved_pans": [
+            "SIVCK9128Q",
+            "TAACC6183Y",
+            "VLUCC4937Y"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/5193728",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G004",
+        "involved_pans": [
+            "SIVCK9128Q",
+            "TAACC6183Y",
+            "VLUCC4937Y"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/7243623",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G004",
+        "involved_pans": [
+            "SIVCK9128Q",
+            "TAACC6183Y",
+            "VLUCC4937Y"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/9890703",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G004",
+        "involved_pans": [
+            "SIVCK9128Q",
+            "TAACC6183Y",
+            "VLUCC4937Y"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/1736474",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G005",
+        "involved_pans": [
+            "UYICV7290T",
+            "CAMCN4254V",
+            "IALCA4558L"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/2753911",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G005",
+        "involved_pans": [
+            "UYICV7290T",
+            "CAMCN4254V",
+            "IALCA4558L"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/5742281",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G005",
+        "involved_pans": [
+            "UYICV7290T",
+            "CAMCN4254V",
+            "IALCA4558L"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/9453151",
+        "anomaly_type": "COVER_BIDDING",
+        "group_id": "G005",
+        "involved_pans": [
+            "UYICV7290T",
+            "CAMCN4254V",
+            "IALCA4558L"
+        ],
+        "description": "Losing bids are evenly stepped just above the winner and submitted minutes apart."
+    },
+    {
+        "tender_id": "GEM/2024/B/9247142",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G006",
+        "involved_pans": [
+            "IVDCN2725U",
+            "SLLCM9080U",
+            "ITTCB5509F"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2025/B/5232747",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G006",
+        "involved_pans": [
+            "IVDCN2725U",
+            "SLLCM9080U",
+            "ITTCB5509F"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2026/B/7227279",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G006",
+        "involved_pans": [
+            "IVDCN2725U",
+            "SLLCM9080U",
+            "ITTCB5509F"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2026/B/9415337",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G006",
+        "involved_pans": [
+            "IVDCN2725U",
+            "SLLCM9080U",
+            "ITTCB5509F"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2024/B/3902067",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G007",
+        "involved_pans": [
+            "GLTCK1786L",
+            "IOYCN7138R",
+            "ROKCN2548Y"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2024/B/5963335",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G007",
+        "involved_pans": [
+            "GLTCK1786L",
+            "IOYCN7138R",
+            "ROKCN2548Y"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2025/B/9108135",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G007",
+        "involved_pans": [
+            "GLTCK1786L",
+            "IOYCN7138R",
+            "ROKCN2548Y"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2026/B/8632578",
+        "anomaly_type": "LINKED_BIDDERS",
+        "group_id": "G007",
+        "involved_pans": [
+            "GLTCK1786L",
+            "IOYCN7138R",
+            "ROKCN2548Y"
+        ],
+        "description": "Competing bidders share registered address, a director and/or phone number."
+    },
+    {
+        "tender_id": "GEM/2025/B/2037086",
+        "anomaly_type": "THRESHOLD_SPLITTING",
+        "group_id": "G008",
+        "involved_pans": [
+            "NTACG2796E"
+        ],
+        "description": "Same buyer/item split into tenders just under the 50-lakh approval limit, same winner."
+    },
+    {
+        "tender_id": "GEM/2025/B/3989026",
+        "anomaly_type": "THRESHOLD_SPLITTING",
+        "group_id": "G008",
+        "involved_pans": [
+            "NTACG2796E"
+        ],
+        "description": "Same buyer/item split into tenders just under the 50-lakh approval limit, same winner."
+    },
+    {
+        "tender_id": "GEM/2025/B/7602991",
+        "anomaly_type": "THRESHOLD_SPLITTING",
+        "group_id": "G008",
+        "involved_pans": [
+            "NTACG2796E"
+        ],
+        "description": "Same buyer/item split into tenders just under the 50-lakh approval limit, same winner."
+    },
+    {
+        "tender_id": "GEM/2025/B/2207248",
+        "anomaly_type": "THRESHOLD_SPLITTING",
+        "group_id": "G009",
+        "involved_pans": [
+            "NOVCN2276E"
+        ],
+        "description": "Same buyer/item split into tenders just under the 50-lakh approval limit, same winner."
+    },
+    {
+        "tender_id": "GEM/2025/B/6872873",
+        "anomaly_type": "THRESHOLD_SPLITTING",
+        "group_id": "G009",
+        "involved_pans": [
+            "NOVCN2276E"
+        ],
+        "description": "Same buyer/item split into tenders just under the 50-lakh approval limit, same winner."
+    },
+    {
+        "tender_id": "GEM/2025/B/7005885",
+        "anomaly_type": "THRESHOLD_SPLITTING",
+        "group_id": "G009",
+        "involved_pans": [
+            "NOVCN2276E"
+        ],
+        "description": "Same buyer/item split into tenders just under the 50-lakh approval limit, same winner."
+    },
+    {
+        "tender_id": "GEM/2026/B/1685209",
+        "anomaly_type": "NEW_FIRM_LARGE_WIN",
+        "group_id": "G010",
+        "involved_pans": [
+            "DEICV6398H"
+        ],
+        "description": "Firm registered only months earlier wins a very high-value tender."
+    },
+    {
+        "tender_id": "GEM/2025/B/6682594",
+        "anomaly_type": "NEW_FIRM_LARGE_WIN",
+        "group_id": "G011",
+        "involved_pans": [
+            "YTICN8545W"
+        ],
+        "description": "Firm registered only months earlier wins a very high-value tender."
+    },
+    {
+        "tender_id": "GEM/2025/B/7061849",
+        "anomaly_type": "NEW_FIRM_LARGE_WIN",
+        "group_id": "G012",
+        "involved_pans": [
+            "EDICE6651X"
+        ],
+        "description": "Firm registered only months earlier wins a very high-value tender."
+    },
+    {
+        "tender_id": "GEM/2025/B/5092158",
+        "anomaly_type": "NEW_FIRM_LARGE_WIN",
+        "group_id": "G013",
+        "involved_pans": [
+            "LTACZ3321Q"
+        ],
+        "description": "Firm registered only months earlier wins a very high-value tender."
+    },
+    {
+        "tender_id": "GEM/2025/B/7324779",
+        "anomaly_type": "PREDATORY_LOW_BID",
+        "group_id": "G014",
+        "involved_pans": [
+            "SDICK7590Q"
+        ],
+        "description": "Winning price far below the category norm; contract later delayed or terminated."
+    },
+    {
+        "tender_id": "GEM/2024/B/1024396",
+        "anomaly_type": "PREDATORY_LOW_BID",
+        "group_id": "G015",
+        "involved_pans": [
+            "SALCS4585F"
+        ],
+        "description": "Winning price far below the category norm; contract later delayed or terminated."
+    },
+    {
+        "tender_id": "GEM/2025/B/9591125",
+        "anomaly_type": "PREDATORY_LOW_BID",
+        "group_id": "G016",
+        "involved_pans": [
+            "AOMCH9732Z"
+        ],
+        "description": "Winning price far below the category norm; contract later delayed or terminated."
+    },
+    {
+        "tender_id": "GEM/2025/B/6379149",
+        "anomaly_type": "PREDATORY_LOW_BID",
+        "group_id": "G017",
+        "involved_pans": [
+            "ONHCT5215Y"
+        ],
+        "description": "Winning price far below the category norm; contract later delayed or terminated."
+    },
+    {
+        "tender_id": "GEM/2025/B/1669818",
+        "anomaly_type": "PREDATORY_LOW_BID",
+        "group_id": "G018",
+        "involved_pans": [
+            "VLUCC4937Y"
+        ],
+        "description": "Winning price far below the category norm; contract later delayed or terminated."
+    },
+    {
+        "tender_id": "GEM/2024/B/7984575",
+        "anomaly_type": "SHORT_WINDOW_SINGLE_BIDDER",
+        "group_id": "G019",
+        "involved_pans": [
+            "MATCS5262F"
+        ],
+        "description": "Very short bidding window, one bidder, award at estimate; repeated for the same buyer."
+    },
+    {
+        "tender_id": "GEM/2024/B/8484986",
+        "anomaly_type": "SHORT_WINDOW_SINGLE_BIDDER",
+        "group_id": "G019",
+        "involved_pans": [
+            "MATCS5262F"
+        ],
+        "description": "Very short bidding window, one bidder, award at estimate; repeated for the same buyer."
+    },
+    {
+        "tender_id": "GEM/2023/B/4777499",
+        "anomaly_type": "SHORT_WINDOW_SINGLE_BIDDER",
+        "group_id": "G020",
+        "involved_pans": [
+            "LDLCS6608T"
+        ],
+        "description": "Very short bidding window, one bidder, award at estimate; repeated for the same buyer."
+    },
+    {
+        "tender_id": "GEM/2023/B/4862285",
+        "anomaly_type": "SHORT_WINDOW_SINGLE_BIDDER",
+        "group_id": "G020",
+        "involved_pans": [
+            "LDLCS6608T"
+        ],
+        "description": "Very short bidding window, one bidder, award at estimate; repeated for the same buyer."
+    },
+    {
+        "tender_id": "GEM/2024/B/3985272",
+        "anomaly_type": "SHORT_WINDOW_SINGLE_BIDDER",
+        "group_id": "G021",
+        "involved_pans": [
+            "QRSTU9012N"
+        ],
+        "description": "Very short bidding window, one bidder, award at estimate; repeated for the same buyer."
+    },
+    {
+        "tender_id": "GEM/2025/B/1297174",
+        "anomaly_type": "SHORT_WINDOW_SINGLE_BIDDER",
+        "group_id": "G021",
+        "involved_pans": [
+            "QRSTU9012N"
+        ],
+        "description": "Very short bidding window, one bidder, award at estimate; repeated for the same buyer."
+    },
+    {
+        "tender_id": "GEM/2024/B/2456631",
+        "anomaly_type": "IDENTICAL_PRICES",
+        "group_id": "G022",
+        "involved_pans": [
+            "PTSCS3846G",
+            "GRECS8855U",
+            "TTACV3194J"
+        ],
+        "description": "Three bidders quote virtually the same price."
+    },
+    {
+        "tender_id": "GEM/2026/B/7675111",
+        "anomaly_type": "IDENTICAL_PRICES",
+        "group_id": "G023",
+        "involved_pans": [
+            "GRECS8855U",
+            "PTSCS3846G",
+            "GTNCS8260W"
+        ],
+        "description": "Three bidders quote virtually the same price."
+    },
+    {
+        "tender_id": "GEM/2026/B/8573588",
+        "anomaly_type": "IDENTICAL_PRICES",
+        "group_id": "G024",
+        "involved_pans": [
+            "IDECI1472W",
+            "PTSCS3846G",
+            "VTHCO7484K"
+        ],
+        "description": "Three bidders quote virtually the same price."
+    },
+    {
+        "tender_id": "GEM/2024/B/6514298",
+        "anomaly_type": "IDENTICAL_PRICES",
+        "group_id": "G025",
+        "involved_pans": [
+            "SDICV6952Y",
+            "SPDCK2310Q",
+            "GLDCS1568S"
+        ],
+        "description": "Three bidders quote virtually the same price."
+    },
+    {
+        "tender_id": "GEM/2024/B/9055907",
+        "anomaly_type": "IDENTICAL_PRICES",
+        "group_id": "G026",
+        "involved_pans": [
+            "NOVCN2276E",
+            "GLDCS1568S",
+            "SIVCK9128Q"
+        ],
+        "description": "Three bidders quote virtually the same price."
+    }
+]

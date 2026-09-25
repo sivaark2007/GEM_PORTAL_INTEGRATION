@@ -1,0 +1,5202 @@
+[
+    {
+        "tender_id": "GEM/2023/B/5519776",
+        "winner_pan": "AJGCV8869G",
+        "winner_name": "Vijay Energy Traders Pvt Ltd",
+        "award_price": 142360017,
+        "award_date": "2023-01-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2716756",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 7128518,
+        "award_date": "2023-01-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8628047",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 5337040,
+        "award_date": "2023-02-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1038690",
+        "winner_pan": "TAECM8483A",
+        "winner_name": "Mahalakshmi Pharma Distributors Private Limited",
+        "award_price": 431860,
+        "award_date": "2023-02-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9269511",
+        "winner_pan": "DODCN7246M",
+        "winner_name": "Navjyoti Technologies Pvt Ltd",
+        "award_price": 332475,
+        "award_date": "2023-02-20",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2063522",
+        "winner_pan": "EPCCD9653B",
+        "winner_name": "Deccan Computer Systems Private Limited",
+        "award_price": 1118575,
+        "award_date": "2023-02-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4133092",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 6548789,
+        "award_date": "2023-02-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2720773",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 253335617,
+        "award_date": "2023-03-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2018157",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 21646659,
+        "award_date": "2023-03-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6429229",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 16478058,
+        "award_date": "2023-03-03",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1054467",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 9733514,
+        "award_date": "2023-03-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8230134",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 140437594,
+        "award_date": "2023-03-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3672704",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 30333477,
+        "award_date": "2023-03-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3850405",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 19412735,
+        "award_date": "2023-03-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2981427",
+        "winner_pan": "TLICA3496U",
+        "winner_name": "Anand Surgicals Private Limited",
+        "award_price": 844079,
+        "award_date": "2023-03-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7125131",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 117719792,
+        "award_date": "2023-03-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6332643",
+        "winner_pan": "AIICV7518H",
+        "winner_name": "Vaigai Pharma Distributors Private Limited",
+        "award_price": 18467925,
+        "award_date": "2023-03-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8362096",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 1191427,
+        "award_date": "2023-03-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8439765",
+        "winner_pan": "GLDCS1568S",
+        "winner_name": "Sagar Surgicals Private Limited",
+        "award_price": 9621093,
+        "award_date": "2023-03-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1797901",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 1607343,
+        "award_date": "2023-03-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7106435",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1464494,
+        "award_date": "2023-03-23",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8038277",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 117966493,
+        "award_date": "2023-03-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2122845",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 10312990,
+        "award_date": "2023-03-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5355218",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 6613981,
+        "award_date": "2023-04-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2487947",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 89639915,
+        "award_date": "2023-04-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4615930",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 7184587,
+        "award_date": "2023-04-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5176325",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 17749552,
+        "award_date": "2023-04-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3640148",
+        "winner_pan": "ONHCT5215Y",
+        "winner_name": "Trident Infotech Pvt Ltd",
+        "award_price": 2135607,
+        "award_date": "2023-04-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8012366",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 36613851,
+        "award_date": "2023-04-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1136727",
+        "winner_pan": "OLSCM5133C",
+        "winner_name": "Mahalakshmi Digital Solutions Private Limited",
+        "award_price": 2809073,
+        "award_date": "2023-04-24",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2346370",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 3877379,
+        "award_date": "2023-04-27",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6429492",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 1989688,
+        "award_date": "2023-04-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2673186",
+        "winner_pan": "PHUCH2380H",
+        "winner_name": "Horizon Pharma Distributors Pvt Ltd",
+        "award_price": 16456396,
+        "award_date": "2023-05-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8872354",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 12305135,
+        "award_date": "2023-05-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8396001",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 1814425,
+        "award_date": "2023-05-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1441244",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 1272138,
+        "award_date": "2023-05-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9301670",
+        "winner_pan": "LVACV9289W",
+        "winner_name": "Vaigai Land Developers Private Limited",
+        "award_price": 1258442,
+        "award_date": "2023-05-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9858366",
+        "winner_pan": "CAMCN4254V",
+        "winner_name": "Narmada Computer Systems Private Limited",
+        "award_price": 717361,
+        "award_date": "2023-05-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3219200",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 7181182,
+        "award_date": "2023-05-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1162860",
+        "winner_pan": "MNOPQ5678M",
+        "winner_name": "MNO Office Equipment Pvt Ltd",
+        "award_price": 5468406,
+        "award_date": "2023-05-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2877034",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 74201653,
+        "award_date": "2023-05-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7676035",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 7628698,
+        "award_date": "2023-05-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9418809",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 17033937,
+        "award_date": "2023-05-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6035780",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 69386792,
+        "award_date": "2023-05-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9181262",
+        "winner_pan": "LLACH5835R",
+        "winner_name": "Himalaya Medical Supplies Limited",
+        "award_price": 6435868,
+        "award_date": "2023-05-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2403738",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 6206656,
+        "award_date": "2023-06-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1171259",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 29070709,
+        "award_date": "2023-06-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7384324",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 67367759,
+        "award_date": "2023-06-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4192727",
+        "winner_pan": "CAMCN4254V",
+        "winner_name": "Narmada Computer Systems Private Limited",
+        "award_price": 1329003,
+        "award_date": "2023-06-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6100742",
+        "winner_pan": "OGHCE4978J",
+        "winner_name": "Evergreen Technologies Limited",
+        "award_price": 1447310,
+        "award_date": "2023-06-07",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4833133",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1181400,
+        "award_date": "2023-06-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9056551",
+        "winner_pan": "AJGCV8869G",
+        "winner_name": "Vijay Energy Traders Pvt Ltd",
+        "award_price": 78665453,
+        "award_date": "2023-06-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8243337",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 96727628,
+        "award_date": "2023-06-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8554947",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 2752315,
+        "award_date": "2023-06-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9301232",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 59475684,
+        "award_date": "2023-06-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3881270",
+        "winner_pan": "TTRCK4063M",
+        "winner_name": "Kaveri Oil and Gas Services Pvt Ltd",
+        "award_price": 25126986,
+        "award_date": "2023-06-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8431314",
+        "winner_pan": "VDRCN8780A",
+        "winner_name": "Narmada Electronics Private Limited",
+        "award_price": 1965209,
+        "award_date": "2023-06-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3380956",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 9343836,
+        "award_date": "2023-06-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1338131",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 203166165,
+        "award_date": "2023-06-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3457722",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 134145965,
+        "award_date": "2023-06-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3596356",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 31081355,
+        "award_date": "2023-07-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6614873",
+        "winner_pan": "PQRCD9012H",
+        "winner_name": "PQR Electronics Private Limited",
+        "award_price": 2080684,
+        "award_date": "2023-07-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6321914",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 702283,
+        "award_date": "2023-07-09",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6352364",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 225499247,
+        "award_date": "2023-07-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2287024",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 2659318,
+        "award_date": "2023-07-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5402967",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 21454599,
+        "award_date": "2023-07-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7871771",
+        "winner_pan": "CIHCT4212E",
+        "winner_name": "Trident Healthcare Systems Limited",
+        "award_price": 7451278,
+        "award_date": "2023-07-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2629867",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 65420351,
+        "award_date": "2023-07-24",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8722037",
+        "winner_pan": "VLUCC4937Y",
+        "winner_name": "Coastal Medical Supplies Pvt Ltd",
+        "award_price": 4456402,
+        "award_date": "2023-07-24",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4400718",
+        "winner_pan": "IAACK7813Y",
+        "winner_name": "Kohinoor Estates Private Limited",
+        "award_price": 16008457,
+        "award_date": "2023-07-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3361529",
+        "winner_pan": "TODCK5921B",
+        "winner_name": "Kohinoor Healthcare Systems Private Limited",
+        "award_price": 5206218,
+        "award_date": "2023-07-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4343730",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 4314460,
+        "award_date": "2023-07-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3790514",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 26461402,
+        "award_date": "2023-07-30",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4638895",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1006405,
+        "award_date": "2023-07-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1960353",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 263775181,
+        "award_date": "2023-08-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2638852",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 11868870,
+        "award_date": "2023-08-02",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1069752",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 20133286,
+        "award_date": "2023-08-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9422975",
+        "winner_pan": "SDICV6952Y",
+        "winner_name": "Vijay Healthcare Systems Private Limited",
+        "award_price": 8084782,
+        "award_date": "2023-08-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8177839",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 624675,
+        "award_date": "2023-08-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9961240",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 9328271,
+        "award_date": "2023-08-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7683364",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 87402244,
+        "award_date": "2023-08-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4846296",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 116544214,
+        "award_date": "2023-08-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8679933",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 175422144,
+        "award_date": "2023-08-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4873783",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 112860853,
+        "award_date": "2023-08-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2186553",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 115679795,
+        "award_date": "2023-08-19",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8176399",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 10426298,
+        "award_date": "2023-08-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8165791",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 35292052,
+        "award_date": "2023-08-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7994362",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 183057112,
+        "award_date": "2023-08-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5119887",
+        "winner_pan": "YSECI5844J",
+        "winner_name": "Indus Healthcare Systems Pvt Ltd",
+        "award_price": 2765125,
+        "award_date": "2023-08-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1214510",
+        "winner_pan": "EIICP3621A",
+        "winner_name": "Pioneer Energy Traders Limited",
+        "award_price": 28404964,
+        "award_date": "2023-08-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9727650",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 14008448,
+        "award_date": "2023-09-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1430351",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 2412603,
+        "award_date": "2023-09-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9073487",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 50208656,
+        "award_date": "2023-09-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4830696",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 6813181,
+        "award_date": "2023-09-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2636535",
+        "winner_pan": "FGHIJ7890Q",
+        "winner_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "award_price": 1141664,
+        "award_date": "2023-09-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4481990",
+        "winner_pan": "TEICN9280E",
+        "winner_name": "National Technologies Limited",
+        "award_price": 2634095,
+        "award_date": "2023-09-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7700274",
+        "winner_pan": "PHUCH2380H",
+        "winner_name": "Horizon Pharma Distributors Pvt Ltd",
+        "award_price": 7334398,
+        "award_date": "2023-09-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6712098",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 183155695,
+        "award_date": "2023-09-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4798950",
+        "winner_pan": "ADTCS8894K",
+        "winner_name": "Shakti Pharma Distributors Pvt Ltd",
+        "award_price": 2492120,
+        "award_date": "2023-09-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8510091",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 270050741,
+        "award_date": "2023-09-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3654688",
+        "winner_pan": "XYZAB5678G",
+        "winner_name": "XYZ Solutions Private Limited",
+        "award_price": 323721,
+        "award_date": "2023-09-19",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8520468",
+        "winner_pan": "SPDCK2310Q",
+        "winner_name": "Kaveri Medical Supplies Pvt Ltd",
+        "award_price": 2361449,
+        "award_date": "2023-09-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9561996",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 20765533,
+        "award_date": "2023-09-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8178627",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 1146302,
+        "award_date": "2023-09-26",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1979271",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 215965911,
+        "award_date": "2023-09-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8506325",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 2448416,
+        "award_date": "2023-09-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1802525",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 113613352,
+        "award_date": "2023-09-28",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6695947",
+        "winner_pan": "VDRCN8780A",
+        "winner_name": "Narmada Electronics Private Limited",
+        "award_price": 1547913,
+        "award_date": "2023-09-29",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8137060",
+        "winner_pan": "LTECH8973E",
+        "winner_name": "Horizon Biomedical Limited",
+        "award_price": 1016526,
+        "award_date": "2023-09-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3955709",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 48427780,
+        "award_date": "2023-10-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2129335",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 25391280,
+        "award_date": "2023-10-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1024371",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 34386700,
+        "award_date": "2023-10-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8614650",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 4412809,
+        "award_date": "2023-10-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4777499",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 40074170,
+        "award_date": "2023-10-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5475579",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 43045828,
+        "award_date": "2023-10-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7683619",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 1225845,
+        "award_date": "2023-10-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5870086",
+        "winner_pan": "DNSCU4919W",
+        "winner_name": "Unity Diagnostics Pvt Ltd",
+        "award_price": 29221896,
+        "award_date": "2023-10-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4461896",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 14287168,
+        "award_date": "2023-10-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8831655",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 225510299,
+        "award_date": "2023-10-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5936237",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 4975416,
+        "award_date": "2023-10-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7336179",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 54372126,
+        "award_date": "2023-10-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7093262",
+        "winner_pan": "EPCCD9653B",
+        "winner_name": "Deccan Computer Systems Private Limited",
+        "award_price": 68119901,
+        "award_date": "2023-10-21",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5658481",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 65700636,
+        "award_date": "2023-10-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1697133",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 6412854,
+        "award_date": "2023-10-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7106894",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 6197085,
+        "award_date": "2023-10-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5929115",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 2734402,
+        "award_date": "2023-10-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7551085",
+        "winner_pan": "OAMCA5128Z",
+        "winner_name": "Alpha Computer Systems Private Limited",
+        "award_price": 2755634,
+        "award_date": "2023-10-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9713066",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 5815874,
+        "award_date": "2023-10-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4700899",
+        "winner_pan": "LTECH8973E",
+        "winner_name": "Horizon Biomedical Limited",
+        "award_price": 10777090,
+        "award_date": "2023-11-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9066726",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 918557,
+        "award_date": "2023-11-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7278041",
+        "winner_pan": "EIECT4131K",
+        "winner_name": "Tejas Surgicals Private Limited",
+        "award_price": 5849735,
+        "award_date": "2023-11-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8322991",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 21083627,
+        "award_date": "2023-11-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1268971",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 13439781,
+        "award_date": "2023-11-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2836929",
+        "winner_pan": "LCMCA1590M",
+        "winner_name": "Apex Computer Systems Pvt Ltd",
+        "award_price": 4139023,
+        "award_date": "2023-11-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3312348",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 5916690,
+        "award_date": "2023-11-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9320847",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 94504756,
+        "award_date": "2023-11-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5883003",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 6303895,
+        "award_date": "2023-11-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8578973",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 95489987,
+        "award_date": "2023-11-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1186363",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 92170800,
+        "award_date": "2023-11-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2038256",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 20005299,
+        "award_date": "2023-11-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5189693",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1680933,
+        "award_date": "2023-12-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6285584",
+        "winner_pan": "OAMCA5128Z",
+        "winner_name": "Alpha Computer Systems Private Limited",
+        "award_price": 11883868,
+        "award_date": "2023-12-07",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2855501",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 1879544,
+        "award_date": "2023-12-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8859053",
+        "winner_pan": "IDECI1472W",
+        "winner_name": "Indus Fuel Logistics Private Limited",
+        "award_price": 88231548,
+        "award_date": "2023-12-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4862285",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 164070465,
+        "award_date": "2023-12-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6682181",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 120914466,
+        "award_date": "2023-12-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2814314",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 4884923,
+        "award_date": "2023-12-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8721526",
+        "winner_pan": "LOLCO4705P",
+        "winner_name": "Orion Realty Limited",
+        "award_price": 12854496,
+        "award_date": "2023-12-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/5853499",
+        "winner_pan": "TTRCK4063M",
+        "winner_name": "Kaveri Oil and Gas Services Pvt Ltd",
+        "award_price": 225442849,
+        "award_date": "2023-12-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2278892",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 3971755,
+        "award_date": "2023-12-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4502832",
+        "winner_pan": "TLICA3496U",
+        "winner_name": "Anand Surgicals Private Limited",
+        "award_price": 7489075,
+        "award_date": "2023-12-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6559713",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 6714097,
+        "award_date": "2023-12-26",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6478315",
+        "winner_pan": "IESCA4657X",
+        "winner_name": "Anand Township Developers Private Limited",
+        "award_price": 24862097,
+        "award_date": "2023-12-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2578520",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 9073032,
+        "award_date": "2023-12-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6510925",
+        "winner_pan": "LTECH8973E",
+        "winner_name": "Horizon Biomedical Limited",
+        "award_price": 15436210,
+        "award_date": "2024-01-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9572172",
+        "winner_pan": "TAACC6183Y",
+        "winner_name": "Coastal Pharma Distributors Private Limited",
+        "award_price": 5951567,
+        "award_date": "2024-01-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9652313",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 1468696,
+        "award_date": "2024-01-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2782083",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 100579287,
+        "award_date": "2024-01-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8293217",
+        "winner_pan": "RSTUV7890K",
+        "winner_name": "RST Technologies Limited",
+        "award_price": 1029471,
+        "award_date": "2024-01-12",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2972292",
+        "winner_pan": "AOMCH9732Z",
+        "winner_name": "Himalaya Biomedical Limited",
+        "award_price": 29573255,
+        "award_date": "2024-01-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1779553",
+        "winner_pan": "TLICA3496U",
+        "winner_name": "Anand Surgicals Private Limited",
+        "award_price": 4452451,
+        "award_date": "2024-01-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2737903",
+        "winner_pan": "QRSTU9012N",
+        "winner_name": "QRS Digital Systems Pvt Ltd",
+        "award_price": 14280764,
+        "award_date": "2024-01-18",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2023/B/1893719",
+        "winner_pan": "OPLCT9903N",
+        "winner_name": "Tejas Technologies Private Limited",
+        "award_price": 4854889,
+        "award_date": "2024-01-20",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9812554",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 26676243,
+        "award_date": "2024-01-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/9687172",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 1774016,
+        "award_date": "2024-01-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7917271",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 1984806,
+        "award_date": "2024-01-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3996787",
+        "winner_pan": "IDECI1472W",
+        "winner_name": "Indus Fuel Logistics Private Limited",
+        "award_price": 85462564,
+        "award_date": "2024-01-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4002885",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 1019796,
+        "award_date": "2024-01-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4930521",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 92667600,
+        "award_date": "2024-01-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/2126668",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 33731797,
+        "award_date": "2024-01-31",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2023/B/6536605",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 8116102,
+        "award_date": "2024-02-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7758869",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 3634041,
+        "award_date": "2024-02-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/4018281",
+        "winner_pan": "XYZAB5678G",
+        "winner_name": "XYZ Solutions Private Limited",
+        "award_price": 4546731,
+        "award_date": "2024-02-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3252626",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 123914520,
+        "award_date": "2024-02-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/3895499",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 48640088,
+        "award_date": "2024-02-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/8614615",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 87274228,
+        "award_date": "2024-02-11",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8484986",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 44811846,
+        "award_date": "2024-02-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5432547",
+        "winner_pan": "GLDCS1568S",
+        "winner_name": "Sagar Surgicals Private Limited",
+        "award_price": 18546732,
+        "award_date": "2024-02-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2863660",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 94384885,
+        "award_date": "2024-02-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2023/B/7971498",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 447680043,
+        "award_date": "2024-02-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7243623",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 1146771,
+        "award_date": "2024-02-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4293151",
+        "winner_pan": "ILACA8896D",
+        "winner_name": "Alpha Infra Holdings Limited",
+        "award_price": 15395683,
+        "award_date": "2024-02-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6937412",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 3668111,
+        "award_date": "2024-02-26",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4503204",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 29609184,
+        "award_date": "2024-02-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9379307",
+        "winner_pan": "TEECH8613S",
+        "winner_name": "Himalaya Energy Traders Private Limited",
+        "award_price": 125962353,
+        "award_date": "2024-02-28",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3649267",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 9146840,
+        "award_date": "2024-02-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4572013",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 2375038,
+        "award_date": "2024-02-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5071537",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 42397788,
+        "award_date": "2024-03-01",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5040706",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 1186506,
+        "award_date": "2024-03-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8337578",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 3572554,
+        "award_date": "2024-03-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9298405",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 3452112,
+        "award_date": "2024-03-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3354078",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 7286970,
+        "award_date": "2024-03-21",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1071603",
+        "winner_pan": "OPLCT9903N",
+        "winner_name": "Tejas Technologies Private Limited",
+        "award_price": 2556283,
+        "award_date": "2024-03-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1985840",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 3493345,
+        "award_date": "2024-03-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5706837",
+        "winner_pan": "TLICA3496U",
+        "winner_name": "Anand Surgicals Private Limited",
+        "award_price": 1206934,
+        "award_date": "2024-03-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2895920",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 7731377,
+        "award_date": "2024-03-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3211698",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 542713,
+        "award_date": "2024-03-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6713849",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 538060,
+        "award_date": "2024-03-28",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6039762",
+        "winner_pan": "IDECI1472W",
+        "winner_name": "Indus Fuel Logistics Private Limited",
+        "award_price": 57732602,
+        "award_date": "2024-03-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5901155",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 7660024,
+        "award_date": "2024-03-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6280331",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 6461615,
+        "award_date": "2024-03-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9551288",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 15035944,
+        "award_date": "2024-03-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2262238",
+        "winner_pan": "DHLCA5072R",
+        "winner_name": "Alpha Networks Limited",
+        "award_price": 1270234,
+        "award_date": "2024-04-02",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8950602",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 310631236,
+        "award_date": "2024-04-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5993840",
+        "winner_pan": "ABCDE3456P",
+        "winner_name": "ABC Industrial Automation Pvt Ltd",
+        "award_price": 7628133,
+        "award_date": "2024-04-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2068863",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 138069485,
+        "award_date": "2024-04-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4819649",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 3430791,
+        "award_date": "2024-04-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7984575",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 152409254,
+        "award_date": "2024-04-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5281662",
+        "winner_pan": "SODCU7227C",
+        "winner_name": "Unity Digital Solutions Limited",
+        "award_price": 4558020,
+        "award_date": "2024-04-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1839331",
+        "winner_pan": "LVTCT4351C",
+        "winner_name": "Trident Infra Holdings Pvt Ltd",
+        "award_price": 177055187,
+        "award_date": "2024-04-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3197504",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 774262,
+        "award_date": "2024-04-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4996840",
+        "winner_pan": "IETCG4651S",
+        "winner_name": "Godavari Electronics Pvt Ltd",
+        "award_price": 979229,
+        "award_date": "2024-04-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3472192",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 1979948,
+        "award_date": "2024-04-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2293159",
+        "winner_pan": "SPDCK2310Q",
+        "winner_name": "Kaveri Medical Supplies Pvt Ltd",
+        "award_price": 1272158,
+        "award_date": "2024-04-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4068301",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 7347061,
+        "award_date": "2024-04-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5290929",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 1555096,
+        "award_date": "2024-04-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8447499",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 95230800,
+        "award_date": "2024-04-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5257217",
+        "winner_pan": "IINCN2403Z",
+        "winner_name": "National Pharma Distributors Pvt Ltd",
+        "award_price": 3447077,
+        "award_date": "2024-04-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2456631",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 195478850,
+        "award_date": "2024-04-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3468580",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 8858935,
+        "award_date": "2024-04-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7129662",
+        "winner_pan": "ICSCV6053B",
+        "winner_name": "Vertex Electronics Limited",
+        "award_price": 2077458,
+        "award_date": "2024-04-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7190502",
+        "winner_pan": "ICSCV6053B",
+        "winner_name": "Vertex Electronics Limited",
+        "award_price": 3871695,
+        "award_date": "2024-04-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8805780",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 11972960,
+        "award_date": "2024-05-01",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9890703",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 3203932,
+        "award_date": "2024-05-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2536329",
+        "winner_pan": "PUCCL3353L",
+        "winner_name": "Lotus Surgicals Private Limited",
+        "award_price": 67154163,
+        "award_date": "2024-05-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8449415",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 19200896,
+        "award_date": "2024-05-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6847354",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 2405797,
+        "award_date": "2024-05-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1199105",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 4361435,
+        "award_date": "2024-05-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7370804",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 18816510,
+        "award_date": "2024-05-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3988274",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 29616244,
+        "award_date": "2024-05-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7933281",
+        "winner_pan": "DDICV9576M",
+        "winner_name": "Vaigai Lubricants Pvt Ltd",
+        "award_price": 72037831,
+        "award_date": "2024-05-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3306185",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 23853720,
+        "award_date": "2024-05-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3170095",
+        "winner_pan": "TAACC6183Y",
+        "winner_name": "Coastal Pharma Distributors Private Limited",
+        "award_price": 2103804,
+        "award_date": "2024-05-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5598828",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 1091018,
+        "award_date": "2024-05-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5794331",
+        "winner_pan": "ERSCE4643X",
+        "winner_name": "Evergreen Infra Holdings Private Limited",
+        "award_price": 46525521,
+        "award_date": "2024-05-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6731686",
+        "winner_pan": "YSECI5844J",
+        "winner_name": "Indus Healthcare Systems Pvt Ltd",
+        "award_price": 5691516,
+        "award_date": "2024-05-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3962885",
+        "winner_pan": "OLSCM5133C",
+        "winner_name": "Mahalakshmi Digital Solutions Private Limited",
+        "award_price": 4389128,
+        "award_date": "2024-05-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2753911",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 1797698,
+        "award_date": "2024-05-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2824240",
+        "winner_pan": "EIECT4131K",
+        "winner_name": "Tejas Surgicals Private Limited",
+        "award_price": 3700776,
+        "award_date": "2024-05-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2562351",
+        "winner_pan": "ABCDE3456P",
+        "winner_name": "ABC Industrial Automation Pvt Ltd",
+        "award_price": 4098951,
+        "award_date": "2024-05-29",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5193728",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 7515781,
+        "award_date": "2024-05-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6514298",
+        "winner_pan": "SPDCK2310Q",
+        "winner_name": "Kaveri Medical Supplies Pvt Ltd",
+        "award_price": 10824395,
+        "award_date": "2024-05-30",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2247470",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 13556972,
+        "award_date": "2024-05-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9055907",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 9194740,
+        "award_date": "2024-06-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2976095",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 4826557,
+        "award_date": "2024-06-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1124589",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 1375254,
+        "award_date": "2024-06-03",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6414241",
+        "winner_pan": "LVACV9289W",
+        "winner_name": "Vaigai Land Developers Private Limited",
+        "award_price": 3743989,
+        "award_date": "2024-06-05",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4405459",
+        "winner_pan": "ABCDE3456P",
+        "winner_name": "ABC Industrial Automation Pvt Ltd",
+        "award_price": 5980969,
+        "award_date": "2024-06-05",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4157389",
+        "winner_pan": "SASCS6869H",
+        "winner_name": "Surya Estates Pvt Ltd",
+        "award_price": 17743873,
+        "award_date": "2024-06-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7617252",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 1756891,
+        "award_date": "2024-06-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4771935",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 6760958,
+        "award_date": "2024-06-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5694644",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 14805179,
+        "award_date": "2024-06-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1745151",
+        "winner_pan": "AIICV7518H",
+        "winner_name": "Vaigai Pharma Distributors Private Limited",
+        "award_price": 1077385,
+        "award_date": "2024-06-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9099936",
+        "winner_pan": "ONHCT5215Y",
+        "winner_name": "Trident Infotech Pvt Ltd",
+        "award_price": 2170271,
+        "award_date": "2024-06-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4045024",
+        "winner_pan": "DHLCA5072R",
+        "winner_name": "Alpha Networks Limited",
+        "award_price": 4493586,
+        "award_date": "2024-06-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1773986",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 90765900,
+        "award_date": "2024-06-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4501464",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 49391585,
+        "award_date": "2024-06-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2122074",
+        "winner_pan": "ILACA8896D",
+        "winner_name": "Alpha Infra Holdings Limited",
+        "award_price": 294264759,
+        "award_date": "2024-06-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5255053",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 9643537,
+        "award_date": "2024-06-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7940865",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 4554948,
+        "award_date": "2024-06-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8422287",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 19090302,
+        "award_date": "2024-06-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3400426",
+        "winner_pan": "TTRCK4063M",
+        "winner_name": "Kaveri Oil and Gas Services Pvt Ltd",
+        "award_price": 57950683,
+        "award_date": "2024-06-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7058607",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 277577479,
+        "award_date": "2024-06-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3852796",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 7006697,
+        "award_date": "2024-06-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1869210",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 7738523,
+        "award_date": "2024-06-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6849932",
+        "winner_pan": "FGHIJ7890Q",
+        "winner_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "award_price": 1640343,
+        "award_date": "2024-06-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7371999",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 41974183,
+        "award_date": "2024-06-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3051509",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 2766127,
+        "award_date": "2024-06-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5119360",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 39844392,
+        "award_date": "2024-06-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6975532",
+        "winner_pan": "DDICV9576M",
+        "winner_name": "Vaigai Lubricants Pvt Ltd",
+        "award_price": 112365801,
+        "award_date": "2024-06-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2042209",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 3684818,
+        "award_date": "2024-07-03",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5996426",
+        "winner_pan": "TODCK5921B",
+        "winner_name": "Kohinoor Healthcare Systems Private Limited",
+        "award_price": 4522138,
+        "award_date": "2024-07-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1051692",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 2448805,
+        "award_date": "2024-07-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8260198",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 15027085,
+        "award_date": "2024-07-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6190960",
+        "winner_pan": "OGHCE4978J",
+        "winner_name": "Evergreen Technologies Limited",
+        "award_price": 1850646,
+        "award_date": "2024-07-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4963537",
+        "winner_pan": "SPECU5564C",
+        "winner_name": "Unity Estates Pvt Ltd",
+        "award_price": 15234193,
+        "award_date": "2024-07-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2820230",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 5365442,
+        "award_date": "2024-07-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2852481",
+        "winner_pan": "ERSCE4643X",
+        "winner_name": "Evergreen Infra Holdings Private Limited",
+        "award_price": 12813679,
+        "award_date": "2024-07-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9727917",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 762835,
+        "award_date": "2024-07-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5671585",
+        "winner_pan": "YSECI5844J",
+        "winner_name": "Indus Healthcare Systems Pvt Ltd",
+        "award_price": 34475024,
+        "award_date": "2024-07-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9089070",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 136700920,
+        "award_date": "2024-08-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5742281",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 6438673,
+        "award_date": "2024-08-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2329731",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 2414212,
+        "award_date": "2024-08-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3052321",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 394186090,
+        "award_date": "2024-08-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3033459",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 69938723,
+        "award_date": "2024-08-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9574497",
+        "winner_pan": "PHUCH2380H",
+        "winner_name": "Horizon Pharma Distributors Pvt Ltd",
+        "award_price": 3352908,
+        "award_date": "2024-08-15",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7735189",
+        "winner_pan": "CIHCT4212E",
+        "winner_name": "Trident Healthcare Systems Limited",
+        "award_price": 2726074,
+        "award_date": "2024-08-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3416289",
+        "winner_pan": "EIICP3621A",
+        "winner_name": "Pioneer Energy Traders Limited",
+        "award_price": 99847886,
+        "award_date": "2024-08-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2260976",
+        "winner_pan": "IAACK7813Y",
+        "winner_name": "Kohinoor Estates Private Limited",
+        "award_price": 2557267,
+        "award_date": "2024-08-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2255891",
+        "winner_pan": "YSECI5844J",
+        "winner_name": "Indus Healthcare Systems Pvt Ltd",
+        "award_price": 1290658,
+        "award_date": "2024-08-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8537227",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 1487043,
+        "award_date": "2024-08-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8293512",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 2447148,
+        "award_date": "2024-08-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3889156",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 146031477,
+        "award_date": "2024-08-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1043346",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 5313477,
+        "award_date": "2024-08-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3120109",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 226763396,
+        "award_date": "2024-08-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9689844",
+        "winner_pan": "EIRCS5546C",
+        "winner_name": "Shakti Infra Holdings Private Limited",
+        "award_price": 26407911,
+        "award_date": "2024-08-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7656217",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 15754023,
+        "award_date": "2024-09-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5438331",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 105215997,
+        "award_date": "2024-09-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4892896",
+        "winner_pan": "ABCDE3456P",
+        "winner_name": "ABC Industrial Automation Pvt Ltd",
+        "award_price": 1001038,
+        "award_date": "2024-09-04",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9247142",
+        "winner_pan": "TAECM8483A",
+        "winner_name": "Mahalakshmi Pharma Distributors Private Limited",
+        "award_price": 3169973,
+        "award_date": "2024-09-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1024396",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 4766208,
+        "award_date": "2024-09-07",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9453151",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 8146040,
+        "award_date": "2024-09-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2823599",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 22056474,
+        "award_date": "2024-09-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4748802",
+        "winner_pan": "ADTCS8894K",
+        "winner_name": "Shakti Pharma Distributors Pvt Ltd",
+        "award_price": 7216719,
+        "award_date": "2024-09-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9104782",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 2332040,
+        "award_date": "2024-10-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5522617",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 3552519,
+        "award_date": "2024-10-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2910451",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 4480777,
+        "award_date": "2024-10-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7098050",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 32366997,
+        "award_date": "2024-10-07",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1391715",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 5868042,
+        "award_date": "2024-10-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3279306",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 2668839,
+        "award_date": "2024-10-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8612071",
+        "winner_pan": "PUCCL3353L",
+        "winner_name": "Lotus Surgicals Private Limited",
+        "award_price": 11685092,
+        "award_date": "2024-10-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9708598",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 29423219,
+        "award_date": "2024-10-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4872020",
+        "winner_pan": "AOMCH9732Z",
+        "winner_name": "Himalaya Biomedical Limited",
+        "award_price": 5900086,
+        "award_date": "2024-10-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5623677",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 9055130,
+        "award_date": "2024-10-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6492824",
+        "winner_pan": "VLUCC4937Y",
+        "winner_name": "Coastal Medical Supplies Pvt Ltd",
+        "award_price": 5448209,
+        "award_date": "2024-10-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2390468",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 22099791,
+        "award_date": "2024-10-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5941656",
+        "winner_pan": "EPCCD9653B",
+        "winner_name": "Deccan Computer Systems Private Limited",
+        "award_price": 328025,
+        "award_date": "2024-10-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2007399",
+        "winner_pan": "IEUCO4328M",
+        "winner_name": "Orion Bulk Fuels Private Limited",
+        "award_price": 98713766,
+        "award_date": "2024-11-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9031838",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 62640388,
+        "award_date": "2024-11-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4440410",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 104995811,
+        "award_date": "2024-11-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9250481",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 26631985,
+        "award_date": "2024-11-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8812859",
+        "winner_pan": "SASCS6869H",
+        "winner_name": "Surya Estates Pvt Ltd",
+        "award_price": 469438340,
+        "award_date": "2024-11-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4753496",
+        "winner_pan": "EIECT4131K",
+        "winner_name": "Tejas Surgicals Private Limited",
+        "award_price": 13676400,
+        "award_date": "2024-11-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3296860",
+        "winner_pan": "SODCU7227C",
+        "winner_name": "Unity Digital Solutions Limited",
+        "award_price": 1235660,
+        "award_date": "2024-11-15",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/6337135",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 1134899,
+        "award_date": "2024-11-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5991994",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 11951383,
+        "award_date": "2024-11-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9722689",
+        "winner_pan": "TAECM8483A",
+        "winner_name": "Mahalakshmi Pharma Distributors Private Limited",
+        "award_price": 7336174,
+        "award_date": "2024-11-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1194661",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 48912448,
+        "award_date": "2024-11-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3707494",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 225413706,
+        "award_date": "2024-11-25",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5811633",
+        "winner_pan": "LCMCA1590M",
+        "winner_name": "Apex Computer Systems Pvt Ltd",
+        "award_price": 4383851,
+        "award_date": "2024-11-27",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3985272",
+        "winner_pan": "QRSTU9012N",
+        "winner_name": "QRS Digital Systems Pvt Ltd",
+        "award_price": 3231022,
+        "award_date": "2024-12-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9603094",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 160043897,
+        "award_date": "2024-12-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5963335",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 18319841,
+        "award_date": "2024-12-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3902067",
+        "winner_pan": "GLTCK1786L",
+        "winner_name": "Krishna Digital Solutions Pvt Ltd",
+        "award_price": 875733,
+        "award_date": "2024-12-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4019906",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 18756124,
+        "award_date": "2024-12-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3896724",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 4509647,
+        "award_date": "2024-12-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9694240",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 581898,
+        "award_date": "2024-12-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4288125",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 41640612,
+        "award_date": "2024-12-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8917240",
+        "winner_pan": "ABCDE3456P",
+        "winner_name": "ABC Industrial Automation Pvt Ltd",
+        "award_price": 5661182,
+        "award_date": "2024-12-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1736474",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 2441567,
+        "award_date": "2024-12-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3397840",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 5535082,
+        "award_date": "2024-12-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4071556",
+        "winner_pan": "MNOPQ5678M",
+        "winner_name": "MNO Office Equipment Pvt Ltd",
+        "award_price": 712800,
+        "award_date": "2024-12-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7565123",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 32085040,
+        "award_date": "2024-12-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7562376",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 93402900,
+        "award_date": "2024-12-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4229956",
+        "winner_pan": "AOMCH9732Z",
+        "winner_name": "Himalaya Biomedical Limited",
+        "award_price": 10558956,
+        "award_date": "2024-12-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4477667",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 25250636,
+        "award_date": "2024-12-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7523032",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 537728,
+        "award_date": "2024-12-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9415830",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1091008,
+        "award_date": "2024-12-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1071738",
+        "winner_pan": "RPZCH1389Q",
+        "winner_name": "Horizon Township Developers Pvt Ltd",
+        "award_price": 61322762,
+        "award_date": "2024-12-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5122136",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 24753790,
+        "award_date": "2024-12-30",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4430344",
+        "winner_pan": "ILACA8896D",
+        "winner_name": "Alpha Infra Holdings Limited",
+        "award_price": 10480877,
+        "award_date": "2024-12-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2340450",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 15150508,
+        "award_date": "2024-12-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7199861",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 413835430,
+        "award_date": "2024-12-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9427002",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 2221167,
+        "award_date": "2025-01-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8142539",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 1731423,
+        "award_date": "2025-01-02",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1819784",
+        "winner_pan": "EYRCR9882K",
+        "winner_name": "Royal Electronics Private Limited",
+        "award_price": 511437,
+        "award_date": "2025-01-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/4087202",
+        "winner_pan": "SPDCK2310Q",
+        "winner_name": "Kaveri Medical Supplies Pvt Ltd",
+        "award_price": 9018768,
+        "award_date": "2025-01-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7583768",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 3388181,
+        "award_date": "2025-01-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/9787251",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 5292800,
+        "award_date": "2025-01-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7699704",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 96837327,
+        "award_date": "2025-01-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1297174",
+        "winner_pan": "QRSTU9012N",
+        "winner_name": "QRS Digital Systems Pvt Ltd",
+        "award_price": 2084335,
+        "award_date": "2025-01-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3392010",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 5239660,
+        "award_date": "2025-01-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/2998223",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 61430891,
+        "award_date": "2025-01-21",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3417133",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 16944873,
+        "award_date": "2025-01-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/8883444",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1128427,
+        "award_date": "2025-01-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7844007",
+        "winner_pan": "DNSCU4919W",
+        "winner_name": "Unity Diagnostics Pvt Ltd",
+        "award_price": 2228834,
+        "award_date": "2025-01-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/1614835",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 2914068,
+        "award_date": "2025-01-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/3802602",
+        "winner_pan": "MATCN8993A",
+        "winner_name": "Narmada Biomedical Limited",
+        "award_price": 6123995,
+        "award_date": "2025-01-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5454562",
+        "winner_pan": "EPCCD9653B",
+        "winner_name": "Deccan Computer Systems Private Limited",
+        "award_price": 1910247,
+        "award_date": "2025-01-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7787831",
+        "winner_pan": "TEICN9280E",
+        "winner_name": "National Technologies Limited",
+        "award_price": 732323,
+        "award_date": "2025-02-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6724357",
+        "winner_pan": "YSECI5844J",
+        "winner_name": "Indus Healthcare Systems Pvt Ltd",
+        "award_price": 2052152,
+        "award_date": "2025-02-12",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2024/B/7013992",
+        "winner_pan": "EIECT4131K",
+        "winner_name": "Tejas Surgicals Private Limited",
+        "award_price": 4140625,
+        "award_date": "2025-02-14",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5266286",
+        "winner_pan": "LCMCA1590M",
+        "winner_name": "Apex Computer Systems Pvt Ltd",
+        "award_price": 9497200,
+        "award_date": "2025-02-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4384627",
+        "winner_pan": "AIICV7518H",
+        "winner_name": "Vaigai Pharma Distributors Private Limited",
+        "award_price": 1242857,
+        "award_date": "2025-02-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9628019",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 6552135,
+        "award_date": "2025-02-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2024/B/5522403",
+        "winner_pan": "LSOCV8891F",
+        "winner_name": "Vertex Land Developers Pvt Ltd",
+        "award_price": 14595881,
+        "award_date": "2025-02-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4919984",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 1782942,
+        "award_date": "2025-02-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4023728",
+        "winner_pan": "ILICA7883N",
+        "winner_name": "Alpha Diagnostics Private Limited",
+        "award_price": 8714397,
+        "award_date": "2025-02-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7722708",
+        "winner_pan": "ILACA8896D",
+        "winner_name": "Alpha Infra Holdings Limited",
+        "award_price": 19034564,
+        "award_date": "2025-03-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6022046",
+        "winner_pan": "AORCR9939G",
+        "winner_name": "Royal Pharma Distributors Private Limited",
+        "award_price": 3489693,
+        "award_date": "2025-03-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9862399",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 14461200,
+        "award_date": "2025-03-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5137270",
+        "winner_pan": "ADTCS8894K",
+        "winner_name": "Shakti Pharma Distributors Pvt Ltd",
+        "award_price": 6666973,
+        "award_date": "2025-03-03",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9694667",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 1875854,
+        "award_date": "2025-03-03",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9190913",
+        "winner_pan": "IESCA4657X",
+        "winner_name": "Anand Township Developers Private Limited",
+        "award_price": 11980159,
+        "award_date": "2025-03-04",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3027871",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 6878086,
+        "award_date": "2025-03-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6872873",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 4905962,
+        "award_date": "2025-03-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4849916",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 25063851,
+        "award_date": "2025-03-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4031041",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 76460302,
+        "award_date": "2025-03-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5951813",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 60008312,
+        "award_date": "2025-03-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6040881",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 401496,
+        "award_date": "2025-03-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9747166",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 4317573,
+        "award_date": "2025-03-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8359109",
+        "winner_pan": "EYRCR9882K",
+        "winner_name": "Royal Electronics Private Limited",
+        "award_price": 1895616,
+        "award_date": "2025-03-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7324779",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 2302659,
+        "award_date": "2025-03-23",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9408225",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 729782,
+        "award_date": "2025-03-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6838196",
+        "winner_pan": "AMTCE8750B",
+        "winner_name": "Evergreen Pharma Distributors Private Limited",
+        "award_price": 1842662,
+        "award_date": "2025-03-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6161551",
+        "winner_pan": "AMTCE8750B",
+        "winner_name": "Evergreen Pharma Distributors Private Limited",
+        "award_price": 2473160,
+        "award_date": "2025-04-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8889720",
+        "winner_pan": "LTECH8973E",
+        "winner_name": "Horizon Biomedical Limited",
+        "award_price": 14605401,
+        "award_date": "2025-04-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1058643",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 1993247,
+        "award_date": "2025-04-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9676821",
+        "winner_pan": "VLUCC4937Y",
+        "winner_name": "Coastal Medical Supplies Pvt Ltd",
+        "award_price": 2859170,
+        "award_date": "2025-04-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7945567",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 9985308,
+        "award_date": "2025-04-07",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7005885",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 4877230,
+        "award_date": "2025-04-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9832244",
+        "winner_pan": "DHLCA5072R",
+        "winner_name": "Alpha Networks Limited",
+        "award_price": 5281666,
+        "award_date": "2025-04-12",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4134640",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 7188591,
+        "award_date": "2025-04-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6917519",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 18750262,
+        "award_date": "2025-04-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9243207",
+        "winner_pan": "IAACK7813Y",
+        "winner_name": "Kohinoor Estates Private Limited",
+        "award_price": 22482966,
+        "award_date": "2025-04-18",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2020526",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 1327374,
+        "award_date": "2025-04-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8988683",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 4309829,
+        "award_date": "2025-04-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6802325",
+        "winner_pan": "IDECI1472W",
+        "winner_name": "Indus Fuel Logistics Private Limited",
+        "award_price": 48816858,
+        "award_date": "2025-04-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4245034",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 20049468,
+        "award_date": "2025-04-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6780645",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 6287005,
+        "award_date": "2025-04-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1871401",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 6945008,
+        "award_date": "2025-05-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9955693",
+        "winner_pan": "SLECS7445Z",
+        "winner_name": "Sri Estates Limited",
+        "award_price": 98438751,
+        "award_date": "2025-05-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2207248",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 4787567,
+        "award_date": "2025-05-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6078638",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 41302437,
+        "award_date": "2025-05-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1188664",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1158853,
+        "award_date": "2025-05-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9383269",
+        "winner_pan": "DDICV9576M",
+        "winner_name": "Vaigai Lubricants Pvt Ltd",
+        "award_price": 83105414,
+        "award_date": "2025-05-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3610008",
+        "winner_pan": "ERSCE4643X",
+        "winner_name": "Evergreen Infra Holdings Private Limited",
+        "award_price": 32077255,
+        "award_date": "2025-05-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9591125",
+        "winner_pan": "AOMCH9732Z",
+        "winner_name": "Himalaya Biomedical Limited",
+        "award_price": 2565410,
+        "award_date": "2025-05-16",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3053231",
+        "winner_pan": "ABDCH6669S",
+        "winner_name": "Himalaya Pharma Distributors Pvt Ltd",
+        "award_price": 14620500,
+        "award_date": "2025-05-17",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5300754",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 707774,
+        "award_date": "2025-05-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4175169",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 2964212,
+        "award_date": "2025-05-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5793422",
+        "winner_pan": "ONHCT5215Y",
+        "winner_name": "Trident Infotech Pvt Ltd",
+        "award_price": 1164925,
+        "award_date": "2025-05-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3294644",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 4394860,
+        "award_date": "2025-05-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5751798",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 1136999,
+        "award_date": "2025-05-26",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2037086",
+        "winner_pan": "NTACG2796E",
+        "winner_name": "Ganga Networks Private Limited",
+        "award_price": 4873006,
+        "award_date": "2025-05-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6167511",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 62798739,
+        "award_date": "2025-05-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2492527",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 3872301,
+        "award_date": "2025-05-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3517354",
+        "winner_pan": "LCMCA1590M",
+        "winner_name": "Apex Computer Systems Pvt Ltd",
+        "award_price": 668700,
+        "award_date": "2025-05-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3656601",
+        "winner_pan": "VLUCC4937Y",
+        "winner_name": "Coastal Medical Supplies Pvt Ltd",
+        "award_price": 13076321,
+        "award_date": "2025-06-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3498712",
+        "winner_pan": "IINCN2403Z",
+        "winner_name": "National Pharma Distributors Pvt Ltd",
+        "award_price": 5432200,
+        "award_date": "2025-06-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2313086",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 8333215,
+        "award_date": "2025-06-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3877133",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 863083,
+        "award_date": "2025-06-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1271812",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 19344421,
+        "award_date": "2025-06-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8257668",
+        "winner_pan": "AIICV7518H",
+        "winner_name": "Vaigai Pharma Distributors Private Limited",
+        "award_price": 19683785,
+        "award_date": "2025-06-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4734407",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 1113865,
+        "award_date": "2025-06-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7495927",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 25940506,
+        "award_date": "2025-06-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4937929",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 18693908,
+        "award_date": "2025-06-11",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6532500",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 9533389,
+        "award_date": "2025-06-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1560020",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 2882975,
+        "award_date": "2025-06-12",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9964482",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 20035830,
+        "award_date": "2025-06-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6847755",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 127516735,
+        "award_date": "2025-06-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1685000",
+        "winner_pan": "LLACH5835R",
+        "winner_name": "Himalaya Medical Supplies Limited",
+        "award_price": 26092717,
+        "award_date": "2025-06-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2059147",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 1017849,
+        "award_date": "2025-06-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2638595",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 19055026,
+        "award_date": "2025-06-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8169923",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 5323077,
+        "award_date": "2025-06-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4743902",
+        "winner_pan": "TAECM8483A",
+        "winner_name": "Mahalakshmi Pharma Distributors Private Limited",
+        "award_price": 5716041,
+        "award_date": "2025-06-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4244469",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 1304297,
+        "award_date": "2025-06-29",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4194945",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 33364339,
+        "award_date": "2025-06-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1599611",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 7091621,
+        "award_date": "2025-06-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6497119",
+        "winner_pan": "UYICV7290T",
+        "winner_name": "Vijay Digital Solutions Pvt Ltd",
+        "award_price": 36687688,
+        "award_date": "2025-07-02",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9831987",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 6496903,
+        "award_date": "2025-07-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8101643",
+        "winner_pan": "DDICV9576M",
+        "winner_name": "Vaigai Lubricants Pvt Ltd",
+        "award_price": 68805884,
+        "award_date": "2025-07-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7602991",
+        "winner_pan": "NTACG2796E",
+        "winner_name": "Ganga Networks Private Limited",
+        "award_price": 4688922,
+        "award_date": "2025-07-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6682594",
+        "winner_pan": "YTICN8545W",
+        "winner_name": "Navjyoti Energy Traders Private Limited",
+        "award_price": 420828780,
+        "award_date": "2025-07-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2662717",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 79621338,
+        "award_date": "2025-07-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8232666",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 107247303,
+        "award_date": "2025-07-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9195662",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 1048888,
+        "award_date": "2025-07-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3276513",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 39287546,
+        "award_date": "2025-07-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4859903",
+        "winner_pan": "LVACV9289W",
+        "winner_name": "Vaigai Land Developers Private Limited",
+        "award_price": 1432068,
+        "award_date": "2025-07-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4953259",
+        "winner_pan": "FGHIJ7890Q",
+        "winner_name": "FGH Infrastructure Solutions Pvt Ltd",
+        "award_price": 1132244,
+        "award_date": "2025-07-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5375754",
+        "winner_pan": "TEICN9280E",
+        "winner_name": "National Technologies Limited",
+        "award_price": 1160888,
+        "award_date": "2025-07-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1669818",
+        "winner_pan": "VLUCC4937Y",
+        "winner_name": "Coastal Medical Supplies Pvt Ltd",
+        "award_price": 260297,
+        "award_date": "2025-07-12",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7944046",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 2249794,
+        "award_date": "2025-07-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5257941",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 221706820,
+        "award_date": "2025-07-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4526890",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 267345336,
+        "award_date": "2025-07-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5069646",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 2248982,
+        "award_date": "2025-07-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7207788",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 692100,
+        "award_date": "2025-07-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7574693",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 843797,
+        "award_date": "2025-07-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9680521",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 707207,
+        "award_date": "2025-07-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3989026",
+        "winner_pan": "NTACG2796E",
+        "winner_name": "Ganga Networks Private Limited",
+        "award_price": 4946131,
+        "award_date": "2025-07-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3615206",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 29490023,
+        "award_date": "2025-07-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9187470",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 3971777,
+        "award_date": "2025-07-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8474638",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 6875135,
+        "award_date": "2025-08-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1804545",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 3156241,
+        "award_date": "2025-08-02",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7061849",
+        "winner_pan": "EDICE6651X",
+        "winner_name": "Evergreen Properties Limited",
+        "award_price": 264377780,
+        "award_date": "2025-08-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2149024",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 903918,
+        "award_date": "2025-08-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5222335",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 9425082,
+        "award_date": "2025-08-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6268771",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 1571188,
+        "award_date": "2025-08-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4600695",
+        "winner_pan": "ILACA8896D",
+        "winner_name": "Alpha Infra Holdings Limited",
+        "award_price": 6646763,
+        "award_date": "2025-08-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6153966",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 98625493,
+        "award_date": "2025-08-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7656720",
+        "winner_pan": "AEICG3845Z",
+        "winner_name": "Godavari Surgicals Limited",
+        "award_price": 25286091,
+        "award_date": "2025-08-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6641082",
+        "winner_pan": "YLVCM6878U",
+        "winner_name": "Malabar Healthcare Systems Pvt Ltd",
+        "award_price": 40914891,
+        "award_date": "2025-08-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1303301",
+        "winner_pan": "IINCN2403Z",
+        "winner_name": "National Pharma Distributors Pvt Ltd",
+        "award_price": 5736695,
+        "award_date": "2025-08-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3975579",
+        "winner_pan": "MATCS5262F",
+        "winner_name": "Sagar Pharma Distributors Private Limited",
+        "award_price": 23092334,
+        "award_date": "2025-08-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2640751",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 2913124,
+        "award_date": "2025-08-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7401570",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 131620339,
+        "award_date": "2025-08-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9025086",
+        "winner_pan": "SODCU7227C",
+        "winner_name": "Unity Digital Solutions Limited",
+        "award_price": 1661964,
+        "award_date": "2025-08-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9278963",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 1262860,
+        "award_date": "2025-08-29",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5357181",
+        "winner_pan": "VLUCC4937Y",
+        "winner_name": "Coastal Medical Supplies Pvt Ltd",
+        "award_price": 6563989,
+        "award_date": "2025-09-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6919817",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 783304,
+        "award_date": "2025-09-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5092158",
+        "winner_pan": "LTACZ3321Q",
+        "winner_name": "Zenith Diagnostics Limited",
+        "award_price": 64199520,
+        "award_date": "2025-09-12",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5703613",
+        "winner_pan": "SASCS6869H",
+        "winner_name": "Surya Estates Pvt Ltd",
+        "award_price": 63509985,
+        "award_date": "2025-09-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5922710",
+        "winner_pan": "VVACK5703P",
+        "winner_name": "Kaveri Networks Pvt Ltd",
+        "award_price": 2503529,
+        "award_date": "2025-09-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6764200",
+        "winner_pan": "LVTCT4351C",
+        "winner_name": "Trident Infra Holdings Pvt Ltd",
+        "award_price": 95504322,
+        "award_date": "2025-09-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8344039",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 4740155,
+        "award_date": "2025-09-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7148254",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 135507721,
+        "award_date": "2025-09-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6931608",
+        "winner_pan": "IAACK7813Y",
+        "winner_name": "Kohinoor Estates Private Limited",
+        "award_price": 50212214,
+        "award_date": "2025-09-24",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5232747",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 3153660,
+        "award_date": "2025-09-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6379149",
+        "winner_pan": "ONHCT5215Y",
+        "winner_name": "Trident Infotech Pvt Ltd",
+        "award_price": 990136,
+        "award_date": "2025-09-24",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1771751",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 95332792,
+        "award_date": "2025-09-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5727774",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 69772884,
+        "award_date": "2025-10-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4156161",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 1217663,
+        "award_date": "2025-10-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7498324",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 99919920,
+        "award_date": "2025-10-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1545415",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 8850527,
+        "award_date": "2025-10-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7132464",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 9777432,
+        "award_date": "2025-10-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4756028",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 3097543,
+        "award_date": "2025-10-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3270615",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 39585933,
+        "award_date": "2025-10-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3660245",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 659700,
+        "award_date": "2025-10-31",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2111241",
+        "winner_pan": "AJGCV8869G",
+        "winner_name": "Vijay Energy Traders Pvt Ltd",
+        "award_price": 19742734,
+        "award_date": "2025-11-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8687397",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 35175524,
+        "award_date": "2025-11-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6544164",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 14194938,
+        "award_date": "2025-11-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4077582",
+        "winner_pan": "QRSTU9012N",
+        "winner_name": "QRS Digital Systems Pvt Ltd",
+        "award_price": 6745756,
+        "award_date": "2025-11-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5353544",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 8941275,
+        "award_date": "2025-11-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3449838",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 352998,
+        "award_date": "2025-11-12",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8102034",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 25089172,
+        "award_date": "2025-11-15",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7946964",
+        "winner_pan": "YSECI5844J",
+        "winner_name": "Indus Healthcare Systems Pvt Ltd",
+        "award_price": 9218448,
+        "award_date": "2025-11-22",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9553827",
+        "winner_pan": "OAMCA5128Z",
+        "winner_name": "Alpha Computer Systems Private Limited",
+        "award_price": 712635,
+        "award_date": "2025-11-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7579060",
+        "winner_pan": "DNSCU4919W",
+        "winner_name": "Unity Diagnostics Pvt Ltd",
+        "award_price": 3921248,
+        "award_date": "2025-11-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6262234",
+        "winner_pan": "SASCS6869H",
+        "winner_name": "Surya Estates Pvt Ltd",
+        "award_price": 39499515,
+        "award_date": "2025-11-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/4476727",
+        "winner_pan": "PUCCL3353L",
+        "winner_name": "Lotus Surgicals Private Limited",
+        "award_price": 4565140,
+        "award_date": "2025-11-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1530135",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 76008684,
+        "award_date": "2025-11-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1954349",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 90077958,
+        "award_date": "2025-12-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5296397",
+        "winner_pan": "CLMCM2133P",
+        "winner_name": "Mahalakshmi Electronics Pvt Ltd",
+        "award_price": 549236,
+        "award_date": "2025-12-04",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5606976",
+        "winner_pan": "DNSCU4919W",
+        "winner_name": "Unity Diagnostics Pvt Ltd",
+        "award_price": 5093625,
+        "award_date": "2025-12-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2706394",
+        "winner_pan": "TEDCZ8015F",
+        "winner_name": "Zenith Infotech Pvt Ltd",
+        "award_price": 1921687,
+        "award_date": "2025-12-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8898724",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 158268499,
+        "award_date": "2025-12-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/8499156",
+        "winner_pan": "ABCDE1234F",
+        "winner_name": "ABC Technologies Pvt Ltd",
+        "award_price": 1914899,
+        "award_date": "2025-12-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7578422",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 15318610,
+        "award_date": "2025-12-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3175531",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 9735996,
+        "award_date": "2025-12-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1993584",
+        "winner_pan": "RMSCV7669G",
+        "winner_name": "Vaigai Properties Private Limited",
+        "award_price": 71265601,
+        "award_date": "2025-12-14",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9555595",
+        "winner_pan": "LVACV9289W",
+        "winner_name": "Vaigai Land Developers Private Limited",
+        "award_price": 11329739,
+        "award_date": "2025-12-18",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/7179080",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 117261272,
+        "award_date": "2025-12-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9209448",
+        "winner_pan": "ONHCT5215Y",
+        "winner_name": "Trident Infotech Pvt Ltd",
+        "award_price": 1894105,
+        "award_date": "2025-12-28",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6792344",
+        "winner_pan": "TTACV3194J",
+        "winner_name": "Vertex Oil and Gas Services Pvt Ltd",
+        "award_price": 204041636,
+        "award_date": "2025-12-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5838692",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 51551080,
+        "award_date": "2026-01-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/5998189",
+        "winner_pan": "ACLCA6885G",
+        "winner_name": "Alpha Lubricants Limited",
+        "award_price": 83287047,
+        "award_date": "2026-01-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/1143174",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 31485161,
+        "award_date": "2026-01-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2507070",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 949029,
+        "award_date": "2026-01-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/2528449",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 47631597,
+        "award_date": "2026-01-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/3489483",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 3176475,
+        "award_date": "2026-01-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6658969",
+        "winner_pan": "STTCU8739D",
+        "winner_name": "Unity Computer Systems Pvt Ltd",
+        "award_price": 2271754,
+        "award_date": "2026-01-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9011739",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 1123921,
+        "award_date": "2026-01-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3005319",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 1041130,
+        "award_date": "2026-01-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6333812",
+        "winner_pan": "LDECZ8046Q",
+        "winner_name": "Zenith Electronics Limited",
+        "award_price": 1454093,
+        "award_date": "2026-02-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/9108135",
+        "winner_pan": "IOYCN7138R",
+        "winner_name": "Navjyoti Electronics Limited",
+        "award_price": 1957658,
+        "award_date": "2026-02-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9154841",
+        "winner_pan": "DODCN7246M",
+        "winner_name": "Navjyoti Technologies Pvt Ltd",
+        "award_price": 4120441,
+        "award_date": "2026-02-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2025/B/6196959",
+        "winner_pan": "SPECU5564C",
+        "winner_name": "Unity Estates Pvt Ltd",
+        "award_price": 26727121,
+        "award_date": "2026-02-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1403608",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 65599077,
+        "award_date": "2026-02-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2157167",
+        "winner_pan": "LLACH5835R",
+        "winner_name": "Himalaya Medical Supplies Limited",
+        "award_price": 11844218,
+        "award_date": "2026-02-15",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1342293",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 31477420,
+        "award_date": "2026-02-18",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9937547",
+        "winner_pan": "GRECS8855U",
+        "winner_name": "Sterling Energy Traders Limited",
+        "award_price": 60216476,
+        "award_date": "2026-02-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6318184",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 2699207,
+        "award_date": "2026-02-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7177044",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 18936077,
+        "award_date": "2026-02-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5524500",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 2851893,
+        "award_date": "2026-02-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6679143",
+        "winner_pan": "AHKCM4492S",
+        "winner_name": "Mahalakshmi Networks Limited",
+        "award_price": 3344551,
+        "award_date": "2026-02-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1685209",
+        "winner_pan": "DEICV6398H",
+        "winner_name": "Vaigai Fuel Logistics Limited",
+        "award_price": 330103340,
+        "award_date": "2026-02-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6842088",
+        "winner_pan": "SODCU7227C",
+        "winner_name": "Unity Digital Solutions Limited",
+        "award_price": 2182918,
+        "award_date": "2026-02-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8278315",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 87911744,
+        "award_date": "2026-03-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6084272",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 6210402,
+        "award_date": "2026-03-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3810620",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 1261021,
+        "award_date": "2026-03-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6847756",
+        "winner_pan": "WXYZ1234L",
+        "winner_name": "WXYZ Computer Systems Pvt Ltd",
+        "award_price": 13325090,
+        "award_date": "2026-03-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6541381",
+        "winner_pan": "ADTCS8894K",
+        "winner_name": "Shakti Pharma Distributors Pvt Ltd",
+        "award_price": 48595417,
+        "award_date": "2026-03-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2722323",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 2052711,
+        "award_date": "2026-03-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9415337",
+        "winner_pan": "ITTCB5509F",
+        "winner_name": "Bharat Pharma Distributors Pvt Ltd",
+        "award_price": 21597340,
+        "award_date": "2026-03-17",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6108132",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 17305453,
+        "award_date": "2026-03-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3800042",
+        "winner_pan": "HTZCZ3742J",
+        "winner_name": "Zenith Infotech Limited",
+        "award_price": 9957039,
+        "award_date": "2026-03-26",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9272875",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 43810877,
+        "award_date": "2026-03-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8183701",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 22475033,
+        "award_date": "2026-03-28",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9315607",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 1269681,
+        "award_date": "2026-04-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6487124",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 42562626,
+        "award_date": "2026-04-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1186381",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 3129373,
+        "award_date": "2026-04-02",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9627289",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 715586,
+        "award_date": "2026-04-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9166533",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 14947752,
+        "award_date": "2026-04-07",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5811005",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 82751296,
+        "award_date": "2026-04-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8573588",
+        "winner_pan": "VTHCO7484K",
+        "winner_name": "Orion Healthcare Systems Private Limited",
+        "award_price": 91638611,
+        "award_date": "2026-04-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8942495",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 347706470,
+        "award_date": "2026-04-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8308829",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 1191784,
+        "award_date": "2026-04-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7675111",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 67147510,
+        "award_date": "2026-04-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2214089",
+        "winner_pan": "ULDCS8916D",
+        "winner_name": "Surya Surgicals Private Limited",
+        "award_price": 10092310,
+        "award_date": "2026-04-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8468826",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 24810138,
+        "award_date": "2026-04-16",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3172691",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 96574962,
+        "award_date": "2026-04-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8162586",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 2245742,
+        "award_date": "2026-04-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2021413",
+        "winner_pan": "SDICK7590Q",
+        "winner_name": "Krishna Township Developers Limited",
+        "award_price": 19939668,
+        "award_date": "2026-04-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9875764",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 25644406,
+        "award_date": "2026-04-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3470633",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 1021446,
+        "award_date": "2026-04-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5712823",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 4960458,
+        "award_date": "2026-04-20",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3353101",
+        "winner_pan": "TTRCK4063M",
+        "winner_name": "Kaveri Oil and Gas Services Pvt Ltd",
+        "award_price": 238894588,
+        "award_date": "2026-04-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7914310",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 16973711,
+        "award_date": "2026-04-21",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5092644",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 55877254,
+        "award_date": "2026-04-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9936520",
+        "winner_pan": "LGECG5135V",
+        "winner_name": "Ganga Electronics Pvt Ltd",
+        "award_price": 1362298,
+        "award_date": "2026-04-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8617079",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 1666082,
+        "award_date": "2026-04-29",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8405556",
+        "winner_pan": "LVACV9289W",
+        "winner_name": "Vaigai Land Developers Private Limited",
+        "award_price": 15008972,
+        "award_date": "2026-05-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9863265",
+        "winner_pan": "LLACH5835R",
+        "winner_name": "Himalaya Medical Supplies Limited",
+        "award_price": 5720186,
+        "award_date": "2026-05-03",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4551449",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 6048548,
+        "award_date": "2026-05-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6676054",
+        "winner_pan": "SPDCK2310Q",
+        "winner_name": "Kaveri Medical Supplies Pvt Ltd",
+        "award_price": 7459517,
+        "award_date": "2026-05-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5370124",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 49052965,
+        "award_date": "2026-05-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9026600",
+        "winner_pan": "SODCU7227C",
+        "winner_name": "Unity Digital Solutions Limited",
+        "award_price": 3085882,
+        "award_date": "2026-05-12",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9278176",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 203371200,
+        "award_date": "2026-05-13",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4169690",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 2015487,
+        "award_date": "2026-05-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2109238",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 121124332,
+        "award_date": "2026-05-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7626953",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 45078116,
+        "award_date": "2026-05-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3930205",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 1135180,
+        "award_date": "2026-05-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1984126",
+        "winner_pan": "TLICA3496U",
+        "winner_name": "Anand Surgicals Private Limited",
+        "award_price": 243523,
+        "award_date": "2026-05-16",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9122764",
+        "winner_pan": "HNDCL9814G",
+        "winner_name": "Lotus Infra Holdings Pvt Ltd",
+        "award_price": 40014616,
+        "award_date": "2026-05-27",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4000972",
+        "winner_pan": "DODCN7246M",
+        "winner_name": "Navjyoti Technologies Pvt Ltd",
+        "award_price": 1306438,
+        "award_date": "2026-05-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9132648",
+        "winner_pan": "NTACG2796E",
+        "winner_name": "Ganga Networks Private Limited",
+        "award_price": 2127855,
+        "award_date": "2026-06-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3426881",
+        "winner_pan": "TSVCG7476W",
+        "winner_name": "Ganga Estates Private Limited",
+        "award_price": 11902787,
+        "award_date": "2026-06-10",
+        "contract_status": "TERMINATED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4262883",
+        "winner_pan": "OLSCM5133C",
+        "winner_name": "Mahalakshmi Digital Solutions Private Limited",
+        "award_price": 3044039,
+        "award_date": "2026-06-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7227279",
+        "winner_pan": "ITTCB5509F",
+        "winner_name": "Bharat Pharma Distributors Pvt Ltd",
+        "award_price": 2931706,
+        "award_date": "2026-06-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1117006",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 7644725,
+        "award_date": "2026-06-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2492491",
+        "winner_pan": "ILACA8896D",
+        "winner_name": "Alpha Infra Holdings Limited",
+        "award_price": 7808240,
+        "award_date": "2026-06-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1827363",
+        "winner_pan": "TEDCH7113A",
+        "winner_name": "Himalaya Digital Solutions Limited",
+        "award_price": 7200308,
+        "award_date": "2026-06-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3837377",
+        "winner_pan": "DDICV9576M",
+        "winner_name": "Vaigai Lubricants Pvt Ltd",
+        "award_price": 32004263,
+        "award_date": "2026-06-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/3542382",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 30324474,
+        "award_date": "2026-06-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7954389",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 3431973,
+        "award_date": "2026-06-20",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7438163",
+        "winner_pan": "AMTCE8750B",
+        "winner_name": "Evergreen Pharma Distributors Private Limited",
+        "award_price": 2693329,
+        "award_date": "2026-06-21",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9178970",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 60183523,
+        "award_date": "2026-06-25",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2742651",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 3233763,
+        "award_date": "2026-06-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4099902",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 48748680,
+        "award_date": "2026-07-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6920923",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 71185915,
+        "award_date": "2026-07-05",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8945297",
+        "winner_pan": "NOVCN2276E",
+        "winner_name": "Nila Biomedical Pvt Ltd",
+        "award_price": 7602076,
+        "award_date": "2026-07-08",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8632578",
+        "winner_pan": "ICSCV6053B",
+        "winner_name": "Vertex Electronics Limited",
+        "award_price": 6408058,
+        "award_date": "2026-07-10",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1741058",
+        "winner_pan": "IAACK7813Y",
+        "winner_name": "Kohinoor Estates Private Limited",
+        "award_price": 87531483,
+        "award_date": "2026-07-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5010801",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 124378755,
+        "award_date": "2026-07-13",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9148566",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 5089222,
+        "award_date": "2026-07-16",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9181335",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 81429526,
+        "award_date": "2026-07-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7313718",
+        "winner_pan": "TTACV3870R",
+        "winner_name": "Vaigai Networks Pvt Ltd",
+        "award_price": 3069447,
+        "award_date": "2026-07-24",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6178697",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 27656755,
+        "award_date": "2026-07-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2248895",
+        "winner_pan": "INNCN8511W",
+        "winner_name": "National Lubricants Private Limited",
+        "award_price": 560438,
+        "award_date": "2026-07-29",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7008871",
+        "winner_pan": "LMOCR2121H",
+        "winner_name": "Royal Biomedical Limited",
+        "award_price": 11148735,
+        "award_date": "2026-08-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4010656",
+        "winner_pan": "LDLCS6608T",
+        "winner_name": "Sterling Digital Solutions Pvt Ltd",
+        "award_price": 3335441,
+        "award_date": "2026-08-04",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4475845",
+        "winner_pan": "CLMCM2133P",
+        "winner_name": "Mahalakshmi Electronics Pvt Ltd",
+        "award_price": 3885495,
+        "award_date": "2026-08-06",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/1751645",
+        "winner_pan": "SIVCK9128Q",
+        "winner_name": "Kaveri Energy Traders Limited",
+        "award_price": 9167606,
+        "award_date": "2026-08-08",
+        "contract_status": "DELAYED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8558992",
+        "winner_pan": "EPCCD9653B",
+        "winner_name": "Deccan Computer Systems Private Limited",
+        "award_price": 1582710,
+        "award_date": "2026-08-09",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6942955",
+        "winner_pan": "TLTCV1200U",
+        "winner_name": "Vertex Biomedical Pvt Ltd",
+        "award_price": 3766801,
+        "award_date": "2026-08-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7284632",
+        "winner_pan": "TODCK5921B",
+        "winner_name": "Kohinoor Healthcare Systems Private Limited",
+        "award_price": 8567886,
+        "award_date": "2026-08-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/5316157",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 2166881,
+        "award_date": "2026-08-14",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4737634",
+        "winner_pan": "TEICN9280E",
+        "winner_name": "National Technologies Limited",
+        "award_price": 669222,
+        "award_date": "2026-08-19",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4544590",
+        "winner_pan": "ILACD2522M",
+        "winner_name": "Deccan Realty Private Limited",
+        "award_price": 645877,
+        "award_date": "2026-08-22",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4290133",
+        "winner_pan": "IALCA4558L",
+        "winner_name": "Apex Infotech Pvt Ltd",
+        "award_price": 141505682,
+        "award_date": "2026-08-23",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4960113",
+        "winner_pan": "PTSCS3846G",
+        "winner_name": "Shakti Lubricants Pvt Ltd",
+        "award_price": 19806548,
+        "award_date": "2026-08-28",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2429208",
+        "winner_pan": "TODCK5921B",
+        "winner_name": "Kohinoor Healthcare Systems Private Limited",
+        "award_price": 10753789,
+        "award_date": "2026-08-30",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/4310854",
+        "winner_pan": "NTACG2796E",
+        "winner_name": "Ganga Networks Private Limited",
+        "award_price": 1113883,
+        "award_date": "2026-09-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8153608",
+        "winner_pan": "SALCS4585F",
+        "winner_name": "Sagar Infotech Limited",
+        "award_price": 1072966,
+        "award_date": "2026-09-01",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/6604276",
+        "winner_pan": "EIRCS5546C",
+        "winner_name": "Shakti Infra Holdings Private Limited",
+        "award_price": 34488688,
+        "award_date": "2026-09-03",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9928852",
+        "winner_pan": "TAACC6183Y",
+        "winner_name": "Coastal Pharma Distributors Private Limited",
+        "award_price": 5763523,
+        "award_date": "2026-09-11",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/2895065",
+        "winner_pan": "AMSCM8381Y",
+        "winner_name": "Malabar Diagnostics Pvt Ltd",
+        "award_price": 11880314,
+        "award_date": "2026-09-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/8348027",
+        "winner_pan": "OLSCM5133C",
+        "winner_name": "Mahalakshmi Digital Solutions Private Limited",
+        "award_price": 408599,
+        "award_date": "2026-09-12",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/9205709",
+        "winner_pan": "DNSCU4919W",
+        "winner_name": "Unity Diagnostics Pvt Ltd",
+        "award_price": 19388118,
+        "award_date": "2026-09-15",
+        "contract_status": "COMPLETED"
+    },
+    {
+        "tender_id": "GEM/2026/B/7746781",
+        "winner_pan": "LASCN6968X",
+        "winner_name": "Narmada Estates Limited",
+        "award_price": 177374433,
+        "award_date": "2026-09-23",
+        "contract_status": "DELAYED"
+    }
+]

@@ -1,20 +1,27 @@
+# 1. FastAPI Framework & Server
 fastapi>=0.110.0
 uvicorn[standard]>=0.28.0
 python-multipart>=0.0.9
 pydantic>=2.0.0
+python-dotenv>=1.0.0
 
-# Structured document extraction for digital PDFs and supported image files.
-docling>=2.0.0
+# 2. AI, Embeddings & API Clients
+google-generativeai>=0.8.0
+httpx>=0.27.0
+
+# 3. Document Parsing & Fast OCR (Lightweight & High Speed)
 pypdf>=4.0.0
-
-# OCR fallback for scanned PDFs and images.
 rapidocr>=3.0.0
 pypdfium2>=4.30.0
 numpy>=1.26.0
 Pillow>=10.0.0
+opencv-python-headless>=4.9.0
 
-# PostgreSQL & Database ORM dependencies
+# 4. ML & Anti-Collusion Anomaly Detection Engine
+scikit-learn>=1.4.0
+joblib>=1.3.0
+pandas>=2.0.0
+
+# 5. Database & ORM (PostgreSQL & SQLite)
 sqlalchemy>=2.0.0
 psycopg2-binary>=2.9.9
-asyncpg>=0.29.0
-python-dotenv>=1.0.0
