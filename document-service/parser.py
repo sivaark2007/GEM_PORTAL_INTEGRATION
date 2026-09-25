@@ -139,10 +139,54 @@ def is_scanned_pdf(file_path: str, char_threshold_per_page: int = 40) -> bool:
         return True
 
 
+_vision_ocr_model = None
+_last_ocr_engine_used = "RapidOCR"
+
+def get_vision_ocr_model():
+    global _vision_ocr_model
+    if _vision_ocr_model is None:
+        try:
+            import google.generativeai as genai
+            from dotenv import load_dotenv, find_dotenv
+            load_dotenv(find_dotenv())
+            api_key = os.getenv("GEMINI_API_KEY")
+            if api_key:
+                genai.configure(api_key=api_key)
+                _vision_ocr_model = genai.GenerativeModel("gemini-3.8-flash")
+                logger.info("Initialized Indic Multimodal Vision OCR engine (gemini-3.8-flash).")
+        except Exception as e:
+            logger.warning(f"Could not initialize Indic Vision OCR engine: {e}")
+    return _vision_ocr_model
+
+
 def run_ocr_on_pil_image(image: Image.Image) -> str:
     """
-    Runs RapidOCR on a PIL image and returns extracted text lines.
+    Runs OCR on a PIL image.
+    Priority 1: Indic Multimodal Vision OCR (supports all 22 scheduled Indian languages,
+                including Tamil, Hindi, Telugu, Kannada, Bengali, Marathi, etc.).
+    Priority 2: RapidOCR fast local fallback.
     """
+    global _last_ocr_engine_used
+
+    # 1. Try Indic Multimodal Vision OCR
+    vm = get_vision_ocr_model()
+    if vm:
+        try:
+            prompt = (
+                "You are an expert Indic OCR engine. Transcribe ALL text from this document image with 100% accuracy.\n"
+                "- Preserve all Indian language text (Tamil, Hindi, Telugu, Kannada, Malayalam, Bengali, etc.) in their original native script.\n"
+                "- Preserve all English text, names, numbers, dates, and statutory IDs exactly as printed.\n"
+                "- Return plain transcribed text matching the visual layout. No commentary, no markdown fences."
+            )
+            resp = vm.generate_content([prompt, image])
+            if resp and resp.text and resp.text.strip():
+                _last_ocr_engine_used = "Indic Multimodal Vision OCR (Tamil/Hindi/English)"
+                return resp.text.strip()
+        except Exception as vision_err:
+            logger.warning(f"Indic Vision OCR notice: {vision_err}. Falling back to RapidOCR.")
+
+    # 2. Local fallback to RapidOCR
+    _last_ocr_engine_used = "RapidOCR (Local Fallback)"
     if not RAPID_OCR_AVAILABLE or ocr_engine is None:
         return "[OCR Notice: OCR Engine is initializing]"
     try:
@@ -226,7 +270,7 @@ def parse_scanned_document_with_ocr(file_path: str, filename: str, is_image: boo
         "tables": tables_list,
         "headings": list(dict.fromkeys(headings_list))[:15],
         "metadata": {
-            "parser": "RapidOCR",
+            "parser": _last_ocr_engine_used,
             "ocr_used": True,
             "page_count": len(pages_list),
             "total_characters": len(full_text),
@@ -414,6 +458,25 @@ def parse_document(file_bytes: bytes, filename: str) -> Dict[str, Any]:
             "code": "FILE_TOO_LARGE"
         }
 
+    if ext == '.txt':
+        text = file_bytes.decode('utf-8', errors='ignore').strip()
+        return {
+            "success": True,
+            "filename": filename,
+            "full_text": text,
+            "raw_text": text,
+            "pages": [{"page_number": 1, "text": text, "tables": []}],
+            "tables": [],
+            "headings": [],
+            "metadata": {
+                "parser": "PlainTextReader",
+                "ocr_used": False,
+                "page_count": 1,
+                "total_characters": len(text),
+                "processing_time_ms": 1
+            }
+        }
+
     is_image = ext in {'.png', '.jpg', '.jpeg', '.tiff', '.webp', '.bmp'}
     
     temp_file_path = None
@@ -421,6 +484,7 @@ def parse_document(file_bytes: bytes, filename: str) -> Dict[str, Any]:
         with tempfile.NamedTemporaryFile(delete=False, suffix=ext) as tf:
             tf.write(file_bytes)
             temp_file_path = tf.name
+
             
         # Automatic OCR detection strategy
         if is_image:

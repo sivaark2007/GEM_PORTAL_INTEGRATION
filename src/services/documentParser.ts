@@ -2,10 +2,14 @@ import type { ParsedDocumentResult } from '../types';
 
 export async function parseDocumentWithService(
   fileOrBlob: File | Blob,
-  filename: string
+  filename: string,
+  requirement?: string
 ): Promise<ParsedDocumentResult> {
   const formData = new FormData();
   formData.append('file', fileOrBlob, filename);
+  if (requirement) {
+    formData.append('requirement', requirement);
+  }
 
   try {
     const response = await fetch('/api/parse-document', {

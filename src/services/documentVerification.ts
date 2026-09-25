@@ -1,4 +1,4 @@
-import type { Company, DocumentVerificationResult } from '../types';
+import type { Company, DocumentVerificationResult, TenderCondition, GemFrameworkEvaluation, Tender, TenderComplianceVerificationItem } from '../types';
 
 export interface VerificationDocumentInput {
   name: string;
@@ -10,19 +10,38 @@ export interface VerificationDocumentInput {
   };
 }
 
+export interface ConditionCheckResult {
+  condition_title: string;
+  category: string;
+  mandatory: boolean;
+  status: 'COMPLIANT' | 'NON_COMPLIANT' | 'PARTIAL' | 'NOT_VERIFIABLE';
+  verdict: string;
+  matched_in_doc: string | null;
+  evidence_snippet: string | null;
+}
+
 export interface SubmissionVerificationResponse {
   success: boolean;
   submissionId: string;
   overallStatus: 'Verified' | 'Under Review' | 'Disqualified';
   complianceScore: number;
+  apiScore?: number;
+  conditionScore?: number | null;
+  evaluationSummary?: string;
   flags: string[];
   documents: DocumentVerificationResult[];
+  conditionChecks?: ConditionCheckResult[];
+  complianceVerifications?: TenderComplianceVerificationItem[];
+  gemFrameworkEvaluation?: GemFrameworkEvaluation;
 }
 
 export async function verifySubmissionDocuments(
   submissionId: string,
   company: Company,
-  documents: VerificationDocumentInput[]
+  documents: VerificationDocumentInput[],
+  tenderConditions?: TenderCondition[],
+  tender?: Tender,
+  commercialQuote?: number
 ): Promise<SubmissionVerificationResponse> {
   const response = await fetch('/api/verify-submission-documents', {
     method: 'POST',
@@ -36,6 +55,9 @@ export async function verifySubmissionDocuments(
         fileSize: document.fileSize,
         parsedText: document.parsedData?.full_text || '',
       })),
+      tenderConditions: tenderConditions ?? [],
+      tender,
+      commercialQuote,
     }),
   });
 

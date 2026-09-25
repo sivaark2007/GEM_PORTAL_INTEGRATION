@@ -18,7 +18,7 @@ interface AppContextType {
   createCompany: (companyData: Omit<Company, 'id'>) => Company;
   navigateTo: (view: AppView) => void;
   setSelectedTenderId: (tenderId: string) => void;
-  submitBid: (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[]) => void;
+  submitBid: (tenderId: string, companyId: string, documents: { name: string; size?: string; type?: string; fileContentUrl?: string }[], commercialQuote?: number) => void;
   runVerificationForSubmission: (submissionId: string) => Promise<void>;
   addTender: (tenderData: Omit<Tender, 'id' | 'appliedBiddersCount'>) => Tender;
   uploadGemBiddingDocument: (tenderId: string, doc: GemBiddingDocument) => void;
@@ -245,7 +245,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
   };
 
-  const submitBid = (tenderId: string, companyId: string, documents: any[]) => {
+  const submitBid = (tenderId: string, companyId: string, documents: any[], commercialQuote?: number) => {
+    const quoteVal = commercialQuote || 79500000;
+    const formattedCommercialQuote = `₹ ${(quoteVal / 10000000).toFixed(2)} Cr`;
     const newSub: BidSubmission = {
       id: `sub-${Date.now()}`,
       tenderId,
@@ -253,6 +255,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }) + ' IST',
       status: 'Under Review',
       complianceScore: 85,
+      commercialQuote: quoteVal,
+      formattedCommercialQuote,
       aiVerificationStage: 'Pending',
       documents: documents.map(document => ({
         name: document.name,
@@ -284,7 +288,11 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   const uploadGemBiddingDocument = (tenderId: string, doc: GemBiddingDocument) => {
     setTenders(prev => prev.map(t =>
-      t.id === tenderId ? { ...t, gemBiddingDocument: doc } : t
+      t.id === tenderId ? {
+        ...t,
+        gemBiddingDocument: doc,
+        tenderSummaryInfo: doc.tenderSummaryInfo || doc.parsedData?.tenderSummaryInfo || t.tenderSummaryInfo
+      } : t
     ));
   };
 
@@ -293,6 +301,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const company = companies.find(comp => comp.id === submission?.companyId);
 
     if (!submission || !company) return;
+
+    // Retrieve tender conditions for semantic matching
+    const tender = tenders.find(t => t.id === submission.tenderId);
+    const tenderConditions =
+      tender?.tenderSummaryInfo?.conditions ||
+      tender?.gemBiddingDocument?.tenderSummaryInfo?.conditions ||
+      tender?.gemBiddingDocument?.parsedData?.tenderSummaryInfo?.conditions ||
+      [];
 
     setSubmissions(prev => prev.map(sub =>
       sub.id === submissionId ? { ...sub, aiVerificationStage: 'Govt_API', status: 'Under Review' } : sub
@@ -312,7 +328,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         }
       }));
 
-      const verification = await verifySubmissionDocuments(submission.id, company, documentsWithParsedText);
+      const verification = await verifySubmissionDocuments(
+        submission.id,
+        company,
+        documentsWithParsedText,
+        tenderConditions,
+        tender,
+        submission.commercialQuote
+      );
       setSubmissions(prev => prev.map(sub => {
         if (sub.id !== submissionId) return sub;
 
@@ -322,6 +345,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           status: verification.overallStatus,
           complianceScore: verification.complianceScore,
           flags: verification.flags,
+          evaluationSummary: verification.evaluationSummary,
+          conditionChecks: verification.conditionChecks,
+          complianceVerifications: verification.complianceVerifications,
+          gemFrameworkEvaluation: verification.gemFrameworkEvaluation,
           documents: documentsWithParsedText.map(document => {
             const result = verification.documents.find(item => item.documentName === document.name);
             return {

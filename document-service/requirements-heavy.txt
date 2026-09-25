@@ -1,8 +1,21 @@
-# Heavy ML/OCR packages — PyTorch, models, image processing
-# These are installed in a SEPARATE Docker layer so they are cached
-# and never re-downloaded unless THIS file changes.
+# Heavy ML/OCR packages — installed in a SEPARATE Docker layer so they are
+# cached independently of the light packages above.
+#
+# ⚠️  PyTorch CUDA vs CPU:
+#     By default, `pip install torch` downloads the FULL CUDA version (~2.5 GB of
+#     nvidia GPU libraries). Since this project runs on CPU-only servers (Docker,
+#     no GPU), we pre-install the LIGHTWEIGHT CPU-only torch first (~180 MB).
+#     When docling is installed next, pip sees torch is already satisfied and
+#     skips re-downloading the GPU version. Total savings: ~2.3 GB per build.
+#
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch>=2.2.0
+torchvision>=0.17.0
+
+# Then the heavy ML stack (uses the CPU torch installed above)
 docling>=2.0.0
 rapidocr>=3.0.0
 pypdfium2>=4.30.0
 numpy>=1.26.0
 Pillow>=10.0.0
+

@@ -146,11 +146,27 @@ export const BidderSelectionPage: React.FC = () => {
                       </div>
                     </div>
 
-                    {company.isCustom && (
+                    {company.isCustom ? (
                       <span className="text-[10px] font-bold uppercase tracking-wider text-amber-800 bg-amber-50 border border-amber-200 px-1.5 py-0.5 rounded shrink-0">
                         Custom
                       </span>
+                    ) : (
+                      <span className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full shrink-0 flex items-center gap-1">
+                        <Sparkles className="w-3 h-3 text-emerald-600" />
+                        Mock Ready
+                      </span>
                     )}
+                  </div>
+
+                  {/* Mock Folder Indicator */}
+                  <div className="mb-2.5 px-2.5 py-1.5 bg-indigo-50/60 border border-indigo-100 rounded-lg flex items-center justify-between text-[11px] text-indigo-900">
+                    <span className="flex items-center gap-1.5 font-medium">
+                      <FileCheck2 className="w-3.5 h-3.5 text-indigo-600" />
+                      cloud_tender_docs Folder
+                    </span>
+                    <span className="font-mono font-bold text-indigo-700 bg-white px-1.5 py-0.2 rounded border border-indigo-200 text-[10px]">
+                      22 PDFs Ready
+                    </span>
                   </div>
 
                   {/* Company Identifiers & Statutory Info */}
@@ -184,7 +200,7 @@ export const BidderSelectionPage: React.FC = () => {
                     onClick={() => selectCompany(company)}
                     className="w-full py-2.5 px-3 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold rounded-lg flex items-center justify-center gap-1.5 shadow-2xs group-hover:bg-emerald-800 transition-colors"
                   >
-                    <span>Enter Dashboard</span>
+                    <span>Enter Bidder Portal</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </button>
                 </div>

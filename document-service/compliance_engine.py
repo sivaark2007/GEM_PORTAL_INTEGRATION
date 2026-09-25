@@ -28,10 +28,26 @@ load_dotenv()
 logger = logging.getLogger("compliance-engine")
 genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
-# Mock Gov API base URL (from docker-compose env or .env)
-MOCK_GOV_API_URL = os.getenv("MOCK_GOV_API_URL", "http://mock-api:9000")
+# Mock Gov API base URL (from local env or fallback)
+MOCK_GOV_API_URL = os.getenv("MOCK_GOV_API_URL", "http://127.0.0.1:9000")
 
-_judge_model = genai.GenerativeModel("gemini-2.0-flash")
+MODEL_CANDIDATES = [
+    os.getenv("GEMINI_MODEL", "gemini-3.6-flash"),
+    "gemini-3.8-flash",
+    "gemini-2.5-flash",
+    "gemini-flash-latest"
+]
+
+_judge_model = None
+for candidate in MODEL_CANDIDATES:
+    try:
+        _judge_model = genai.GenerativeModel(candidate)
+        break
+    except Exception as err:
+        logger.warning(f"Could not initialize judge model {candidate}: {err}")
+
+if _judge_model is None:
+    _judge_model = genai.GenerativeModel("gemini-3.6-flash")
 
 
 # ---------------------------------------------------------------------------

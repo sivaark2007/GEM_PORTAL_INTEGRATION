@@ -18,7 +18,7 @@ import {
   Sparkles,
   Loader2,
 } from 'lucide-react';
-import { ParsedDocumentResult, Tender, TenderRequirement } from '../../types';
+import { ParsedDocumentResult, Tender, TenderRequirement, TenderSummaryInfo } from '../../types';
 import { parseDocumentWithService } from '../../services/documentParser';
 
 interface CreateTenderModalProps {
@@ -38,6 +38,7 @@ export interface TenderDocumentUpload extends UploadedDoc {
   parsedData?: ParsedDocumentResult;
   parsingStatus?: 'processing' | 'complete' | 'failed';
   parseError?: string;
+  tenderSummaryInfo?: TenderSummaryInfo;
 }
 
 type Step = 1 | 2 | 3;
@@ -170,6 +171,29 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
     setUploadedDocs(prev => [...prev, ...newDocs]);
   };
 
+  const autoFillFromTenderSummary = (info?: TenderSummaryInfo) => {
+    const summary = info || gemBiddingDoc?.tenderSummaryInfo || gemBiddingDoc?.parsedData?.tenderSummaryInfo;
+    if (!summary) return;
+
+    if (summary.tender_title && !title.trim()) {
+      setTitle(summary.tender_title);
+    }
+    if (summary.estimated_value && !estimatedValue.trim()) {
+      setEstimatedValue(summary.estimated_value);
+    }
+    if (summary.closing_date && !closingDate) {
+      setClosingDate(summary.closing_date);
+    }
+    if (summary.conditions && summary.conditions.length > 0) {
+      setRequirements(summary.conditions.map(c => ({
+        title: c.title,
+        category: c.category || 'compliance',
+        description: c.description || '',
+        mandatory: c.mandatory ?? true,
+      })));
+    }
+  };
+
   const handleGemFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -189,12 +213,33 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
 
     try {
       const parsed = await parseDocumentWithService(file, file.name);
+      const summaryInfo = parsed.tenderSummaryInfo;
       setGemBiddingDoc(current => current?.fileContentUrl === url
         ? (parsed.success
-          ? { ...document, parsedData: parsed, parsingStatus: 'complete' }
+          ? { ...document, parsedData: parsed, parsingStatus: 'complete', tenderSummaryInfo: summaryInfo }
           : { ...document, parsingStatus: 'failed', parseError: parsed.error || 'Tender document parsing failed.' })
         : current
       );
+
+      // Auto-populate empty fields and requirements if extracted
+      if (parsed.success && summaryInfo) {
+        if (!title.trim() && summaryInfo.tender_title) {
+          setTitle(summaryInfo.tender_title);
+        }
+        if (!estimatedValue.trim() && summaryInfo.estimated_value) {
+          setEstimatedValue(summaryInfo.estimated_value);
+        }
+        if (summaryInfo.conditions && summaryInfo.conditions.length > 0) {
+          if (requirements.length <= 1 && (!requirements[0] || !requirements[0].title.trim())) {
+            setRequirements(summaryInfo.conditions.map(c => ({
+              title: c.title,
+              category: c.category || 'compliance',
+              description: c.description || '',
+              mandatory: c.mandatory ?? true,
+            })));
+          }
+        }
+      }
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Tender document parsing failed.';
       setGemBiddingDoc(current => current?.fileContentUrl === url
@@ -234,6 +279,7 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
       closingDate,
       status,
       requirements: validReqs,
+      tenderSummaryInfo: gemBiddingDoc?.tenderSummaryInfo || gemBiddingDoc?.parsedData?.tenderSummaryInfo,
     };
 
     onSubmit(tenderData, uploadedDocs, gemBiddingDoc || undefined);
@@ -657,6 +703,92 @@ export const CreateTenderModal: React.FC<CreateTenderModalProps> = ({ isOpen, on
               </div>
 
               {errors.gemDoc && <p className="text-xs text-red-600">{errors.gemDoc}</p>}
+
+              {/* AI Extracted Tender Conditions & Needed Documents Preview */}
+              {(gemBiddingDoc?.tenderSummaryInfo || gemBiddingDoc?.parsedData?.tenderSummaryInfo) && (() => {
+                const summary = gemBiddingDoc.tenderSummaryInfo || gemBiddingDoc.parsedData?.tenderSummaryInfo;
+                if (!summary) return null;
+                return (
+                  <div className="p-4 bg-gradient-to-br from-indigo-50/70 via-blue-50/50 to-slate-50 border border-indigo-200 rounded-xl space-y-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-indigo-600 shrink-0" />
+                        <h5 className="text-xs font-bold text-indigo-950">
+                          AI Tender Intelligence: Extracted Conditions & Needed Documents
+                        </h5>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => autoFillFromTenderSummary(summary)}
+                        className="text-[11px] font-semibold text-indigo-700 bg-white hover:bg-indigo-50 border border-indigo-200 px-2.5 py-1 rounded shadow-2xs transition-colors flex items-center gap-1"
+                      >
+                        <Sparkles className="w-3 h-3 text-indigo-500" />
+                        Auto-populate Form
+                      </button>
+                    </div>
+
+                    {summary.scope_of_work && (
+                      <p className="text-xs text-slate-700 leading-relaxed bg-white/80 p-2.5 rounded-lg border border-indigo-100">
+                        <strong className="text-indigo-900">Procurement Scope:</strong> {summary.scope_of_work}
+                      </p>
+                    )}
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                      {/* Specific Eligibility Conditions */}
+                      <div className="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
+                        <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                          <h6 className="font-bold text-slate-800 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-indigo-700">
+                            <ShieldCheck className="w-3.5 h-3.5" />
+                            Specific Conditions ({summary.conditions?.length || 0})
+                          </h6>
+                        </div>
+                        <ul className="space-y-2 divide-y divide-slate-100 max-h-52 overflow-y-auto pr-1">
+                          {summary.conditions?.map((c, i) => (
+                            <li key={i} className="pt-2 first:pt-0">
+                              <div className="font-semibold text-slate-900 flex items-center justify-between gap-1">
+                                <span className="truncate">{c.title}</span>
+                                <span className="text-[9px] uppercase px-1.5 py-0.5 rounded bg-indigo-50 text-indigo-700 font-bold border border-indigo-100 shrink-0">
+                                  {c.category}
+                                </span>
+                              </div>
+                              <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">{c.description}</p>
+                            </li>
+                          ))}
+                          {(!summary.conditions || summary.conditions.length === 0) && (
+                            <li className="text-[11px] text-slate-400 italic">No specific numerical conditions identified.</li>
+                          )}
+                        </ul>
+                      </div>
+
+                      {/* Needed Documents Checklist */}
+                      <div className="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
+                        <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                          <h6 className="font-bold text-slate-800 flex items-center gap-1.5 text-[11px] uppercase tracking-wider text-emerald-700">
+                            <FileText className="w-3.5 h-3.5" />
+                            Needed Documents ({summary.needed_documents?.length || 0})
+                          </h6>
+                        </div>
+                        <ul className="space-y-2 divide-y divide-slate-100 max-h-52 overflow-y-auto pr-1">
+                          {summary.needed_documents?.map((d, i) => (
+                            <li key={i} className="pt-2 first:pt-0">
+                              <div className="font-semibold text-slate-900 flex items-center justify-between gap-1">
+                                <span className="truncate">{d.document_name}</span>
+                                <span className={`text-[9px] uppercase px-1.5 py-0.5 rounded font-bold border shrink-0 ${d.mandatory ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-slate-50 text-slate-600 border-slate-200'}`}>
+                                  {d.mandatory ? 'Mandatory' : 'Optional'}
+                                </span>
+                              </div>
+                              <p className="text-[10px] text-slate-500 mt-0.5 leading-snug">{d.purpose}</p>
+                            </li>
+                          ))}
+                          {(!summary.needed_documents || summary.needed_documents.length === 0) && (
+                            <li className="text-[11px] text-slate-400 italic">Standard statutory bid documents required.</li>
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
 
               {/* Additional Supporting Documents Drop Zone */}
               <div>

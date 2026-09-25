@@ -10,6 +10,7 @@ import os
 import logging
 from typing import List, Dict, Any
 
+# pyrefly: ignore [missing-import]
 import google.generativeai as genai
 from dotenv import load_dotenv
 
